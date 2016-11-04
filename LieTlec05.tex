@@ -1,0 +1,200 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{5}
+ \sektion{Lecture 5}
+
+ Last time we talked about connectedness, and proved the following things:
+ \begin{itemize}
+ \item[-] Any connected topological group $G$ has the
+ property that $G=\bigcup_n V^n$, where $V$ is any neighborhood of $e\in G$.
+
+ \item[-] If $G$ is a connected Lie group, with $\alpha:\mathrm{Lie}(G)\to
+ \mathrm{Lie}(H)$ a Lie algebra homomorphism, then if there exists $f:G\to H$ with
+ $df_e=\alpha$, it is unique.
+
+ \item[-] If $G$ is connected, simply connected, with $\alpha:\mathrm{Lie}(G)\to
+ \mathrm{Lie}(H)$ a Lie algebra homomorphism, then there is a unique $f:G\to H$ such
+ that $df_e=\alpha$.
+ \end{itemize}
+
+ \subsektion{Simply Connected Lie Groups}
+ The map $p$ in $Z\to X\xrightarrow{p} Y$ is a \emph{covering
+ map}\index{covering map} if it is a locally trivial fiber bundle with discrete fiber
+ $Z$.  Locally trivial means that for any $y \in Y$ there is a neighborhood $U$ such
+ that if $f:U \times Z \rightarrow Z$ is the map defined by $f(u,z)=u$, then the
+ following diagram commutes:
+ \[\xymatrix{
+ p^{-1}U \ar[d]  \ar@{}[r]|{\simeq} \ & U\times Z \ar[dl]^(.5)f\\
+ **[l] Y \supseteq U }\]
+
+ The exact sequence defined below is an important tool.  Suppose we have a locally
+ trivial fiber bundle with fiber $Z$ (not necessarily discrete), with $X,Y$ connected.
+ Choose $x_0\in X, z_0\in Z, y_0\in Y$ such that $p(x_0)=y_0$, and $i:Z \rightarrow
+ p^{-1}(y_0)$ is an isomorphism such that $i(z_0)=x_0$:
+ \[\xymatrix{
+   *!<1em,0em>{ x_0 \in \pi^{-1}(y_0)} \ar[d] & Z\ar[l]_(.3)i\\
+   y_0 }\]
+   We can define $p_*:\pi_1(X,x_0)\to \pi_1(Y,y_0)$ in the obvious way ($\pi_1$ is a functor).
+   Also define $i_*:\pi_1(Z,z_0)\to \pi_1(X,x_0)$. Then we can
+ define $\partial:\pi_1(Y,y_0)\to \pi_0(Z)=\{$connected components of $Z\}$ by taking
+ a loop $\gamma$ based at $y_0$ and lifting it to some path $\tilde{\gamma}$.  This path is not unique, but up to fiber-preserving homotopy it is. The new path $\tilde{\gamma}$ starts at
+ $x_0$ and ends at $x_0'$.  Then we define $\partial$ to be the map associating the connected component of $x_0'$ to the homotopy class of $\gamma$.
+
+ \begin{claim} The following sequence is exact:
+ \[\xymatrix{
+  \pi_1(Z,z_0)\ar[r]^{i_*} & \pi_1(X,x_0)\ar[r]^{p_*} & \pi_1(Y,y_0)\ar[r]^\partial & \pi_0(Z)\ar[r] &
+  \{0\}
+ }\]
+   \begin{enumerate}
+   \item $\im i_* = \ker p_*$
+   \item $\{$fibers of $\partial \} \simeq \pi_1(Y,y_0)/\im p_*$
+   \item $\partial $ is surjective.
+   \end{enumerate}
+ \end{claim}
+ \begin{proof}
+   \begin{enumerate}\item[]
+   \item $\ker p_*$ is the set of all loops which map to contractible loops in
+   $Y$, which are loops which are homotopic to a loop in $\pi^{-1}(y_0)$ based at
+   $x_0$.  These are exactly the loops of $\im i_*$.
+   \item The fiber of $\partial$ over the connected component $Z_z\subseteq Z$ is the
+   set of all (homotopy classes of) loops in $Y$ based at $y_0$ which lift to a path connecting $x_0$ to a
+   point in the connected component of $\pi^{-1}(y_0)$ containing $i(Z_z)$.
+   If two loops $\beta , \, \gamma$ based at $y_0$ are in the same fiber, homotope them so
+   that they have the same endpoint.  Then
+   $\tilde{\gamma} \tilde \beta^{-1}$ is a loop based at $x_0$.  So fibers of $\partial$ are
+   in one to one correspondence with loops in $Y$ based at $y_0$, modulo images of
+   loops in $X$ based at $x_0$, which is just $\pi_1(Y, y_0)/ \im p_*$.
+   \item This is obvious, since X is connected.
+   \end{enumerate}
+ \end{proof}
+
+ Now assume we have a covering space with discrete fiber, i.e.  maps
+ \[\xymatrix{
+  X \ar[d]^{p} & Z \ar[l] \\
+  Y
+ }\]
+ such that $\pi_1(Z, z_0) = \{ e \}$ and $\pi_0(Z)=Z$.
+ Then we get the sequence
+ \[\xymatrix{
+  \{e\} \ar[r]^{i_*} & \pi_1(X,x_0)\ar[r]^{p_*} & \pi_1(Y,y_0)\ar[r]^\partial & Z \ar[r] &
+  \{0\}
+ }\]
+and since $p_*$ is injective, $Z=\pi_1(Y)/\pi_1(X)$.
+
+ Classifying all covering spaces of $Y$ is therefore the same as describing all
+ subgroups of $\pi_1(Y)$. The \emph{universal cover}\index{universal cover} of $Y$ is
+ the space $\tilde Y$ such that $\pi_1(\tilde Y)=\{e\}$, and for any other covering
+ $X$, we get a factorization of covering maps $\tilde Y \xrightarrow{f}
+ X\xrightarrow{p} Y$.
+
+ We construct $\tilde X$, the universal cover, in the following way: fix
+ $x_0\in X$, and define $\tilde X_{x_0}$ to be the set of basepoint-fixing homotopy
+ classes of paths connecting $x_0$ to some $x \in X$.  We have a natural projection
+ $[\gamma_{x_0,x}]\mapsto x$, and the fiber of this projection (over $x_0$) can be
+ identified with $\pi_1(X,x_0)$. It is clear for any two basepoints $x_0$ and $x_0'$,
+ $\tilde X_{x_0} \simeq \tilde X_{x_0'}$ via any path $\gamma_{x_0, x_0'}$ . So we
+ have
+ \[\xymatrix{
+  \tilde X_{x_0} \ar[d]^{p} & \pi_1(X) \ar[l] \\
+  X
+ }\]
+ \begin{claim}
+   $\tilde X_{x_0}$ is simply connected.
+ \end{claim}
+ \begin{proof}
+   We need to prove that $\pi_1(\tilde X_{x_0})$ is trivial, but we know that the
+   fibers of $p$ can be identified with both $\pi_1(X)$ and $\pi_1(X)/\pi_1(\tilde
+   X_{x_0})$, so we're done.
+ %\renewcommand{\qedsymbol}{$\square_\mathrm{Claim}$}
+ \end{proof}
+
+ Let $G$ be a connected Lie group.  We would like to produce a simply connected Lie
+ group which also has the Lie algebra $\lie(G)$.  It turns out that the obvious
+ candidate, $\tilde G_e$, is just what we are looking for. It is not hard to see that
+ $\tilde G_e$ is a smooth manifold (typist's note:  it is not that easy either.  See
+ \cite{Hatcher}, pp. 64-65, for a description of the topology on $\tilde G_e$.  Once we have
+ a topology and a covering space map, the smooth manifold structure of $G$ lifts to
+ $\tilde G_e$. -- Emily).  We show it is a group as follows.
+
+ Write $\gamma_g$ for $\gamma:[0,1]\to
+ G$ with endpoints $e$ and $g$.  Define multiplication by
+ $[\gamma_g][\gamma'_h]:=[\{\gamma_g(t)\gamma'_h(t)\}_{t\in [0,1]}]$.
+ The unit element is the homotopy class of a contractible loop, and the inverse is
+ given by $[\{\gamma(t)^{-1}\}_{t\in [0,1]}]$.
+
+ \begin{claim}
+   \begin{enumerate}\item[]
+   \item $\tilde G = \tilde G_e$ is a group.
+   \item $p:\tilde G\to G$ is a group homomorphism.
+   \item $\pi_1(G)\subseteq \tilde G$ is a normal subgroup.
+   \item $\lie(\tilde G)=\lie(G)$.
+   \item $\tilde G\to G$ is the universal cover (i.e.\ $\pi_1(G)$ is discrete).
+   \end{enumerate}
+ \end{claim}
+\begin{proof}
+ \begin{enumerate}
+ \item Associativity is inherited from associativity in $G$, composition with the identity does not change the homotopy class of a path, and the product of an element and its inverse is the identity.
+ \item This is clear, since $p([\gamma_g][\tilde\gamma_h])=gh$.
+ \item We know $\pi_1(G)=\ker p$, and kernels of homomorphisms are normal.
+ \item \label{item4} The topology on $\tilde G$ is induced by the topology
+ of $G$ in the following way:  If $\mathcal{U}$ is a basis for the topology on $G$ then
+ fix a path $\gamma_{e,g}$ for all $g\in G$.  Then $\tilde{\mathcal{U}} = \{ \tilde U_{\gamma_{e,g}} \} $
+ is a basis for the topology on $\tilde G$ with $\tilde U_{\gamma_{e,g}} $ defined to be the set of
+ paths of the form $\gamma_{e,g}^{-1} \beta \gamma_{e,g}$ with $\beta$ a loop based at $g$
+ contained entirely in $U$.
+
+ Now take $U$ a connected, simply connected neighborhood of $e \in G$.  Since all
+ paths in $U$ from $e$ to a fixed $g\in G$ are homotopic, we have that $U$ and $\tilde
+ U$ are diffeomorphic and isomorphic, hence Lie isomorphic.  Thus $Lie(\tilde
+ G)=Lie(G)$.
+
+ \item As established in (\ref{item4}), $G$ and $\tilde G$ are diffeomorphic
+ in a neighborhood of the identity.  Thus all points $x \in p^{-1}(e)$ have a
+ neighborhood which does not contain any other inverse images of $e$, so $p^{-1}(e)$
+ is discrete; and $p^{-1}(e)$ and $\pi_1(G)$ are isomorphic.
+ \end{enumerate}
+ \end{proof}
+
+ We have that for any Lie group $G$ with a given Lie algebra $\lie(G)=\g$,
+ there exists a simply connected Lie group $\tilde G$ with the same Lie algebra, and
+ $\tilde G$ is the universal cover of $G$.
+
+ \begin{lemma}\label{lec05L:discCentral}
+   A discrete normal subgroup $H\subseteq G$ of a connected topological group $G$ is
+   always central.
+ \end{lemma}
+ \begin{proof}
+   For any fixed $h\in H$, consider the map $\phi_h:G\to H, g\mapsto ghg^{-1}h^{-1}$,
+   which is continuous. Since $G$ is connected, the image is also connected, but $H$
+   is discrete, so the image must be a point. In fact, it must be $e$ because
+   $\phi_h(h)=e$. So $H$ is central.
+ \end{proof}
+
+ \begin{corollary}
+   $\pi_1(G)$ is central, because it is normal and discrete. In particular, $\pi_1(G)$
+   is commutative.
+ \end{corollary}
+
+ \begin{corollary}
+   $G\simeq \tilde G/\pi_1(G)$, with $\pi_1(G)$ discrete central.
+ \end{corollary}
+ The following corollary describes all (connected) Lie groups with a given Lie algebra.
+
+ \begin{corollary}
+  Given a Lie algebra $\g$, take $\tilde
+ G$ with Lie algebra $\g$. Then any other connected $G$ with Lie algebra $\g$ is a quotient of
+ $\tilde G$ by a discrete central subgroup of $\tilde G$.
+\end{corollary}
+
+ Suppose $G$ is a topological group and $G^0$ is a connected component of $e$.
+ \begin{claim}
+   $G^0\subseteq G$ is a normal subgroup, and $G/G^0$ is a discrete group.
+ \end{claim}
+ If we look at $\{$Lie groups$\}\to \{$Lie algebras$\}$, we have an ``inverse'' given
+ by exponential: $\exp(\g)\subseteq G$. Then $G^0=\bigcup_n (\exp \g)^n$. So for a
+ given Lie algebra, we can construct a well-defined isomorphism class of connected,
+ simply connected Lie groups. When we say ``take a Lie group with this Lie algebra'',
+ we mean to take the connected, simply connected one.
+
+\textbf{Coming Attractions:}
+ We will talk about $U\g$, the universal enveloping algebra, $C(G)$, the Hopf algebra,
+ and then we'll do classification of Lie algebras.

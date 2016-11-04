@@ -1,0 +1,146 @@
+  \stepcounter{lecture}
+  \setcounter{lecture}{3}
+  \sektion{Lecture 3}
+
+ Last time we saw how to get a Lie algebra $\lie(G)$ from a Lie group $G$.
+
+ \begin{itemize}
+ \item[] $\mathrm{Lie}(G)=\mathrm{Vect}_L(G)\simeq \mathrm{Vect}_R(G)$.
+
+ \item[] Let $x^1,...,x^n$ be local coordinates near $e\in G$, and let  $m(x,y)^i$
+ be the $i^{th}$ coordinate of $(x,y) \mapsto m(x,y)$. In this local coordinate
+ system, $m(x,y)^i = x^i + y^i + \frac{1}{2} \sum c^i_{jk} x^j y^k + \cdots$. If
+ $e_1,...,e_n \in T_eG$ is the basis induced by $x^1,...,x^n$, $(e_i \sim
+ \partial_i)$, then
+ \[
+ [e_i,e_j] = \sum_k c_{ij}^k e_k.
+ \]
+ \end{itemize}
+
+ \begin{example} Let $G$ be $GL_n$, and let $(g_{ij})$ be coordinates.
+ Let $X:GL_n\rightarrow TGL_n$ be a vector field.
+ \begin{align*}
+ L_X(f)(g) &=
+ \sum_{i,j} X_{ij}(g)\frac{\partial f(g)}{\partial g_{ij}} \\
+    &\qquad \qquad \text{, where } L_X(l_h^*(f))(g) = \left\{
+            \begin{array}{l} l_h:g\mapsto hg \\
+                        l_h^*(f)(g) = f(h^{-1}g)
+            \end{array} \right\} \\
+ &= \sum_{i,j} X_{ij}(g) \frac{\partial f(h^{-1}g)}{\partial g_{ij}}
+    = \sum_{i,j} X_{ij} (g) \frac{\partial (h^{-1}g)_{kl}}{\partial
+    g_{ij}} \frac{\partial f(x)}{\partial x_kl} |_{x=h^{-1}g} \\
+ &= \langle \frac{\partial(h^{-1}g)_{kl}}{\partial g_{ij}} = \sum_m
+    (h^{-1})_{km}\underbrace{\frac{\partial g_{ml}}{\partial
+    g_{ij}}}_{=\delta_{im}\delta_{lj}} = (h^{-1})_{ki}\delta_{jl} \rangle \\
+ &= \sum_{i,j,k} X_{ij}(g)(h^{-1})_{ki} \frac{\partial f}{\partial
+    x_{kj}}|_{x=h^{-1}g} \\
+ &= \sum_{j,k} \left( \sum_i
+    (h^{-1})_{ki}X_{ij}(g)\right) \frac{\partial f}{\partial x_{kj}}|_{x=h^{-1}g}
+ \end{align*}
+ \end{example}
+
+ If we want $X$ to be left invariant,
+ $\sum_i(h^{-1})_{ki}X_{ij}(g)=X_{kj}(h^{-1}g)$, then $L_X(l_h^*(f))
+ = l_h^*(L_X(f))$, (left invariance of $X$).
+
+ \begin{example}
+ All solutions are $X_{ij}(g) = (g\cdot M)_{ij}$, $M$-constant $n\times n$ matrix.
+ gives that left invariant vector fields on $GL_n \approx n\times n$ matrices
+ $=\mathfrak{gl}_n$. The ``Natural Basis'' is $e_{ij}=(E_{ij})$, $L_{ij}=\sum_m
+ (g)_{mj}\frac{\partial}{\partial g_{mi}}$. \mpar[\anton{what is this?}]{}
+ \end{example}
+ \mpar[\anton{What is up with these examples?}]{}
+ \begin{example}
+ Commutation relations between $L_{ij}$ are the same as commutation relations between
+ $e_{ij}$.
+ \end{example}
+
+ Take $\tau \in T_eG$.  Define the vector field: $v_{\tau}: G\rightarrow TG$ by
+ $v_{\tau}(g)=dl_g(\tau)$, where $l_g : G\rightarrow G$ is left multiplication.
+ $v_{\tau}$ is a left invariant vector field by construction.
+
+ Consider $\phi: I \rightarrow G$, $\frac{d\phi(t)}{dt} =
+ v_{\tau}(\phi(t))$, $\phi(0)=e$.
+
+ \begin{proposition}
+ \begin{enumerate}\item[]
+ \item $\phi(t+s) = \phi(t)\phi(s)$
+ \item $\phi$ extends to a smooth map $\phi: \mathbb{R} \rightarrow G$.
+ \end{enumerate}
+ \end{proposition}
+
+ \begin{proof}
+ \begin{enumerate}
+ \item Fix $s$ and $\alpha(t)=\phi(s)\phi(t), \beta(t)=\phi(s+t)$.
+    \begin{itemize}
+    \item $\alpha(0)=\phi(s)=\beta(0)$
+    \item $\frac{d\beta(a)}{dt}=\frac{d\phi(s+t)}{dt} = v_{\tau}(\beta(t))$
+    \item $\frac{d\alpha(t)}{dt}=\frac{d}{dt}(\phi(s)\phi(t))
+    = dl_{\phi(s)}\cdot v_{\tau}(\phi(t)) = v_{\tau}(\phi(s)\phi(t)) =
+    v_{\tau}(\alpha(t))$, where the second equality is because $v_{\tau}$ is linear.
+    \end{itemize}
+ $\implies \alpha$ satisfies same
+ equation as $\beta$ and same initial conditions, so by uniqueness,
+ they coincide for $|t|<\epsilon$.
+ \item Now we have (1) for $|t+s|<\epsilon$, $|t|<\epsilon$,
+ $|s|<\epsilon$.  Then extend $\phi$ to $|t|<2\epsilon$.  Continue
+ this to cover all of $\mathbb{R}$.
+ \end{enumerate}
+ \end{proof}
+
+ This shows that for all $\tau \in T_eG$, we have a mapping
+ $\RR \rightarrow G$ and it's image is a 1-parameter
+ (1 dimensional) Lie subgroup\index{one-parameter subgroup} in $G$.
+ \begin{eqnarray*}
+ \exp : \g=T_eG & \rightarrow & G \\
+        \tau    & \mapsto     & \phi_{\tau}(1)=\exp(\tau)
+ \end{eqnarray*}\index{exponential map}
+ Notice that $\lambda\tau \mapsto
+ \exp(\lambda\tau)=\phi_{\lambda\tau}(1)=\phi_{\tau}(\lambda)$
+
+ \begin{example} $GL_n$, $\tau \in \mathfrak{gl}_n=T_eGL_n$,
+ $\frac{d\phi(t)}{dt}=v_{\tau}(\phi(t))\in T_{\phi(t)}GL_n \simeq
+ \mathfrak{gl}_n$. \[ v_{\tau}(\phi(t))=\phi(t)\cdot \tau,\;
+ \frac{d\phi(t)}{dt}=\phi(t)\cdot \tau,\; \phi(0)=I,\;\]
+ \[\phi(t)=\exp(tI)=\sum_{n=0}^{\infty} \frac{t^n\tau^n}{n!}\] $\exp:
+ \mathfrak{gl}_n \rightarrow GL_n$
+ \[
+ \left[ L_{\gamma(0)=g}(f)(g)=\frac{d}{dt}f(\gamma(t))|_{t=0}\right]
+ \]
+ \end{example}
+
+  {\bf Baker-Campbell-Hausdorff formula:}\index{Baker-Campbell-Hausdorff|idxbf}
+  \[ e^X\cdot e^Y = e^{H(X,Y)} \]
+  \[ H(X,Y) = \underbrace{X+Y}_{\rm sym} + \underbrace{\frac{1}{2}[X,Y]}_{\rm skew} +
+  \underbrace{\frac{1}{12}([X[X,Y]]+[Y[Y,X]])}_{\rm symmetric} + \cdots
+  \]
+
+ \begin{proposition}
+  \begin{enumerate}
+  \item Let $f:G\rightarrow H$ be a Lie group
+  homomorphism, then the diagram
+  $\xymatrix{
+    G \ar[r]^f \ar@{<-}[d]_\exp & H \ar@{<-}[d]^\exp\\
+    Lie(G)\ar[r]^{df_e} & Lie(H)
+  }$
+  is commutative.
+  \item If $G$ is \emph{connected}, then $(df)_e$ defines the Lie group
+  homomorphism $f$ uniquely.
+  \end{enumerate}
+ \end{proposition}
+ \begin{proof}
+ Next time.
+ \end{proof}
+
+ \begin{proposition} $G,H$ Lie groups, $G$ \emph{simply connected},
+ then $\alpha:\mathrm{Lie}(G) \rightarrow \mathrm{Lie}(H)$ is a Lie
+ algebra homomorphism if and only if there is a Lie group homomorphism
+ $A:G\rightarrow H$ lifting $\alpha$.
+ \end{proposition}
+ \begin{proof}
+ Next time.
+ \end{proof}
+
+ $\{$Lie algebras $\}\xrightarrow{\exp}\{$ Lie
+ groups(connected, simply connected)$\}$ is an equivalence of
+ categories.

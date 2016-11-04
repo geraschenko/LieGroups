@@ -1,0 +1,340 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{9}
+ \sektion{Lecture 9}
+
+ \newcommand{\diagramsize}{1.25em}
+
+ Let's summarize what has happened in the last couple of lectures.
+ \begin{enumerate}
+ \item We talked about $T(\g)$, and then constructed three algebras:
+ \begin{itemize}
+   \item $U\g =  T(\g)/\langle x\otimes y-y\otimes x-[x,y]\rangle$, with $U\g=S_1(\g)
+     \simeq S_\varepsilon (\g)$ as filtered associative algebras, for all non-zero
+     $\varepsilon \in \CC$.
+
+   \item $S_\varepsilon (\g) = T(\g)/\langle x\otimes y-y\otimes
+      x-\varepsilon[x,y]\rangle$ is a family of associative algebras, with $S_\varepsilon
+      (\g) \simeq S_0(\g)$ as filtered vector spaces.
+
+   \item $S_0(\g)\cong Pol(\g^*) = T(\g)/\langle x\otimes y-y\otimes x\rangle = S_0(\g)$
+      is an associative, commutative algebra with a Poisson structure defined by the Lie
+      bracket.
+ \end{itemize}
+
+ \item We have two ``pictures'' of deformations of an algebra
+    \begin{enumerate}
+    \item There is a simple ``big'' algebra $B$ (such as $B=T(\g)$) and a family of
+    ideals $I_\varepsilon$. Then we get a family $B/I_\varepsilon=A_\varepsilon$. This
+    becomes a deformation family of the associative algebra $A_0$ if we identify
+    $A_\varepsilon \simeq A_0$ as vector spaces (these are called \emph{torsion free}
+    deformations). Fixing this isomorphism gives a family of associative products on
+    $A_0$.
+
+    We can think of this geometrically as a family of (embedded) varieties.
+    \item Alternatively, we can talk about deformations intrinsically (i.e., without referring to some bigger $B$).
+    Suppose we have $A_0$ and a family of associative products $a\ast_\varepsilon  b$
+    on $A_0$.
+    \begin{example}
+      Let $Pol(\g^*) \xrightarrow{\phi} S_\varepsilon (\g)$ be the isomorphism of the PBW theorem. Then
+      define \( f\ast g = \phi^{-1} (\phi(f)\cdot \phi(g)) = fg + \sum_{n\ge 1}
+      \varepsilon^n m_n(f,g)\).
+    \end{example}
+    \end{enumerate}
+    Understanding deformations makes a connection between representation theory and
+    Poisson geometry. A second course on Lie theory should discuss symplectic leaves
+    of $Pol(\g^*)$, which happen to be coadjoint orbits and correspond to
+    representations.  This is why deformations are relevant to representation theory.
+ \end{enumerate}
+
+ Let $A$ be a Poisson algebra with bracket $\{\ ,\,\}$, so it is a commutative
+ algebra, and a Lie algebra, with the bracket acting by derivations. Typically,
+ $A=C^\infty(M)$. Equivalence classes of formal (i.e., formal power series) symmetric
+ (i.e.,$m_n(f,g)=(-1)^n m_n(g,f)$ ) star products on $C^\infty(M)$ are in bijection with
+ equivalence classes of formal deformations of $\{\ ,\,\}$ on $C^\infty(M)[[h]]$.
+
+ Apply this to the case $A=C^\infty(\g^*)$. The associative product on
+ $S_\varepsilon(\g)$ comes from the product on $T(\g)$. The question is, ``how many
+ equivalence classes of star products are there on $A$?'' Any formal deformation of
+ the Poisson structure on $(A,\{\ ,\,\}_\g)$ is a PBW deformation\mpar[\anton{What is a PBW
+ deformation? What's going one here?}]{} of some formal deformation of the Lie algebra
+ $C^\infty(\g^*)$ (with Lie bracket $\{f,g\}(x)=x(df\wedge dg)$). Such a deformation
+ is equivalent to a formal deformation of the Lie algebra structure on $\g$. This is
+ one of the reasons that deformations of Lie algebras are important --- they describe
+ deformations of certain associative algebras. When one asks such questions, some
+ cohomology theory always shows up.
+
+ \subsektion{Lie algebra cohomology}\index{Lie algebra
+ cohomology|idxbf}\index{cohomology!of Lie algebras|idxbf} Recall that $(M,\phi)$ is a
+ $\g$-module if $\phi:\g\to \End(M)$ is a Lie algebra homomorphism. We will write $xm$
+ for $\phi(x)m$. Define $C^\udot (\g,M) = \bigoplus_{q\ge 0} C^q(\g,M)$ where
+ $C^q(\g,M) = \hom(\Lambda^q \g, M)$ (linear maps). We define $d:C^q\to C^{q+1}$ by
+ \begin{align*}
+  \iflilbook
+    &dc(x_1\wedge\cdots\wedge x_{q+1}) =\\
+  \else
+    dc(x_1&\wedge\cdots\wedge x_{q+1}) =\\
+  \fi
+     &= \sum_{1\le s< t\le q+1} (-1)^{s+t-1} c([x_s,x_t]\wedge x_1 \wedge\cdots \wedge
+     \hat x_s \wedge \cdots \wedge \hat x_t \wedge \cdots \wedge x_{q+1}) \\
+  &\qquad + \sum_{s=1}^{q+1} (-1)^s x_s c(x_1\wedge \cdots \wedge \hat x_s \wedge
+  \cdots \wedge x_{q+1})
+ \end{align*}
+ \begin{exercise}
+   Show that $d^2=0$.
+ \end{exercise}
+
+ \underline{Motivation}: If $\g=\mathrm{Vect}(\mathcal{M})$,
+ $M=C^\infty(\mathcal{M})$, then $C^q(\g,M) = \W^q(\mathcal{M})$, with the Cartan
+ formula
+ \begin{align*}
+  \iflilbook
+    &(d\w)(\xi_1 \wedge\cdots \wedge \xi_{q+1}) = \\
+  \else
+    (d\w)(\xi_1 &\wedge\cdots \wedge \xi_{q+1}) = \\
+  \fi
+     &= \sum_{1\le s< t\le q+1} (-1)^{s+t-1} \w ([\xi_s,\xi_t]\wedge \xi_1 \wedge\cdots
+     \wedge \hat \xi_s \wedge \cdots \wedge \hat \xi_t \wedge \cdots \wedge\xi_{q+1}) \\
+  &\qquad + \sum_{s=1}^{q+1} (-1)^s \xi_s \w (\xi_1\wedge \cdots \wedge \hat \xi_s \wedge
+  \cdots \wedge \xi_{q+1})
+\end{align*}
+ for vector fields $\xi_i$.
+
+ Another motivation comes from the following proposition.
+ \begin{proposition}
+   $C^\udot (\g,\CC) \simeq \W^\udot_R(G) \subseteq \W^\udot(G)$ where $\CC$ is the
+   1 dimensional trivial module over $\g$ (so $xm=0$).
+ \end{proposition}
+ \begin{exercise}
+   Prove it.
+ \end{exercise}
+ \begin{remark}
+   This was Cartan's original motivation for Lie algebra cohomology. It turns out that
+   the inclusion $\W^\udot_R(G)\hookrightarrow \W^\udot(G)$ is a homotopy equivalence
+   of complexes (i.e.\ the two complexes have the same homology), and the proposition
+   above tells us that $C^\udot(\g,\CC)$ is homotopy equivalent to $\W_R(G)$. Thus, by
+   computing the Lie algebra cohomology of $\g$ (the homology of the complex
+   $C^\udot(\g,\CC)$), one obtains the De Rham cohomology of $G$ (the homology of the
+   complex $\W^\udot(G)$).
+ \end{remark}
+
+ Define $H^q(\g,M) = \ker(d:C^q\to C^{q+1})/\im(d:C^{q-1}\to C^q)$ as always. Let's
+ focus on the case $M=\g$, the adjoint representation\index{adjoint representation|idxit}:
+ $x\cdot m = [x,m]$.
+ \begin{itemize}
+ \item[$H^0(\g,\g)$] We have that $C^0 = \hom(\CC,\g)\cong \g$, and
+ \[
+    dc(y) = y\cdot c = [y,c].
+ \]
+  so $\ker (d:C^0\to C^1)$ is the set of $c\in \g$ such that $[y,c]=0$ for all $y\in \g$.
+  That is, the kernel is the center of $\g$, $Z(\g)$. So $H^0(\g,\g)=Z(\g)$.
+
+ \mpar[\anton{these can be more general ... $H^i(\g,V)$. See \cite{HiltonStammbach}}]{}
+ \item[$H^1(\g,\g)$]\label{lec09H1(g,g)} The kernel of $d:C^1(\g,\g)\to C^2(\g,\g)$ is
+ \[\!\!
+ \{\mu:\g\to \g| d\mu(x,y)=\mu([x,y])-[x,\mu(y)]-[\mu(x),y]=0 \text{ for all }x,y\in
+ \g\},
+ \]
+ which is exactly the set of derivations of $\g$.
+%
+% : those $\mu$ such that
+% \[
+%  \mu([x,y]) = [\mu(x),y]+[x,\mu(y)]
+% \]
+%
+ The image of $d:C^0(\g,\g)\to C^1(\g,\g)$ is the set of \emph{inner derivations},
+ $\{dc:\g\to \g|dc(y)=[y,c]\}$.  The Liebniz rule is satisfied because of the Jacobi
+ identity. So
+ \[
+    H^1(\g,\g) = \{\text{derivations}\}/\{\text{inner derivations}\} =: \text{\em
+    outer derivations}.
+ \]
+
+ \item[$H^2(\g,\g)$] Let's compute $H^2(\g,\g)$. Suppose $\mu\in C^2$, so
+ $\mu:\g\wedge\g\to \g$ is a linear map. What does $d\mu=0$ mean?
+ \begin{align*}
+    d\mu(x_1,x_2,x_3) &= \mu([x_1,x_2],x_3) - \mu([x_1,x_3],x_2) + \mu([x_2,x_3],x_1)
+    \\ &\qquad - [x_1,\mu(x_2,x_3)]
+    + [x_2,\mu(x_1,x_3)] - [x_3,\mu(x_1,x_2)]\\
+     &= -\mu(x_1,[x_2,x_3]) - [x_1,\mu(x_2,x_3)] + \text{cyclic permutations}
+ \end{align*}
+ Where does this kind of thing show up naturally?
+
+ Consider deformations of Lie algebras:
+ \[
+    [x,y]_h = [x,y] + \sum_{n\ge 1} h^n m_n(x,y)
+ \]
+ where the $m_n:\g\times \g\to \g$ are bilinear. The deformed bracket $[\ ,\,]_h$ must
+ satisfy the Jacobi identity,
+ \[
+    [a,[b,c]_h]_h + [b,[c,a]_h]_h + [c,[a,b]_h]_h = 0
+ \]
+ which gives us relations on the $m_n$. In degree $h^N$, we get
+ \begin{align}
+    [a,m_N(b,c)] + m_N(a,[b,c]) + \sum_{k=1}^{N-1} m_k(a,m_{N-k}(b,c)) +& \nonumber \\
+    [b,m_N(c,a)] + m_N(b,[c,a]) + \sum_{k=1}^{N-1} m_k(b,m_{N-k}(c,a)) +& \nonumber \\
+    [c,m_N(a,b)] + m_N(c,[a,b]) + \sum_{k=1}^{N-1} m_k(c,m_{N-k}(a,b)) &=0
+    \label{lec09Eq:h^N}
+ \end{align}
+ \begin{exercise} \label{lec09Ex2}
+   Derive equation \ref{lec09Eq:h^N}.
+   \begin{solution}
+     We have $[a,b]_h := \sum_{n=0}^\infty h^n m_n(a,b)$, where $m_0(a,b)=[a,b]$.
+     Now we compute
+     \begin{align*}
+       [a,[b,c]_h]_h &= [a,\sum_{l\ge 0} h^l m_l(b,c)]_h\\
+                &= \sum_{l\ge 0} h^l \sum_{k\ge 0} h^k m_k(a,m_l(b,c))\\
+                &= \sum_{N\ge 0} h^N m_k(a,m_{N-k}(b,c)) & (N=k+l)
+     \end{align*}
+     Adding the cyclic permutations and looking at the coefficient of $h^N$, we get
+     the desired result.
+   \end{solution}
+ \end{exercise}
+ Define $[m_K,m_{N-K}](a,b,c)$ as \mpar[\anton{Gerstenhaber}]{}
+ \[
+  m_K\bigl(a,m_{N-K}(b,c)\bigr) + m_K\bigl(b,m_{N-K}(c,a)\bigr) + m_K\bigl(c,m_{N-K}(a,b)\bigr).\]
+  Then equation \ref{lec09Eq:h^N} can be written as
+ \begin{equation}\label{lec09Eq:2}
+    dm_N = \sum_{k=1}^{N-1} [m_k,m_{N-k}] %\tag{$\ddag$}
+ \end{equation}
+
+ \begin{theorem}
+  Assume that for all $n \leq N-1$, we have the relation $dm_n = \sum_{k=1}^{n-1}
+  [m_k,m_{n-k}]$.  Then $d(\sum_{k=1}^{N-1} [m_k,m_{N-k}])=0$.
+ \end{theorem}
+ \begin{exercise} \label{lec09Ex3}
+    Prove it.
+ \end{exercise}
+ The theorem tells us that if we have a ``partial deformation'' (i.e.\ we have found
+ $m_1,\dots, m_{N-1}$), then the expression $\sum_{k=1}^{N-1} [m_k,m_{N-k}]$ is a
+ 3-cocycle. Furthermore, equation \ref{lec09Eq:2} tells us that if we are to extend
+ our deformation to one higher order, $\sum_{k=1}^{N-1} [m_k,m_{N-k}]$ must represent
+ zero in $H^3(\g,\g)$.
+
+  Taking $N=1$, we get $dm_1=0$, so   $\ker(d:C^2\to C^3) = $ space of first
+  coefficients of formal deformations of $[\ ,\,]$. It will turn out that $H^2$ is the
+  space of equivalence classes of $m_1$.\mpar[\anton{State clearly what $H^2$ is,
+  please, or ref}]{}
+ \end{itemize}
+
+It is worth noting that the following ``pictorial calculus" may make some of the above
+computations easier.  In the following pictures, arrows are considered to be oriented
+downwards, and trivalent vertices with two lines coming in and one going out represent
+the Lie bracket.  So, for example, the antisymmetry of the Lie bracket is expressed as
+
+  \[\begin{xy}<\diagramsize,0em>:
+   (0,.5);(.5,-.5) **\crv{(1,0)},
+   (1,.5);(.5,-.5) **\crv{(0,0)},
+   (.5,-.5);(.5,-1) **@{-},
+ \end{xy}
+ = -
+ \begin{xy}<\diagramsize,0em>:
+   (0,.5);(.5,-.5) **@{-},
+   (1,.5);(.5,-.5) **@{-},
+   (.5,-.5);(.5,-1) **@{-},
+ \end{xy}
+ \]
+and the Jacobi identity is
+ % \[\begin{xy}<\diagramsize,0em>:
+ %  (0,1);(.5,0) **@{-} ?*@{>},
+ %  (1,1);(.5,0) **@{-} ?*@{>},
+ %  (.5,0);(1,-1) **@{-} ?*@{>},
+ %  (2,1);(1,-1) **@{-} ?*@{>},
+ %  (1,-1);(1,-1.5) **@{-} ?*@{>},
+ %\end{xy}\]
+
+ \begin{align*}
+   {\begin{xy}<\diagramsize,0em>:
+     (0,1);(.5,0) **@{-},
+     (1,1);(.5,0) **@{-},
+     (.5,0);(1,-1) **@{-},
+     (2,1);(1,-1) **@{-},
+     (1,-1);(1,-1.5) **@{-},
+   \end{xy}} +
+   {\begin{xy}<\diagramsize,0em>:
+     (0,1);(1,-1) **\crv{(0,-1)&(2,0)},
+     (1,1);(1,0) **@{-},
+     (2,1);(1,0) **@{-},
+     (1,0);(1,-1) **\crv{(0,-.5)},
+     (1,-1);(1,-1.5) **@{-},
+   \end{xy}} +
+   {\begin{xy}<\diagramsize,0em>:
+     (0,1);(.5,0) **@{-},
+     (1,1);(1.3,-1) **@{-},
+     (2,1);(.5,0) **@{-},
+     (.5,0);(1.3,-1) **@{-},
+     (1.3,-1);(1.3,-1.5) **@{-},
+   \end{xy}} &= \\
+   {\begin{xy}<\diagramsize,0em>:
+     (0,1);(.5,0) **@{-},
+     (1,1);(.5,0) **@{-},
+     (.5,0);(1,-1) **@{-},
+     (2,1);(1,-1) **@{-},
+     (1,-1);(1,-1.5) **@{-},
+   \end{xy}} -
+   {\begin{xy}<\diagramsize,0em>:
+     (0,1);(1,-1) **@{-},
+     (1,1);(1.5,0) **@{-},
+     (2,1);(1.5,0) **@{-},
+     (1.5,0);(1,-1) **@{-},
+     (1,-1);(1,-1.5) **@{-},
+   \end{xy}} +
+   {\begin{xy}<\diagramsize,0em>:
+     (0,1);(.5,0) **@{-},
+     (1,1);(1.3,-1) **@{-},
+     (2,1);(.5,0) **@{-},
+     (.5,0);(1.3,-1) **@{-},
+     (1.3,-1);(1.3,-1.5) **@{-},
+   \end{xy}} &= 0
+ \end{align*}
+We can also use pictures to represent cocycles.  Take $\mu \in H^n(\g, \g)$.  Then we
+draw $\mu$ as
+\[{\begin{xy}<\diagramsize,0em>:
+   (1,0) *+{\mu} *\cir{};
+   (0,1) **@{-}, (2,1) **@{-}, (1,-1) **@{-},
+   (1,.8) *{\dots}
+ \end{xy}}\]
+ with $n$ lines going in.  Then, the Cartan formula\index{Cartan!formula} for the differential says that
+
+ \[ d \left(
+ {\begin{xy}<\diagramsize,0em>:
+   (1,0) *+{\mu} *\cir{};
+   (0,1) **@{-}, (2,1) **@{-}, (1,-1) **@{-},
+   (1,.8) *{\dots}
+ \end{xy}} \right)
+ =
+ \sum_{1\le i\le j\le n+1} (-1)^{i+j+1}
+ {\begin{xy}<\diagramsize,0em>:
+   (.7,1) *+!D{i};(0,0) **@{-},
+   (1.6,1) *+!D{j};(0,0) **@{-};
+   (1,-1) *+{\mu} *\cir{} **@{-};
+   (0,1) **@{-}, (2,1) **@{-}, (1,-2) **@{-},
+ \end{xy}}
+ + \sum_{1\le i\le n+1}
+ {\begin{xy}<\diagramsize,0em>:
+   (1,0) *+{\mu} *\cir{};
+   (0,1) **@{-}, (2,1) **@{-}, (.5,-1) **@{-},
+   (1,1) *+!D{i}; (.5,-1) **\crv{(0,0)};
+   (.5,-1.5) **@{-}
+ \end{xy}}
+ \]
+and the bracket of two cocycles $\mu \in H^m$ and $\nu \in H^n$ is
+ \[ [\mu, \nu] = \sum_{1\le i\le n}
+ {\begin{xy}<\diagramsize,0em>:
+   (1,.5) *+{\mu} *\cir{};
+   (.3,1.5) *+!D{i} **@{-}, (1.7,1.5) **@{-},
+   (1,-1) *+{\nu} *\cir{} **@{-};
+   (-1,1.5) **@{-}, (-.3,1.5) **@{-}, (2.3,1.5) **@{-}, (3,1.5) **@{-}, (1,-2) **@{-},
+ \end{xy}}
+ - \sum_{1\le i\le m}
+ {\begin{xy}<\diagramsize,0em>:
+   (1,.5) *+{\nu} *\cir{};
+   (.3,1.5) *+!D{i} **@{-}, (1.7,1.5) **@{-},
+   (1,-1) *+{\mu} *\cir{} **@{-};
+   (-1,1.5) **@{-}, (-.3,1.5) **@{-}, (2.3,1.5) **@{-}, (3,1.5) **@{-}, (1,-2) **@{-},
+ \end{xy}}
+ \]\mpar{\anton{This is not consistent with the Gerstenhaber bracket on the previous page}}
+ \begin{exercise}
+   Use pictures to show that $d[\mu,\nu]=\pm [d\mu, \nu] \pm [\mu, d\nu]$.
+ \end{exercise}
+ Also, these pictures can be used to do the calculations in Exercises \ref{lec09Ex2}
+ and \ref{lec09Ex3}.

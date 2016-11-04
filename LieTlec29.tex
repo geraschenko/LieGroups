@@ -1,0 +1,567 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{29}
+ \sektion{Lecture 29}
+
+ Split form of Lie algebra (we did this for $A_n$, $D_n$, $E_6$, $E_7$, $E_8$): $A=\bigoplus
+ \hat e^\alpha \oplus L$. Compact form $A^++iA^-$, where $A^\pm$ eigenspaces of
+ $\w:\hat e^\alpha\mapsto (-1)^{\alpha^2/2}\hat e^{-\alpha}$.
+
+ We talked about other involutions of the compact form. You get all the other forms
+ this way.
+
+ The idea now is to find ALL real simple Lie algebras by listing all involutions of
+ the compact form. We will construct all of them, but we won't prove that we have all
+ of them.
+
+ We'll use Kac's method for classifying all automorphisms of order $N$ of a compact
+ Lie algebra (and we'll only use the case $N=2$). First let's look at inner
+ automorphisms. Write down the AFFINE Dynkin diagram
+ \[\begin{xy}
+   (0,0) *+!U{2} *\cir<2pt>{};
+   p-(1,0) *+!U{4} *\cir<2pt>{} **@{-};
+   p-(1,0) *+!U{6} *\cir<2pt>{} **@{-};
+       p+(0,+1) *+!L{3} *\cir<2pt>{} **@{-},
+   p-(1,0) *+!U{5} *\cir<2pt>{} **@{-};
+   p-(1,0) *+!U{4} *\cir<2pt>{} **@{-};
+  p-(1,0) *+!U{3} *\cir<2pt>{} **@{-};
+   p-(1,0) *+!U{2} *\cir<2pt>{} **@{-};
+   p-(1,0) *+!U{1} *++!R{-\text{highest weight} =} *\cir<2pt>{} **@{-};
+ \end{xy}\]
+ Choose $n_i$ with $\sum n_im_i=N$ where the $m_i$ are the numbers on the diagram. We
+ have an automorphism $e^{\alpha_j}\mapsto e^{2\pi i n_j/N}e^{\alpha_j}$ induces an
+ automorphism of order dividing $N$. This is obvious. The point of Kac's theorem is
+ that all inner automorphisms of order dividing $N$ are obtained this way and are
+ conjugate if and only if they are conjugate by an automorphism of the Dynkin diagram.
+ We won't actually prove Kac's theorem because we just want to get a bunch of
+ examples. See \cite{Kac:IDLA} or \cite{Helgason}.
+
+ \begin{example}
+   Real forms of $E_8$. We've already found three, and it took us a long time. We can
+   now do it fast. We need to solve $\sum n_i m_i =2$ where $n_i\ge 0$; there are only
+   a few possibilities:
+   \[
+   \begin{tabular}{clcl}
+     $\sum n_im_i=2$ & \# of ways & how to do it & \txt{maximal compact\\ subgroup $K$}\\
+     $2\times 1$ & one way &
+        $\begin{xy}<1.25em,0em>:
+         (0,0) *\cir<2pt>{};
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+             p+(0,+1) *\cir<2pt>{} **@{-},
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *{\times} *\cir<2pt>{} **@{-};
+        \end{xy}$ & $E_8$ (compact form)\\
+     $1\times 2$ & two ways&
+        $\begin{xy}<1.25em,0em>:
+         (0,0) *\cir<2pt>{};
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+             p+(0,+1) *\cir<2pt>{} **@{-},
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *{\times} *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+        \end{xy}$ & $A_1 E_7$\\
+      & &
+        $\begin{xy}<1.25em,0em>:
+         (0,0) *{\times} *\cir<2pt>{};
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+             p+(0,+1) *\cir<2pt>{} **@{-},
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+         p-(1,0) *\cir<2pt>{} **@{-};
+        \end{xy}$ & $D_8$ (split form)\\
+     $1\times 1+1\times 1$ & no ways
+   \end{tabular}
+   \]
+%   $2\times 1=2$, $1\times 2=2$, and $1\times 1+1\times 1=2$.
+%   There is only one node of weight 1, and two nodes of weight 2, so we can do the
+%   first way one way, the second way two ways, and we can't do the third way. These
+%   correspond to the three things we found last time
+%
+%   pictures with comments
+   The points NOT crossed off form the Dynkin diagram of the maximal compact subgroup.
+   Thus, by just looking at the diagram, we can see what all the real forms are!
+ \end{example}
+ \begin{example}
+   Let's do $E_7$. Write down the affine diagram:
+   \[
+   \begin{xy}
+      (0,0) *+!D{1} *\cir<2pt>{};
+      p+(1,0) *+!D{2} *\cir<2pt>{} **@{-};
+      p+(1,0) *+!D{3} *\cir<2pt>{} **@{-};
+      p+(1,0) *+!D{4} *\cir<2pt>{} **@{-};
+           p+(0,-1) *+!L{2} *\cir<2pt>{} **@{-},
+      p+(1,0) *+!D{3} *\cir<2pt>{} **@{-};
+      p+(1,0) *+!D{2} *\cir<2pt>{} **@{-};
+      p+(1,0) *+!D{1} *\cir<2pt>{} **@{-};
+    \end{xy}
+   \]
+   We get the possibilities
+    \[
+   \begin{tabular}{clcl}
+     $\sum n_im_i=2$ & \# of ways & how to do it & \txt{maximal compact\\ subgroup $K$}\\
+     $2\times 1$ & one way* &
+      \begin{xy}<1.25em,0em>:
+         (0,0) *{\times} *\cir<2pt>{};
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+              p+(0,-1) *\cir<2pt>{} **@{-},
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+       \end{xy} & $E_7$ (compact form)\\
+     $1\times 2$ & two ways*&
+      \begin{xy}<1.25em,0em>:
+         (0,0) *\cir<2pt>{};
+         p+(1,0) *{\times} *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+              p+(0,-1) *\cir<2pt>{} **@{-},
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+       \end{xy} & $A_1 D_6$\\
+     & &
+      \begin{xy}<1.25em,0em>:
+         (0,0) *\cir<2pt>{};
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+              p+(0,-1) *{\times} *\cir<2pt>{} **@{-},
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+       \end{xy} & $A_7$ (split form)**\\
+     $1\times 1+1\times 1$ & one way &
+      \begin{xy}<1.25em,0em>:
+         (0,0) *{\times} *\cir<2pt>{};
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+              p+(0,-1) *\cir<2pt>{} **@{-},
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *\cir<2pt>{} **@{-};
+         p+(1,0) *{\times} *\cir<2pt>{} **@{-};
+       \end{xy} & $E_6\oplus \RR$ \ ***\\
+   \end{tabular}
+   \]
+   (*) The number of ways is counted up to automorphisms of the diagram.\\
+   (**) In the split real form, the maximal compact subgroup has dimension equal to
+        half the number of roots. The roots of $A_7$ look like $\e_i-\e_j$ for $i,j\le
+        8$ and $i\neq j$, so the dimension is $8\cdot 7 + 7 = 56 = \frac{112}{2}$.\\
+%   We can delete one node of weight 1, giving the compact form (the two ways are
+%   conjugate by an automorphism of the affine Dynkin diagram):
+%
+%   picture
+%
+%   Next, you could delete one node of weight 2 ... three ways, but two are conjugate:
+%
+%   two pictures
+%
+%   The split form is something ... the maximal compact of the split for has dimension
+%   half the number of roots.
+%
+%   Finally, you could delete two nodes of weight 1:
+%
+%   picture
+%
+   (***) The maximal compact subgroup is $E_6\oplus \RR$ because the fixed subalgebra
+   contains the whole Cartan subalgebra, and the $E_6$ only accounts for $6$ of the $7$
+   dimensions. You can use this to construct some interesting representations of $E_6$
+   (the minuscule ones). How does the algebra $E_7$ decompose as a representation of
+   the algebra $E_6\oplus \RR$?
+
+   We can decompose it according to the eigenvalues of $\RR$. The $E_6\oplus \RR$ is
+   the zero eigenvalue of $\RR$ [why?], and the rest is 54 dimensional. The easy way to see
+   the decomposition is to look at the roots. Remember when we computed the Weyl group
+   we looked for vectors like
+   \[\begin{xy}
+     (0,0) *\cir<2pt>{}; (1,0) *\cir<2pt>{} **@{-}; (2,0) *\cir<2pt>{} **@{.}
+   \end{xy} \qquad\qquad \text{or} \qquad\qquad
+   \begin{xy}
+     (0,0) *\cir<2pt>{}; (1,0) *\cir<2pt>{} **@{.}; (2,0) *\cir<2pt>{} **@{-}
+   \end{xy}\]
+   The 27 possibilities (for each) form the weights of a 27 dimensional representation
+   of $E_6$. The orthogonal complement of the two nodes is an $E_6$ root system whose
+   Weyl group acts transitively on these 27 vectors (we showed that these form a
+   single orbit, remember?). Vectors of the $E_7$ root system are the vectors of the
+   $E_6$ root system plus these 27 vectors plus the other 27 vectors. This splits up the
+   $E_7$ explicitly. The two 27s form single orbits, so they are irreducible. Thus,
+   $E_7\cong E_6\oplus \RR\oplus 27\oplus 27$, and the 27s are minuscule.
+ \end{example}
+ Let $K$ be a maximal compact subgroup, with Lie algebra $\RR + E_6$. The factor of
+ $\RR$ means that $K$ has an $S^1$ in its center. Now look at the space $G/K$, where
+ $G$ is the Lie group of type $E_7$, and $K$ is the maximal compact subgroup. It is a
+ \emph{Hermitian symmetric space}\index{symmetric space|idxbf}. Symmetric space means
+ that it is a (simply connected) Riemannian manifold $M$ such that for each point
+ $p\in M$, there is an automorphism fixing $p$ and acting as $-1$ on the tangent
+ space. This looks weird, but it turns out that all kinds of nice objects you know
+ about are symmetric spaces. Typical examples you may have seen: spheres $S^n$,
+ hyperbolic space $\HH^n$, and Euclidean space $\RR^n$. Roughly speaking, symmetric
+ spaces have nice properties of these spaces. Cartan\index{Cartan} classified all
+ symmetric spaces: they are non-compact simple Lie groups modulo the maximal compact
+ subgroup (more or less ... depending on simply connectedness hypotheses 'n such).
+ Historically, Cartan classified simple Lie groups, and then later classified
+ symmetric spaces, and was surprised to find the same result. Hermitian symmetric
+ spaces are just symmetric spaces with a complex structure. A standard example of this
+ is the upper half plane $\{x+iy|y>0\}$. It is acted on by $SL_2(\RR)$, which acts by
+ $\matrix abcd \tau = \frac{a\tau + b}{c\tau + d}$.
+
+ Let's go back to this $G/K$ and try to explain why we get a Hermitian symmetric space
+ from it. We'll be rather sketchy here. First of all, to make it a symmetric space, we
+ have to find a nice invariant Riemannian metric on it. It is sufficient to find a
+ positive definite bilinear form on the tangent space at $p$ which is invariant under
+ $K$ ... then you can translate it around. We can do this as $K$ is compact (so you
+ have the averaging trick). Why is it Hermitian? We'll show that there is an almost
+ complex structure. We have $S^1$ acting on the tangent space of each point because we
+ have an $S^1$ in the center of the stabilizer of any given point. Identify this $S^1$
+ with complex numbers of absolute value 1. This gives an invariant almost complex
+ structure on $G/K$. That is, each tangent space is a complex vector space. Almost
+ complex structures don't always come from complex structures, but this one does (it
+ is integrable). Notice that it is a little unexpected that $G/K$ has a complex
+ structure ($G$ and $K$ are odd dimensional in the case of $G=E_7$, $K=E_6\oplus \RR$,
+ so they have no hope of having a complex structure).
+
+ \begin{example}
+   Let's look at $E_6$, with affine Dynkin diagram
+   \[\begin{xy}
+   (0,0) *+!D{1} *\cir<2pt>{};
+   (1,0) *+!D{2} *\cir<2pt>{} **@{-};
+   p+(1,0)="y" *+!D{3} *\cir<2pt>{} **@{-};
+       p+(0,-1) *+!L{2} *\cir<2pt>{} **@{-};
+       p+(0,-1) *+!L{1} *\cir<2pt>{} **@{-};
+   "y" *{\hspace{4pt}};p+(1,0) *+!D{2} *\cir<2pt>{} **@{-};
+   p+(1,0) *+!D{1} *\cir<2pt>{} **@{-};
+  \end{xy}\]
+  We get the possibilities
+    \[
+   \begin{tabular}{clcl}
+     $\sum n_im_i=2$ & \# of ways & how to do it & \txt{maximal compact\\ subgroup $K$}\\
+     $2\times 1$ & one way &
+       \begin{xy}<1.75em,0em>:
+        (0,0) *\cir<2pt>{};
+        p+(1,0) *\cir<2pt>{} **@{-};
+        p+(1,0)="y" *\cir<2pt>{} **@{-};
+            p+(0,-1) *\cir<2pt>{} **@{-};
+            p+(0,-1) *{\times} *\cir<2pt>{} **@{-};
+        "y" *{\hspace{4pt}};p+(1,0) *\cir<2pt>{} **@{-};
+        p+(1,0) *\cir<2pt>{} **@{-};
+       \end{xy} & $E_6$ (compact form)\\
+     $1\times 2$ & one way&
+       \begin{xy}<1.75em,0em>:
+        (0,0) *\cir<2pt>{};
+        p+(1,0) *\cir<2pt>{} **@{-};
+        p+(1,0)="y" *\cir<2pt>{} **@{-};
+            p+(0,-1) *{\times} *\cir<2pt>{} **@{-};
+            p+(0,-1) *\cir<2pt>{} **@{-};
+        "y" *{\hspace{4pt}};p+(1,0) *\cir<2pt>{} **@{-};
+        p+(1,0) *\cir<2pt>{} **@{-};
+       \end{xy} & $A_1A_5$\\
+     $1\times 1+1\times 1$ & one way &
+       \begin{xy}<1.75em,0em>:
+        (0,0) *{\times} *\cir<2pt>{};
+        p+(1,0) *\cir<2pt>{} **@{-};
+        p+(1,0)="y" *\cir<2pt>{} **@{-};
+            p+(0,-1) *\cir<2pt>{} **@{-};
+            p+(0,-1) *{\times} *\cir<2pt>{} **@{-};
+        "y" *{\hspace{4pt}};p+(1,0) *\cir<2pt>{} **@{-};
+        p+(1,0) *\cir<2pt>{} **@{-};
+       \end{xy} & $D_5\oplus \RR$\\
+   \end{tabular}
+   \]
+%   We can delete one point of weight 1, which gives the compact form
+%
+%   pictures
+%
+%   or one point of weight 2, which is blah. Or we can delete two points of weight 1:
+%
+%   picture
+%
+   In the last one, the maximal compact subalgebra is $D_5\oplus \RR$. Just as before,
+   we get a Hermitian symmetric space. Let's compute its dimension (over $\CC$). The
+   dimension will be the dimension of $E_6$ minus the dimension of $D_5\oplus\RR$, all
+   divided by 2 (because we want complex dimension), which is $(78-46)/2=16$.
+
+   So we have found two non-compact simply connected Hermitian symmetric spaces of
+   dimensions 16 and 27. These are the only ``exceptional'' cases; all the others fall
+   into infinite families!
+
+   There are also some OUTER automorphisms of $E_6$ coming from the diagram
+   automorphism
+   \[\begin{xy}
+     (0,0)="1" *\cir<2pt>{};
+     (1,0)="2"  *\cir<2pt>{} **@{-};
+     p+(1,0) *\cir<2pt>{} **@{-};
+     p+(0,-1) *\cir<2pt>{} **@{-},
+     p+(1,0)="22" *\cir<2pt>{} **@{-};
+     p+(1,0)="11" *\cir<2pt>{} **@{-};
+     "1" *+{\ };"11" *+{\ } **\crv{(2,3.3)} ?<*@{<} ?>*@{>} ?(.5)*+!U{\sigma},
+     "2" *+{\ };"22" *+{\ } **\crv{(2,2.6)} ?<*@{<} ?>*@{>},
+   \end{xy}\qquad \qquad \longrightarrow \qquad \qquad
+   \begin{xy}
+      (0,2) *\cir<2pt>{};
+      p+(0,-1)  *\cir<2pt>{} **@{-};
+      p+(0,-1)="x" *\cir<2pt>{} **@{=} ?*@{>};
+      "x" *+<4pt>{\ };"x"+(0,-1) *\cir<2pt>{} **@{-};
+   \end{xy}
+   \]
+   The fixed point subalgebra has Dynkin diagram
+   obtained by folding the $E_6$ on itself. This is the $F_4$ Dynkin diagram. The
+   fixed points of $E_6$ under the diagram automorphism is an $F_4$ Lie algebra. So we
+   get a real form of $E_6$ with maximal compact subgroup $F_4$. This is probably the
+   easiest way to construct $F_4$, by the way. Moreover, we can decompose $E_6$ as a
+   representation of $F_4$. $\dim E_6=78$ and $\dim F_4=52$, so $E_6=F_4\oplus 26$,
+   where $26$ turns out to be irreducible (the smallest non-trivial representation of
+   $F_4$ ... the only one anybody actually works with). The roots of $F_4$ look like
+   $(\dots, \pm 1, \pm 1\dots)$ (24 of these) and $(\pm \half \dots \pm \half)$ (16 of
+   these), and $(\dots, \pm 1\dots)$ (8 of them) ... the last two types are in the
+   same orbit of the Weyl group.
+
+   The 26 dimensional representation has the following character: it has all norm 1
+   roots with multiplicity 1 and 0 with multiplicity 2 (note that this is not
+   minuscule).
+
+   There is one other real form of $E_6$. To get at it, we have to talk about Kac's
+   description of non-inner automorphisms of order $N$. The non-inner automorphisms
+   all turn out to be related to diagram automorphisms. Choose a diagram automorphism
+   of order $r$, which divides $N$. Let's take the standard thing on $E_6$. Fold the
+   diagram (take the fixed points), and form a TWISTED affine Dynkin diagram (note
+   that the arrow goes the wrong way from the affine $F_4$)
+   \[
+      \begin{xy}
+      (0,-1.4)="1" *+!L{1} *\cir<2pt>{};
+      p+(0,.7)="2" *+!L{2} *\cir<2pt>{} **@{-};
+      p+(0,.7)="y" *+!R{3} *\cir<2pt>{} **@{-};
+          p+(.7,0) *+!D{2} *\cir<2pt>{} **@{-};
+          p+(.7,0) *+!D{1} *\cir<2pt>{} **@{-};
+      "y" *=<4pt,4pt>{};p+(0,.7)="22" *+!L{2} *\cir<2pt>{} **@{-};
+      p+(0,.7)="11" *+!L{1} *\cir<2pt>{} **@{-};
+       "1" *+{\ };"11" *+{\ } **\crv{"y"+(-1.6,0)} ?<*@{<} ?>*@{>} ?(.5)*+!R{r},
+       "2" *+{\ };"22" *+{\ } **\crv{"y"+(-1.2,0)} ?<*@{<} ?>*@{>},
+      %%%%%%%%%%%
+      (3,.5) *+!D{1} *\cir<2pt>{};
+      p+(1,0) *+!D{2} *\cir<2pt>{} **@{-};
+      p+(1,0)="x" *+!D{3} *\cir<2pt>{} **@{=} ?*@{>};
+      "x" *{\hspace{4pt}};p+(1,0) *+!D{2} *\cir<2pt>{} **@{-};
+      p+(1,0) *+!D{1} *\cir<2pt>{} *+<2.5em>!L{\text{Twisted Affine }F_4} **@{-};
+      %%%%%%%%%%%
+      (3,-1) *+!D{1} *+!R{\biggr(} *\cir<2pt>{};
+      p+(1,0) *+!D{2} *\cir<2pt>{} **@{-};
+      p+(1,0) *+!D{3} *\cir<2pt>{} **@{-};
+      p+(1,0)="x" *+!D{4} *\cir<2pt>{} **@{=} ?*@{>};
+      "x" *{\hspace{4pt}};p+(1,0) *+!D{2} *+<2.5em>!L{\text{Affine }F_4 \biggr)} *\cir<2pt>{} **@{-};
+      %%%%%%%%%%%
+      \ar (1.7,.1);(2.5,.3)
+     \end{xy}
+   \]
+   There are also numbers on the twisted diagram, but nevermind them. Find $n_i$ so
+   that $r\sum n_i m_i=N$. This is Kac's general rule. We'll only use the case $N=2$.
+
+   If $r>1$, the only possibility is $r=2$ and one $n_1$ is 1 and the corresponding
+   $m_i$ is 1. So we just have to find points of weight 1 in the twisted affine Dynkin
+   diagram. There are just two ways of doing this in the case of $E_6$
+   \[
+    \begin{xy}
+      (0,0) *\cir<2pt>{};
+      p+(1,0) *\cir<2pt>{} **@{-};
+      p+(1,0)="x" *\cir<2pt>{} **@{=} ?*@{>};
+      "x" *{\hspace{4pt}};p+(1,0) *\cir<2pt>{} **@{-};
+      p+(1,0) *{\times} *\cir<2pt>{} **@{-};
+    \end{xy}\qquad\qquad \text{and} \qquad\qquad
+    \begin{xy}
+      (0,0) *{\times} *\cir<2pt>{};
+      p+(1,0) *\cir<2pt>{} **@{-};
+      p+(1,0)="x" *\cir<2pt>{} **@{=} ?*@{>};
+      "x" *{\hspace{4pt}};p+(1,0) *\cir<2pt>{} **@{-};
+      p+(1,0) *\cir<2pt>{} **@{-};
+    \end{xy}
+   \]
+   one of these gives us $F_4$, and the other has maximal compact subalgebra $C_4$,
+   which is the split form since $\dim C_4=\#\text{roots of }F_4/2 =24$.
+ \end{example}
+
+ \begin{example}
+   $F_4$. The affine Dynkin is
+    \begin{xy}
+      (0,0) *{};
+      p+(0,.1) *+!D{1} *\cir<2pt>{};
+      p+(1,0) *+!D{2} *\cir<2pt>{} **@{-};
+      p+(1,0) *+!D{3} *\cir<2pt>{} **@{-};
+      p+(1,0)="x" *+!D{4} *\cir<2pt>{} **@{=} ?*@{>};
+      "x" *{\hspace{4pt}};p+(1,0) *+!D{2} *\cir<2pt>{} **@{-};
+    \end{xy}
+   We can cross out one node of weight 1, giving the compact form (split form), or a
+   node of weight 2 (in two ways), giving maximal compacts $A_1C_3$ or $B_4$. This
+   gives us three real forms.
+ \end{example}
+ \begin{example}
+   $G_2$. We can actually draw this root system ... UCB won't supply me with a
+   four dimensional board. The construction is to take the $D_4$ algebra and look at
+   the fixed points of:
+   \[
+   \begin{xy}
+     (0,0) *\cir<2pt>{};
+     a(60)="1" *\cir<2pt>{} **@{-},
+     a(180)="2" *\cir<2pt>{} **@{-},
+     a(-60)="3" *\cir<2pt>{} **@{-},
+     \ar@/_2ex/ "1" *+{\ };"2" *+{\ }
+     \ar@/_2ex/ "2" *+{\ };"3" *+{\ }
+     \ar@/_2ex/_{\rho} "3" *+{\ };"1" *+{\ }
+   \end{xy}
+   \]
+   We want to find the fixed point subalgebra.
+
+   Fixed points on Cartan subalgebra: $\rho$ fixes a two dimensional space,
+   and has 1 dimensional eigenspaces corresponding to $\w$ and $\bar \w$, where
+   $\w^3=1$. The 2 dimensional space will be the Cartan subalgebra of $G_2$.
+
+   Positive roots of $D_4$ as linear combinations of simple roots (not fundamental weights):
+   \[\def\myDfour#1#2#3#4{
+                 \begin{xy}
+                   (0,0) *+{#1};
+                   (-1,0) *+{#2} **@{-},
+                    a(60) *+{#3} **@{-},
+                    a(-60) *+{#4} **@{-},
+                 \end{xy}}
+     \def\myframecurve{2em}
+    \begin{xy}
+      (0,6) *++{\myDfour 0100 \qquad
+               \myDfour 0010 \qquad
+               \myDfour 0001} *\frm<\myframecurve>{-};
+      (6,6) *++{\myDfour 1000} *\frm<\myframecurve>{-};
+      (0,3) *++{\myDfour 1100 \qquad
+               \myDfour 1010 \qquad
+               \myDfour 1001} *\frm<\myframecurve>{-};
+      (6,3) *++{\myDfour 1111} *\frm<\myframecurve>{-};
+      (0,0) *++{\myDfour 1110 \qquad
+               \myDfour 1011 \qquad
+               \myDfour 1101} *\frm<\myframecurve>{-};
+      (6,0) *++{\myDfour 2111} *\frm<\myframecurve>{-};
+      (0,-1.8) *=<20em,0em>\frm{_\}} *+!U{\text{projections of norm }2/3};
+      (6,-1.8) *=<6.25em,0em>\frm{_\}} *+!U{\text{projections of norm }2};
+    \end{xy}
+   \]
+   There are six orbits under $\rho$, grouped above. It obviously acts on the negative
+   roots in exactly the same way. What we have is a root system with six roots of norm
+   2 and six roots of norm $2/3$. Thus, the root system is $G_2$:
+   \[\begin{xy}
+     (0,0) *+!DR{2} *{\bullet};
+     a(0) *++!L{1} *{\bullet};
+     a(60) *+!DL{1} *{\bullet};
+     a(120) *+!DR{1} *{\bullet};
+     a(180) *++!R{1} *{\bullet};
+     a(240) *+!UR{1} *{\bullet};
+     a(300) *+!UL{1} *{\bullet};
+     a(60)+a(120) *+!D{1} *{\bullet};
+     a(180)+a(240) *+!R{1} **@{-} *{\bullet};
+     a(300)+a(0) *+!L{1} **@{-} *{\bullet};
+     a(60)+a(120) **@{-};
+     a(60)+a(0) *+!L{1} *{\bullet};
+     a(180)+a(120) *+!R{1} **@{-} *{\bullet};
+     a(300)+a(240) *+!U{1} **@{-} *{\bullet};
+     a(60)+a(0) **@{-};
+   \end{xy}\]
+   One of the only root systems to appear on a country's national flag. Now let's work
+   out the real forms. Look at the affine:
+   \begin{xy}
+   (0,0) *{};
+   p+(0,.05) *+!D{1} *\cir<2pt>{};
+   p+(1,0)="1" *+!D{2} *\cir<2pt>{} **@{-};
+   p+(1,0)="2" *+!D{3} *\cir<2pt>{} **@{-} ?*@{>},
+   \ar@{-} "1" *{\hspace{3pt}};"2" *{\hspace{3pt}} <1.5pt>
+   \ar@{-} "1" *{\hspace{3pt}};"2" *{\hspace{3pt}} <-1.5pt>
+   \end{xy}.
+   we can delete the node of weight 1, giving the compact form:
+   \begin{xy}
+   (0,0) *{};
+   p+(0,.05) *{\times} *\cir<2pt>{};
+   p+(1,0)="1" *\cir<2pt>{} **@{-};
+   p+(1,0)="2" *\cir<2pt>{} **@{-} ?*@{>},
+   \ar@{-} "1" *{\hspace{3pt}};"2" *{\hspace{3pt}} <1.5pt>
+   \ar@{-} "1" *{\hspace{3pt}};"2" *{\hspace{3pt}} <-1.5pt>
+   \end{xy}
+   . We can delete the node
+   of weight 2, giving $A_1A_1$ as the compact subalgebra:
+   \begin{xy}
+   (0,0) *{};
+   p+(0,.05) *\cir<2pt>{};
+   p+(1,0)="1" *{\times} *\cir<2pt>{} **@{-};
+   p+(1,0)="2" *\cir<2pt>{} **@{-} ?*@{>},
+   \ar@{-} "1" *{\hspace{3pt}};"2" *{\hspace{3pt}} <1.5pt>
+   \ar@{-} "1" *{\hspace{3pt}};"2" *{\hspace{3pt}} <-1.5pt>
+   \end{xy}
+   ... this must be the split
+   form because there is nothing else the split form can be.
+
+   Let's say some more about the split form. What does the Lie algebra of $G_2$ look
+   like as a representation of the maximal compact subalgebra $A_1 \times A_1$? In
+   this case, it is small enough that we can just draw a picture:
+   \[\begin{xy}
+     (0,0) *{2};
+     a(0) *++!L{1} *{\bullet};
+     a(60) *+!DL{1} *{\bullet};
+     a(120) *+!DR{1} *{\bullet};
+     a(180) *++!R{1} *{\bullet};
+     a(240) *+!UR{1} *{\bullet};
+     a(300) *+!UL{1} *{\bullet};
+     a(60)+a(120) *+!D{1} *{\bullet};
+     a(180)+a(240) *+!R{1} **@{.} *{\bullet};
+     a(300)+a(0) *+!L{1} **@{.} *{\bullet};
+     a(60)+a(120) **@{.};
+     a(60)+a(0) *+!L{1} *{\bullet};
+     a(180)+a(120) *+!R{1} **@{.} *{\bullet};
+     a(300)+a(240) *+!U{1} **@{.} *{\bullet};
+     a(60)+a(0) **@{.};
+     (0,0) *=<8.75em,1.5em>\frm<8pt>{-} *=<1.5em,11.25em>\frm<8pt>{-};
+   \end{xy} \qquad \qquad \longrightarrow \qquad \qquad
+   \begin{xy}
+     (0,0);
+     a(60) *+!D{1} *{\bullet};
+     a(120) *+!D{1} *{\bullet};
+     a(240) *+!U{1} *{\bullet};
+     a(300) *+!U{1} *{\bullet};
+     a(60)+a(120);
+     a(180)+a(240) *+!U{1} *{\bullet} **@{.};
+     a(300)+a(0) *+!U{1} *{\bullet} **@{.};
+     a(60)+a(120) **@{.};
+     a(60)+a(0) *+!D{1} *{\bullet};
+     a(180)+a(120) *+!D{1} *{\bullet} **@{.};
+     a(300)+a(240) **@{.};
+     a(60)+a(0) **@{.};
+     (0,\halfrootthree) *=<11.25em,2.2em>\frm<8pt>{-};
+     (1.5,0) *=<2em,7.5em>\frm<8pt>{-};
+   \end{xy}\]
+   We have two orthogonal $A_1$s, and we have leftover the stuff on the right. This
+   thing on the right is a tensor product of the 4 dimensional irreducible
+   representation of the horizontal and the 2 dimensional of the vertical. Thus, $G_2=
+   3\times 1 + 1\otimes 3 + 4\otimes 2$ as irreducible representations of
+   $A_1^{(\mathrm{horizontal})} \otimes A_1^{(\mathrm{vertical})}$.
+
+   Let's use this to determine exactly what the maximal compact subgroup is. It is a
+   quotient of the simply connected compact group $SU(2)\times SU(2)$, with Lie
+   algebra $A_1\times A_1$. Just as for $E_8$, we need to identify which elements of
+   the center act trivially on $G_2$. The center is $\ZZ/2\times \ZZ/2$. Since we've
+   decomposed $G_2$, we can compute this easily. A non-trivial element of the center
+   of $SU(2)$ acts as 1 (on odd dimensional representations) or $-1$ (on even
+   dimensional representations). So the element $z\times z\in SU(2)\times SU(2)$ acts
+   trivially on $3\otimes 1 + 1\otimes 3 + 4\times 2$. Thus the maximal compact
+   subgroup of the non-compact simple $G_2$ is $SU(2)\times SU(2)/(z\times z)\cong
+   SO_4(\RR)$, where $z$ is the non-trivial element of $\ZZ/2$.
+ \end{example}
+
+ So we have constructed $3+4+5+3+2$ (from $E_8$, $E_7$, $E_6$, $F_4$, $G_2$) real
+ forms of exceptional simple Lie groups.
+
+ There are another 5 exceptional real Lie groups: Take COMPLEX groups $E_8(\CC)$,
+ $E_7(\CC)$, $E_6(\CC)$, $F_4(\CC)$, and $G_2(\CC)$, and consider them as REAL. These
+ give simple real Lie groups of dimensions $248\times 2$, $133\times 2$, $78\times 2$,
+ $52 \times 2$, and $14\times 2$.

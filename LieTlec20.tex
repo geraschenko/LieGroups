@@ -1,0 +1,215 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{20}
+ \sektion{Lecture 20 - Compact Lie groups}\index{compact groups|(}
+ \anton{Things that should be here:
+ \begin{enumerate}
+   \item Rep theory of reductive Lie \rlap{\rule[3pt]{3.6em}{.4pt}}algebras groups
+   \item fundamental group of a compact group is finite?
+   \item That one paragraph should be expanded. $|Z(G)|\le |P/Q|=\det($Cartan), with
+   equality if $G$ simply connected.
+   \item stuff about maximal tori? e.g.\ $\exp$ is surjective for a compact group
+   \item uniqueness of the compact real form?
+   \item Peter-Weyl theorem?
+   \item Finite-dimensional representations of a compact group are unitary.
+ \end{enumerate}}
+
+ So far we classified semisimple Lie algebras over an algebraically closed field
+ characteristic 0. Now we will discuss the connection to compact groups.
+ Representations of Lie groups are always taken to be smooth.
+ \begin{example}\index{SU(n)@$SU(n)$|idxit}
+   $SU(n) = \{X\in GL(n,\CC)| \bar X^tX=\id \text{ and } \det X=1\}$ is a compact
+   connected Lie group over $\RR$. It is the group of linear transformations of
+   $\CC^n$ preserving some hermitian form.
+
+   You may already know that $SU(2)$ is topologically a 3-sphere.
+ \end{example}
+ \begin{exercise}
+   If $G$ is an abelian compact connected Lie group, then it is a product of circles,
+   so it is $\mathbb{T}^n$.
+   \begin{solution}
+     Since $G$ is abelian, $\g$ is the abelian Lie algebra $\RR^n$, whose simply
+     connected Lie group is $\RR^n$. Thus, $G$ is a quotient of $\RR^n$ by a discrete
+     subgroup (i.e.\ a lattice). Since $G$ is compact, this lattice must be full rank,
+     so $G\cong \mathbb{T}^n$.
+   \end{solution}
+ \end{exercise}
+ There exists the $G$-invariant volume form\footnote{A \emph{volume form} is a
+ non-vanishing top degree form.} $\w$ satisfying
+ \begin{enumerate}
+ \item The volume of $G$ is one: $\int_G \w =1$, and \item $\w$ is left invariant:
+ $\int_G f \w = \int_G L_h^* f\,\w$ for all $h\in G$. Recall that $L_h^*f$ is defined
+ by $(L_h^* f)(g) = f(hg)$.
+ \end{enumerate}
+ To construct $\w$ pick $\w_e\in \Lambda^\text{top} (T_eG)^*$ and define $\w_g =
+ L_{g^{-1}}^* \w_e$.
+ \begin{exercise}
+   If $G$ is connected, show that this $\w$ is also right invariant. Even if $G$ is
+   not connected, show that the measure obtained from a right invariant form agrees
+   with the measure obtained from a left invariant form.
+   \begin{solution}
+     Consider the representation $G\to \End (\Lambda^\text{top}T_eG)\simeq \End(\RR)=
+     \RR^\times$ given by $h\mapsto \Lambda^\text{top}Ad_h$. Since $G$ is compact, its
+     image must also be compact, but the only compact subgroups of $\RR^\times$ are
+     $\{1\}$ and $\{\pm 1\}$.
+
+     If $G$ is connected, the image must be $\{1\}$, so the adjoint action on
+     $\Lambda^\text{top}T_eG$ is trivial. It follows that $R_h^* \w_e =
+     L_h^*\w_e=\w_h$, i.e.\ that $\w$ is right invariant.
+
+     If $G$ is not connected, then we may have $R_h^*\w_e=-\w_h$. That is, the left
+     invariant form agrees with the right invariant form up to sign. Since the volume
+     form determines the orientation, changing it by a sign does not change the
+     measure.
+   \end{solution}
+ \end{exercise}
+ \begin{theorem}
+   If $G$ is a compact group and $V$ is a real representation of $G$, then there
+   exists a positive definite $G$-invariant inner product on $V$. That is,
+   $(gv,gw)=(v,w)$.
+ \end{theorem}
+ \begin{proof}
+   Pick any positive definite inner product\footnote{Pick any basis, and declare it to
+   be orthonormal.} $\langle v,w\rangle$, and define
+   \[
+    (v,w) = \int_G \langle gv,gw\rangle \w
+   \]
+   which is positive definite and invariant.
+ \end{proof}
+ It follows that any finite dimensional representation of a compact group $G$ is
+ completely reducible (i.e.\ splits into a direct sum of irreducibles) because the
+ orthogonal complement to a subrepresentation is a subrepresentation.
+
+ In particular, the representation $Ad: G\to GL(\g)$ is completely reducible, and the
+ irreducible subrepresentations are exactly the irreducible subrepresentations of the
+ derivative, $ad:\g\to \gl(\g)$. Thus, we get the decomposition $\g=\g_1\oplus\cdots
+ \g_k\oplus \a$, with each $\g_i$ is a one dimensional or simple ideal. We dump all
+ the one dimensional $\g_i$ into $\a$, which is then the center of $\g$. Thus, the Lie
+ algebra of a compact group is the direct sum of its center and a semisimple Lie
+ algebra. Such a Lie algebra is called \emph{reductive}.\index{reductive}
+
+ If $G$ is simply connected, then I claim that $\a$ is trivial. This is because the
+ simply connected group connected to $\a$ must be a torus, so a center gives you some
+ fundamental group\anton{why can't the rest of $\g$ somehow ``fill in'' the torus?}.
+ Thus, if $G$ is simply connected, then $\g$ is semisimple.
+
+ \begin{theorem}
+   If the Lie group $G$ of $\g$ is compact, then the Killing form $B$ on $\g$ is
+   negative semi-definite. If the Killing form on $\g$ is negative definite, then
+   there is some compact group $G$ with Lie algebra $\g$. \anton{In fact, since
+   $\pi_1$ of a compact group is finite, all groups with Lie algebra $\g$ are
+   compact. Should this be in this lecture?}
+ \end{theorem}
+ \begin{proof}
+   If you have $\g\to \gl(\g)$, and you know that $\g$ has an $ad$-invariant positive
+   definite product, so it lies in $\so(\g)$. Here you have $A^t=-A$, so you have to
+   check that $tr(A^2)< 0$. It is not hard to check that the eigenvalues of $A$ are
+   imaginary (as soon as $A^t=-A$), so we have that the trace of the square is
+   negative (or zero).
+
+   If $B$ is negative definite, then it is non-degenerate, so $\g$ is semisimple by
+   Theorem \ref{lec12Cartan}, and $-B$ is an inner product. Moreover, we have that
+   \[
+      -B(ad_X Y,Z) = B(Y,ad_X Z)
+   \]
+   so $ad_X = -ad_X^t$ with respect to this inner product. That is, the image of $ad$
+   lies in $\so(\g)$. It follows that the image under $Ad$ of the simply connected
+   group $\tilde G$ with Lie algebra $\g$ lies in $SO(\g)$. Thus, the image is a
+   closed subgroup of a compact group, so it is compact. Since $Ad$ has a discrete
+   kernel, the image has the same Lie algebra.
+ \end{proof}
+
+
+ How to classify compact Lie algebras?  We know the classification over $\CC$, so we
+ can always take $\g\rightsquigarrow \g_\CC=\g\otimes_\RR \CC$, which remains
+ semisimple. However, this process might not be injective. For example, take $\mathfrak{su}(2)
+ = \{\matrix{a}{b}{-\bar b}{a}| a\in \RR i, b\in \CC\}$ and $\sl(2,\RR)$, then they
+ complexify to the same thing.
+
+ $\g$ in this case is called a \emph{real form}\index{real form} of $\g_\CC$. So you
+ can start with $\g_\CC$ and classify all real forms.
+ \begin{theorem}[Cartan]\index{Cartan}
+   Every semisimple Lie algebra has exactly one (up to isomorphism) compact real
+   form.\index{real form!compact|idxbf}
+ \end{theorem}
+ For example, for $\sl(2)$ it is $\mathfrak{su}(2)$.
+
+ Classical Lie groups: $SL(n,\CC), SO(n,\CC)$ ($SO$ has lots of real forms of this,
+because in the real case, you get a signiture of a form; in the complex case, all
+forms are isomorphic), $Sp(2n,\CC)$. What are the corresponding compact simple Lie
+groups?
+
+ \underline{Compact real forms}: $SU(n)=$ the group of linear operators on $\CC^n$
+ preserving a positive definite Hermitian form. $SL(n)=$ the group of linear operators
+ on $\RR^n$ preserving a positive definite symmetric bilinear form. $Sp(2n)=$the group
+ of linear operators on $\mathbb{H}^n$ preserving a positive definite Hermitian form
+
+ We're not going to prove this theorem because we don't have time, but let's show
+ existence.
+
+ \begin{proof}[Proof of existence]
+   Suppose $\g_\CC = \g\otimes_\RR \CC = \g\oplus i\g$. Then you can construct
+   $\sigma: \g_\CC\to \g_\CC$ ``complex conjugation''. Then $\sigma$ preserves the
+   commutator, but it is an anti-linear involution. Classifying real forms amounts to
+   classifying all anti-linear involutions. There should be one that corresponds to
+   the compact algebra. Take $X_1,\dots, X_n, H_1,\dots, H_n,Y_1,\dots, Y_n$
+   generators for the algebra. Then we just need to define $\sigma$ on the generators:
+   $\sigma(X_i)=-Y_i, \sigma(Y_i)=-X_i, \sigma(H_i)=-H_i$, and extend anti-linearly.
+   This particular $\sigma$ is called the \emph{Cartan
+   involution}\index{Cartan!involution|idxbf}.
+
+   Now we claim that $\g = (\g_\CC)^\sigma = \{X|\sigma(X)=X\}$ is a compact simple
+   Lie algebra. We just have to check that the Killing form is negative definite. If
+   you take $h\in \h$, written as $h = \sum a_iH_i$, then $\sigma(h)=h$ implies that
+   all the $a_i$ are purely imaginary. This implies that the eigenvalues of $h$ are
+   imaginary, which implies that $B(h,h)<0$. You also have to check it on $X_i,Y_i$.
+   The fixed things will be of the form $(aX_i-\bar aY_i)\in \g$. The Weyl group
+   action shows that $B$ is negative on all of the root space.
+ \end{proof}
+
+   Look at $\exp \h^\sigma \subset G$ (simply connected), which is called the maximal
+   torus $T$. I'm going to tell you several facts now. You can always think of $T$ as
+   $\RR^n/L$. The point is that $\RR^n$ can be identified with $\h_{re}$, and
+   $\h_{re}^*$ has two natural lattices: $Q$ (the root lattice) and $P$ (the weight
+   lattice). So one can identify $T = \RR^n/L = \h_{re}/\check P$, where $\check P$ is
+   the natural dual lattice to $P$, the set of $h\in \h$ such that $\langle
+   \w,h\rangle \in \ZZ$ for all $\w\in P$. $G$ is simply connected, and when you
+   quotient by the center, you get $Ad\, G$, and all other groups with the same
+\anton{make sense of this paragraph}
+   algebra are in between. $Ad\, T = \h_{re}/\check Q$. We have the sequence
+   $\{1\}\to Z(G)\to T \to Ad\, T \to \{1\}$. You can check that any element is
+   semisimple in a compact group, so the center of $G$ is the quotient $P/Q\simeq
+   \check Q/\check P$. Observe that $|P/Q| = $ the determinant of the Cartan matrix.
+   For example, if $\g=\sl(3)$, then we have $\det\matrix 2{-1}{-1}2=3$, and the
+   center of $SU(3)$ is the set of all elements of the form $diag(\w,\w,\w)$ where
+   $\w^3=1$.
+
+   $G_2$ has only one real form because the det is 1?
+
+  Orthogonality relations for compact groups:
+  \[
+    \int_G \chi(g)\bar\psi(g^{-1}) \w = \delta_{\chi,\psi}
+  \]
+  where $\chi$ and $\psi$ are characters of irreducible representations. You know that
+  the character is constant on conjugacy classes, so you can integrate over the
+  conjugacy classes. There is a nice picture for $SU(2)$.
+
+  \[\begin{xy}
+    (0,0) *\xycircle(2,2){},
+    (-2,0);(2,0) **\crv{(-2,-1)&(2,-1)}
+        **\crv{~*=<2pt>@{.} (-2,1)&(2,1)},(.5,-1) *{T},
+    (-1,1.732);(-1,-1.732) **\crv{(-1.5,1.6)&(-1.5,-1.6)}
+        **\crv{~*=<2pt>@{.} (-.7,1.6)&(-.7,-1.6)},
+    (1.4142136,1.4142136);(1.4142136,-1.4142136) **\crv{(1.2,1.4142136)&(1.2,-1.4142136)}
+        **\crv{~*=<2pt>@{.} (1.6,1.4142136)&(1.6,-1.4142136)},
+    (1.55,.49) *{\bullet}, (1.28,-.61) *{\bullet},
+    (-1.35,-.57) *{\bullet}, (-.79,.68) *{\bullet},
+  \end{xy}\]
+
+  The integral can be written as
+  \[
+    \frac{1}{|\weyl|}\int_T \chi(t)\bar\psi(t)Vol(C(t))dt
+  \]
+  And $Vol(C(t)) = \D(t)\bar \D(t)$. You divide by $|\weyl|$ because that is how many
+  times each class hits $T$.
+
+ \index{Serganova, Vera|)}

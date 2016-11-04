@@ -1,0 +1,457 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{12}
+ \sektion{Lecture 12 - Cartan Criterion, Whitehead and Weyl Theorems}
+
+% We will prove the Cartan criterion:
+% \begin{theorem}[Cartan criterion]\label{lec12CarCrit}
+%   $\g$ is semisimple if and only if the Killing form is non-degenerate.
+% \end{theorem}
+% This will give us information about Cohomology of semisimple Lie algebras and some
+% other stuff.
+
+ \subsektion{Invariant forms and the Killing form}\index{Killing
+ form|idxbf}\index{invariant form}
+
+ Let $\rho:\g\to \gl(V)$ be a representation. To make the notation cleaner, we will
+ write $\bar X$ for $\rho(X)$. We can define a bilinear form on $\g$ by $B_V(X,Y):=
+ tr(\bar X \bar Y)$. This form is symmetric because $tr(AB)=tr(BA)$ for any linear
+ operators $A$ and $B$.
+
+ We also have that
+ \begin{align*}
+ B_V([X,Y],Z) &= tr(\bar X\bar Y\bar Z-\bar Y\bar X\bar Z) = tr(\bar X\bar Y\bar Z) - tr(\bar X\bar Z\bar Y)\\
+            &=tr(\bar X\bar Y\bar Z-\bar X\bar Z\bar Y)=B_V(X,[Y,Z]),
+ \end{align*}
+ so $B$ satisfies
+ \[
+    B([X,Y],Z) = B(X,[Y,Z]).
+ \]
+ Such a form is called an \emph{invariant form}. It is called invariant because it is
+ implied by $B$ being $Ad$-invariant.\footnote{If $G$ is connected, the two versions of
+ invariance are equivalent.\anton{why?}} Assume that for any $g\in G$ and $X,Z\in \g$, we
+ $B(Ad_g X,Ad_g Z)=B(X,Z)$. Let $\gamma$ be a path in $G$ with $\gamma'(0)=Y$. We get
+ that
+ \[
+    B([Y,X],Z)+B(X,[Y,Z]) = \der{}{t}\bigg|_{t=0}
+        B\bigl(Ad_{\gamma(t)}(X),Ad_{\gamma(t)}(Z)\bigr) = 0.
+ \]
+
+
+
+% If $\g$ is any Lie algebra,
+% you can define a bilinear symmetric form by the formula $B(X,Y)=tr(ad_X\circ ad_Y)$.
+% One important property $B$ satisfies is that $B([Y,X],Z) + B(X,[Y,Z])=0$, or
+% $B([X,Y],Z)=B(X,[Y,Z])$. Such a form is called invariant. Why is it called invariant?
+% If you look at the Lie group $G$ acting on $\g$ via the adjoint representation. The
+% given condition is equivalent to the condition that $B(Ad_g X, Ad_g Y)=B(X,Y)$: if
+% $\gamma'(0)=Y$, then
+% \[
+%    \left.\der{}{t}\right|_{t=0} B(Ad_\gamma X, Ad_\gamma Z) = B([Y,X],Z)+B(X,[Y,Z]).
+% \]
+%
+% Let's talk about invariant forms a bit.
+%
+% If we are given a representation $\g\subseteq
+% \gl(V)$, then we can always construct a form $B_V(X,Y):= tr_V(XY)$. This form is
+% always invariant because
+% \begin{align*}
+% B_V([X,Y],Z) &= tr(XYZ-YXZ) = tr(XYZ) - tr(XZY)\\
+%            &=tr(XYZ-XZY)=B_V(X,[Y,Z])
+% \end{align*}
+
+ \begin{definition}
+   The \emph{Killing form}, denoted by $B$, is the special case where $\rho$ is the
+   adjoint representation\index{adjoint representation}. That is, $B(X,Y):=
+   tr(ad_X\circ ad_Y)$.
+ \end{definition}
+ \begin{exercise}
+   Let $\g$ be a simple Lie algebra over an algebraically closed field. Check that two
+   invariant forms on $\g$ are proportional.
+   \begin{solution}
+     An invariant form $B$ induces a homomorphism $\g\to \g^*$. Invariance says that
+     this homomorphism is an intertwiner of representations of $\g$ (with the adjoint action on
+     $\g$ and the coadjoint action on $\g^*$). Since $\g$ is simple, these are both
+     irreducible representations. By Schur's Lemma, any two such homomorphisms must be
+     proportional, so any two invariant forms must be proportional.
+   \end{solution}
+ \end{exercise}
+ \begin{exercise}[In class]\label{lec12Ex1}
+   If $\g$ is solvable, then $B(\g,\D\g)=0$.
+  \ifthenelse{\boolean{proofmode}}{\begin{solution}}{\begin{proof}[Solution]}
+   First note that if $Z = [X,Y] \in \D\g$, then $ad_Z = [ad_X,ad_Y] \in \D( ad\,\g)$
+   since the adjoint representation is a Lie algebra homomorphism.  Moreover, $\g$
+   solvable implies that the image of the adjoint representation, $ad(\g) \simeq \g /
+   Z(\g)$, is solvable.  Therefore, in some basis of $V$ of a representation of
+   $ad(\g)$, all matrices of $ad(\g)$ are upper triangular (by Lie's Theorem), and
+   those of $\D(ad\g)$ are all strictly upper triangular. The product of an upper
+   triangular matrix and a strictly upper triangular matrix will be strictly upper
+   triangular and therefore have trace 0.
+%%%%%%%% For some reason, this doesn't work with the \ifthenelse syntax%%%%
+  \ifproofmode \end{solution}\else                                        %
+   \renewcommand\qedsymbol{$\blacksquare$}                                %
+   \end{proof}                                                            %
+   \begin{solution}                                                       %
+     Done in class.                                                       %
+   \end{solution}                                                         %
+  \fi                                                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \end{exercise}
+ The converse of this exercise is also true.  It will follow as a corollary
+ of our next theorem (Corollary \ref{lec12CorT1} below).
+ \begin{theorem}\label{lec12T1}
+   Suppose $\g\subseteq \gl(V)$, $char\, k=0$, and $B_V(\g,\g)=0$. Then $\g$ is solvable.
+ \end{theorem}
+ For the proof, we will need the following facts from linear algebra.
+ \begin{lemma}\label{lec12L1}\hspace*{-1em}
+   \footnote{This is different from what we did in class.  There is an easier way
+   to do this if you are willing to assume $k = \CC$ and use complex conjugation.  See
+   Fulton and Harris for this method.} Let $X$ be a diagonalizable linear operator in
+   $V$, with $k$ algebraically closed. If $X=A\cdot diag(\lambda_1,\dots,
+   \lambda_n)\cdot A^{-1}$ and $f:k\to k$ is a function, we define $f(X)$ as $A\cdot
+   diag(f(\lambda_1),\dots, f(\lambda_n))\cdot A^{-1}$. Suppose $tr (X \cdot f(X))=0$
+   for any $\QQ$-linear map $f:k \rightarrow k$ such that $f$ is the identity on
+   $\QQ$, then $X=0$.
+ \end{lemma}
+ \begin{proof}
+   Consider only $f$ such that the image of $f$ is $\QQ$. Let
+   $\lambda_1,\dots, \lambda_m$ be the eigenvalues of $X$ with multiplicities
+   $n_1,\dots, n_m$.  We obtain $tr(X\cdot\nobreak f(X)) = n_1 \lambda_1 f(\lambda_1)+\ldots
+   +n_m \lambda_m f(\lambda_n)=0$. Apply $f$ to this identity to obtain $n_1
+   f(\lambda_1)^2+\ldots+n_m f(\lambda_m)^2=0$ which implies $f(\lambda_i)=0$ for all
+   $i$. If some $\lambda_i$ is not zero, we can choose $f$ so that $f(\lambda_i) \neq
+   0$, so $\lambda_i=0$ for all $i$. Since $X$ is diagonalizable, $X=0$.
+ \end{proof}
+
+ \begin{lemma}[Jordan Decomposition]\label{lec12Ljordan}
+   \index{Jordan decomposition|HyperPageForJoke}
+   Given $X\in \gl(V)$, there are unique $X_s, X_n\in \gl(V)$ such that $X_s$ is
+   diagonalizable, $X_n$ is nilpotent, $[X_s,X_n]=0$, and $X=X_n+X_s$.  Furthermore,
+   $X_s$ and $X_n$ are polynomials in $X$.
+ \end{lemma}
+ \begin{proof}
+   All but the last statement is standard; see, for example, Corollay 2.5 of Chapter
+   XIV of \cite{Lang:Algebra}. To see the last statement, let the characteristic
+   polynomial of $X$ be $\prod_i(x-\lambda_i)^{n_i}$. By the chinese remainder
+   theorem, we can find a polynomial $f$ such that $f(x)\equiv \lambda_i \mod
+   (x-\lambda_i)^{n_i}$. Choose a basis so that $X$ is in Jordan form and compute
+   $f(X)$ block by block.  On a block with $\lambda_i$ along the diagonal
+   $(X-\lambda_i I)^{n_i}$ is 0, so $f(X)$ is $\lambda_i I$ on this block. Then
+   $f(X)=X_s$ is diagonalizable and $X_n=X-f(X)$ is nilpotent.
+ \end{proof}
+
+ \begin{lemma}\label{lec12L3}
+   Let $\g\subseteq \gl(V)$. The adjoint representation $ad:\g\to\gl(\g)$ preserves
+   Jordan decomposition\index{Jordan decomposition!under the adjoint representation}:
+   $ad_{X_s}=(ad_X)_s$ and $ad_{X_n} = (ad_X)_n$. In particular, $ad_{X_s}$ is a
+   polynomial in $ad_{X}$.
+ \end{lemma}
+ \begin{proof}
+   Suppose the eigenvalues of $X_s$ are $\lambda_1,\dots, \lambda_m$, and we are in a
+   basis where $X_s$ is diagonal. Check that
+   $ad_{X_s}(E_{ij})=[X_s,E_{ij}]=(\lambda_i-\lambda_j)E_{ij}$. So $X_s$
+   diagonalizable implies $ad_{X_s}$ is diagonalizable (because it has a basis of
+   eigenvectors). We have that $ad_{X_n}$ is nilpotent because the monomials in the
+   expansion of $(ad_{X_n})^k(Y)$ have $X_n$ to at least the $k/2$ power on one side
+   of $Y$. So we have that $ad_X = ad_{X_s}+ad_{X_n}$, with $ad_{X_s}$ diagonalizable,
+   $ad_{X_n}$ nilpotent, and the two commute, so by uniqueness of the Jordan
+   decomposition, $ad_{X_s}=(ad_X)_s$ and $ad_{X_n}=(ad_X)_n$.
+ \end{proof}
+
+ \begin{proof}[Proof of Theorem \ref{lec12T1}]
+   It is enough to show that $\D\g$ is nilpotent. Let
+   $X\in \D\g$, so $X=\sum [Y_i,Z_i]$. It suffices to show that $X_s = 0$.  To do
+   this, let $f:k \rightarrow k$ be any $\QQ$-linear map fixing $\QQ$.
+   \begin{align*}
+     B_V(f(X_s),X_s) &= B_V(f(X_s), X) & \text{($X_n$ doesn't contribute)}\\
+     &= B_V{\Big (}f(X_s), \sum_i [Y_i,Z_i]{ \Big )} \\
+     &= \sum_i B_V(\underbrace{[f(X_s),Y_i]}_{\in \g ?},Z_i) & \text{($B_V$ invariant)}\\
+     &= 0 & (\text{assuming } [f(X_s),Y_i]\in \g)
+   \end{align*}
+   Then by Lemma \ref{lec12L1}, $X_s=0$.
+
+   To see that $[f(X_s),Y_i]\in \g$, suppose the eigenvalues of $X_s$ are
+   $\lambda_1,\dots, \lambda_m$.  Then the eigenvalues of $f(X_s)$ are $f(\lambda_i)$,
+   the eigenvalues of $ad_{X_s}$ are of the form $\mu_{ij} := \lambda_i - \lambda_j$,
+   and eigenvalues of $ad_{f(X_s)}$ are $\nu_{ij} := f(\lambda_i) - f(\lambda_j) =
+   f(\mu_{ij})$.  If we define $g$ to be a polynomial such that $g(\mu_{ij}) =
+   \nu_{ij}$, then $ad_{f(X_s)}$ and $g(ad_{X_s})$ are diagonal (in some basis) with
+   the same eigenvalues in the same places, so they are equal. So we have
+   \begin{align*}
+   [f(X_s),Y_i] &= g(ad_{X_s})(Y_i) \\
+    &= h(ad_X)(Y_i) \in \g & \text{(using Lemma \ref{lec12L3})}
+   \end{align*}
+   for some polynomial $h$.
+
+   The above arguments assume $k$ is algebraically closed, so if it's not apply the
+   above to $\g\otimes_k \bar k$.  Then $\g\otimes_k \bar k$ solvable implies $\g$
+   solvable as mentioned in the previous lecture.
+ \end{proof}
+
+ \begin{corollary}\label{lec12CorT1}
+   $\g$ is solvable if and only if $B(\D\g,\g)=0$.
+ \end{corollary}
+ \begin{proof} ($\Leftarrow$)
+   We have that $B(\D\g,\g)=0$ implies $B(\D\g,\D\g)=0$ which  implies that $ad
+   (\D\g)$ is solvable.
+   The adjoint representation of $\D\g$ gives the exact sequence
+   \[
+    0\to Z(\D\g) \to \D\g \to ad(\D\g) \to 0.
+   \]
+   Since $Z(\D\g)$ and $ad(\D\g)$ are solvable, $\D\g$ is solvable by useful
+   fact (\ref{lec11Fexactsolv}) of Lecture 11, so $\g$ is solvable.
+
+   ($\Rightarrow$) This is exercise \ref{lec12Ex1}.
+ \end{proof}
+
+ \begin{theorem}[Cartan's Criterion]\label{lec12Cartan}\index{Cartan!criterion|idxbf}
+    The Killing form is non-degenerate if and only if $\g$ is semisimple.
+ \end{theorem}
+ \begin{proof}
+   Say $\g$ is semisimple. Let $\a=\ker B$. Because $B$ is invariant, we get that $\a$
+   is an ideal, and $B|_\a=0$. By the previous theorem (\ref{lec12T1}), we have that
+   $\a$ is solvable, so $\a=0$ (by definition of semisimple).
+
+%   Now suppose $B$ is non-degenerate on $\g$. $\g$ semisimple equivalent to $\g$
+%   having no abelian ideals (the commutator of an ideal is an ideal so the
+%   last step of the lower central series of a solvable ideal
+%   would be an abelian ideal).
+
+   Suppose that $\g$ is not semisimple, so $\g$ has a non-trivial solvable ideal. Then
+   the last non-zero term in its derived series is some abelian ideal $\a\subseteq
+   \g$.\footnote{Quick exercise: why is $\a$ an ideal?} For any $X\in \a$, the matrix
+   of $ad_X$ is of the form $\matrix{0}{\ast}{0}{0}$ with respect to the (vector
+   space) decomposition $\g=\a\oplus \g/\a$, and for $Y\in \g$, $ad_Y$ is of the form
+   $\matrix{\ast}{\ast}{0}{\ast}$. Thus, we have that $tr(ad_X\circ ad_Y)=0$ so $X\in
+   \ker B$, so $B$ is degenerate.
+ \end{proof}
+
+ \begin{theorem}
+   Any semisimple Lie algebra is a direct sum of simple algebras.
+ \end{theorem}
+ \begin{proof}
+   If $\g$ is simple, then we are done. Otherwise, let $\a\subseteq \g$ be an ideal.
+   By invariance of $B$, $\a^\perp$ is an ideal. On $\a\cap \a^\perp$, $B$ is zero, so
+   the intersection is a solvable ideal, so it is zero by semisimplicity of $\g$.
+   Thus, we have that $\g=\a\oplus\a^\perp$. The result follows by induction on
+   dimension.
+ \end{proof}
+ \begin{remark}
+   In particular, if $\g = \bigoplus \g_i$ is semisimple, with each $\g_i$ simple, we
+   have that $\D \g = \bigoplus \D\g_i$. But $\D \g_i$ is either $0$ or $\g_i$, and it
+   cannot be $0$ (lest $\g_i$ be a solvable ideal). Thus $\D\g=\g$.
+ \end{remark}
+
+ \begin{theorem}[Whitehead] \label{lec12Whitehead} \index{Whitehead's Theorem|idxbf}
+   If $\g$ is semisimple and $V$ is an irreducible non-trivial representation of $\g$,
+   then $H^i(\g,V)=0$ for all $i\ge 0$.
+ \end{theorem}
+ \begin{proof}
+  The proof uses the Casimir operator\index{Casimir operator|idxbfit}, $C_V \in \gl(V)$.
+  Assume for the moment that $\g\subseteq \gl(V)$. Choose a basis $e_1,\dots, e_n$ in
+  $\g$, with dual basis $f_1,\dots, f_n$ in $\g$ (dual with respect to $B_V$, so
+  $B_V(e_i,f_j)=\delta_{ij}$).  It is necessary that $B_V$ be non-degenerate for such
+  a dual basis to exist, and this is where we use that $\g$ is semisimple.
+  The\footnote{We will soon see that $C_V$ is independent of the basis $e_1,\dots,
+  e_n$, so the article ``the'' is apropriate.} Casimir operator is defined to be $C_V
+  = \sum e_i \circ f_i \in \gl(V)$ (where $\circ$ is composition of linear operators
+  on $V$). The main claim is that $[C_V,X]=0$ for any $X\in \g$. This can be checked
+  directly: put $[X,f_i]=\sum a_{ij} f_j, [X,e_i] = \sum b_{ij} e_j$, then apply $B_V$
+  to obtain $a_{ji} = B_V(e_i,[X,f_j]) = B_V([e_i,X],f_j) = -b_{ij}$, where the middle
+  equality is by invariance of $B_V$.
+   \begin{align*}
+   [X, C_V] &= \sum_i Xe_if_i - e_i Xf_i + e_i Xf_i - e_if_iX \\
+        &= \sum_i [X, e_i] f_i + e_i [X,f_i] \\
+        &= \sum_i \sum_j b_{ij} e_j f_i +  a_{ij} e_i f_j \\
+        &= \sum_i\sum_j (a_{ij}+b_{ji})e_if_j = 0.
+   \end{align*}
+
+%  $C_V$ is the image of the identity in $\hom(\g, \g)$ under the
+%   composition $\hom(\g, \g) = \g\otimes\g^* \simeq_B \g\otimes \g \rightarrow \gl(V)$,
+%   where the last map takes $X \otimes Y$ to $X \circ Y$.  This
+%   composition preserves the bracket product, and the
+%   identity commutes with everything in $\hom(\g, \g)$, so
+
+   Suppose $V$ is irreducible, and $k$ is algebraically closed. Then the condition
+   $[C_V,X]=0$ means precisely that $C_V$ is an intertwiner so by Schur's
+   lemma, $C_V=\lambda \id$. We can compute
+   \begin{align*}
+     tr_V C_V &= \sum_{i=1}^{\dim \g} tr(e_i f_i) \\
+            &= \sum B_V(e_i,f_i) = \dim \g.
+   \end{align*}
+   Thus, we have that $\lambda = \frac{\dim \g}{\dim
+   V}$, in particular, it is non-zero.
+
+   For any representation $\rho:\g \to \gl(V)$, we can still talk about $C_V$, but we
+   define it for the image $\rho(\g)$, so $C_V = \frac{\dim \rho(\g)}{\dim V}\id$. We get
+   that $[C_V,\rho(X)]=0$. The point is that if $V$ is non-trivial irreducible, we
+   have that $C_V$ is non-zero.
+
+   Now consider the complex calculating the cohomology:
+   \[
+    \hom(\Lambda^k \g, V) \xrightarrow{d} \hom(\Lambda^{k+1}\g, V)
+   \]
+   We will construct a chain homotopy\footnote{Don't worry about the term ``chain
+   homotopy'' for now. It just means that $\gamma$ satisfies the equation in Exercise
+   \ref{lec12Exhomotopy}. See Proposition 2.12 of \cite{Hatcher} if you're
+   interested.} $\gamma:C^{k+1}\to C^k$ between the zero map on the complex and the
+   map $C_V = \frac{\dim \rho(\g)}{\dim V}\id$:
+   \[
+    \gamma c(x_1,\dots,x_k) = \sum_i e_i c(f_i,x_1,\dots, x_k)
+   \]
+   \begin{exercise}\label{lec12Exhomotopy}
+     Check directly that $(\gamma d+d\gamma)c = C_V c$.
+     \begin{solution}
+       yuck.
+     \end{solution}
+   \end{exercise}
+   Thus $\gamma d +d\gamma = C_V = \lambda \id$ (where $\lambda=\frac{\dim
+   \rho(\g)}{\dim V}$).
+   Now suppose $dc=0$.  Then we have that $d\gamma (c) =\lambda c$, so
+   $c=\frac{d(\gamma(c))}{\lambda}$. Thus, $\ker d/\im d = 0$, as desired.
+ \end{proof}
+
+ \begin{remark}\label{lec12RmkH1}
+   What is $H^1(\g,k)$, where $k$ is the trivial representation of $\g$? Recall that
+   the cochain complex is
+   \[
+      k\to \hom(\g,k) \xrightarrow{d} \hom(\Lambda^2 \g,k) \to \cdots.
+   \]
+  If $c \in \hom(\g,k)$ and $c \in \ker d$, then $dc(x,y) = c([x,y])=0$, so $c$ is 0 on
+  $\D\g=\g$. So we get that $H^1(\g,k) = (\g/\D\g)^* = 0$.
+
+  However, it is not true that $H^i(\g,k)=0$ for $i\ge 2$. Recall from Lecture 10 that
+  $H^2(\g,k)$ parameterizes central extensions of $\g$ (Theorem \ref{lec10ThmCextns}).
+  \anton{actually, $H^2(\g,V)$ \emph{is} always zero ... this can be used to prove
+  Levi decomposition.}
+ \end{remark}
+ \begin{exercise}
+   Compute $H^j(\sl_2,k)$ for all $j$.
+   \begin{solution}
+     The complex for computing cohomology is
+     \begin{tabbing}
+           $0\longrightarrow $
+        \= $k \xrightarrow{\ d_0\ }$
+        \= $\hom(\sl_2,k) \xrightarrow{\ d_1\ }$
+        \= $\hom(\Lambda^2\sl_2,k) \xrightarrow{\ d_2\ }$
+        \= $\hom(\Lambda^3 \sl_2,k) \longrightarrow 0$ \\
+        \> \ $c\longmapsto dc(x)=-x\cdot c=0$ \\
+        \> \>\qquad $f\longmapsto df(x,y)=f([x,y])$\\
+        \> \> \> $\alpha\mapsto
+        d\alpha(x,y,z)=\alpha([x,y],z)-\alpha([x,z],y)$\\ \>\>\>\> $+\alpha([y,z],x)$
+     \end{tabbing}
+     We have that $\ker d_1=k$, so $H^0(\sl_2,k)=k$. The kernel of $d_1$ is zero, as
+     we computed in Remark \ref{lec12RmkH1}. Since $\hom(\sl_2,k)$ and
+     $\hom(\Lambda^2\sl_2,k)$ are both three dimensional, it follows that $d_1$ is
+     surjective, and since the kernel of $d_2$ must contain the image of $d_1$, we
+     know that $d_2$ is the zero map. This tells us that $H^1(\sl_2,k)=0$,
+     $H^2(\sl_2,k)=0$, and $H^3(\sl_2,k)=\hom(\Lambda^3\sl_2,k)\cong k$.
+   \end{solution}
+ \end{exercise}
+ \begin{remark}\label{lec12rmkH1}
+ Note that for $\g$ semisimple, we have $H^1(\g,M)=0$ for \emph{any} finite
+ dimensional representation $M$ (not just irreducibles). We have already seen that
+ this holds when $M$ is trivial and Whitehead's Theorem shows this when $M$ is
+ non-trivial irreducible. If $M$ is not irreducible, use short exact sequences to long
+ exact sequences in cohomology: if
+ \[
+    0\to W\to M\to V\to 0
+ \]
+ is an exact sequence of representations of $\g$, then
+ \[
+    \to H^1(\g,V)\to H^1(\g,M) \to H^1(\g,W)\to
+ \]
+ is exact.  The outer guys are 0 by induction on dimension,
+ so the middle guy is zero.
+ \end{remark}
+ We need a lemma before we do Weyl's Theorem.
+
+ \begin{lemma}\label{lec12L4}
+   Say we have a short exact sequence
+   \[
+    0\to W\to M\to V\to 0.
+   \]
+   If $H^1(\g,\underbrace{\hom_k(V,W)}_{V^*\otimes W})=0$, then the sequence splits.
+ \end{lemma}
+ \begin{proof}
+   Let $X\in \g$. Let $X_W$ represent the induced linear operator on $W$. Then we can write
+   $X_M = \matrix{X_W}{c(X)}{0}{X_V}$. What is $c(X)$? It is an element of
+   $\hom_k(V,W)$. So $c$ is a linear function from $\g$ to $\hom_k(V,W)$. It will be a
+   1-cocycle: we have $[X_M,Y_M]=[X,Y]_M$ because these are representations, which
+   gives us
+   \[
+    X_W c(Y) - c(Y)X_V - \bigl(Y_W c(X) - c(X)Y_V\bigr) = c([X,Y]).
+   \]
+   In general, $dc(X,Y) = c([X,Y]) - X c(Y) + Y c(X)$, where $X c(Y)$ is given by the
+   action of $X \in \g$ on $V^*\otimes W$, which is not necessarily composition.
+   In our case this action is by commutation, where $c(Y)$ is
+   extended to an endomorphism of $V \oplus W$ by writing it as
+   $\matrix{0}{c(Y)}{0}{0}$.  The line above says exactly that $dc=0$.
+
+   Put $\Gamma = \matrix{1_W}{K}{0}{1_V}$.  Conjugating by $\Gamma$ gives an equivalent
+   representation.  We have
+   \[
+   \Gamma X_M \Gamma^{-1} = \mat{X_W & c(X) + KX_V - X_W K\\ 0 & X_V}
+   \]
+   We'd like to kill the upper right part (to show that $X$ acts on $V$ and $W$
+   separately). We have $c\in \hom(\g,V^*\otimes W)$, $K\in V^*\otimes W$.
+   Since the first cohomology is zero, $dc=0$, so we can find a $K$ such that $c=dK$.
+   Since $c(X) = dK(X) = X(K) = X_W K- KX_V$, the upper right part
+   is indeed 0.
+ \end{proof}
+ \begin{theorem}[Weyl] \label{lec12Weyl} \index{Weyl's Theorem|idxbf} \index{Complete reducibility|see{Weyl's Theorem}}
+   If $\g$ is semisimple and $V$ is a finite dimensional representation of $\g$, then $V$
+   is semisimple\footnote{For any invariant subspace $W\subseteq V$, there is
+   an invariant $W'\subseteq V$ so that $V=W\oplus W'$.} (i.e.\ completely
+   reducible).
+ \end{theorem}
+ \begin{proof}
+   The theorem follows immediately from Lemma \ref{lec12L4} and Remark \ref{lec12rmkH1}.
+ \end{proof}
+ Weyl proved this using the unitary trick\index{unitary trick}, which involves knowing
+ about compact real forms.
+
+ \begin{remark}
+   We know from Lecture 10 that deformations of $\g$ are enumerated by $H^2(\g,\g)$.
+   This means that semisimple Lie algebras do not have any deformations! This suggests
+   that the variety of semisimple Lie algebras is discrete. Perhaps we can classify
+   them.
+ \end{remark}
+
+ $\aut \g$ is a closed Lie subgroup of $GL(\g)$. Let $X(t)$ be a path in $\aut \g$ such
+ that $X(0)=1$, and let$\der{}{t} X(t){\big |}_{t=0} = \phi$ be an element of the Lie
+ algebra of $\aut \g$. We have that
+ \begin{align*}
+    [X(t)Y,X(t)Z] &= X(t)([Y,Z])\\
+    [\phi Y,Z]+[Y,\phi Z] &= \phi [Y,Z] & (\text{differentiating at }t=0)
+ \end{align*}
+ so $\lie(\aut \g) = \D er(\g)$, the algebra of derivations of $\g$. (We get equality
+ because any derivation can be exponentiated to an automorphism.)
+
+ By the Jacobi identity, $ad_X$ is a derivation on $\g$. So $ad(\g)\subseteq \D er(\g)$.
+ \begin{exercise}
+   Check that $ad(\g)$ is an ideal.
+   \begin{solution}
+     Let $D\in \D er(\g)$ and let $X,Y\in \g$. Then
+     \begin{align*}
+       [D,ad_X]_{\D er(\g)}(Y) &= D([X,Y])-[X,D(Y)]\\
+            &= [D(X),Y]+[X,D(Y)]-[X,D(Y)]\\
+            &= ad_{D(X)}(Y).
+     \end{align*}
+   \end{solution}
+ \end{exercise}
+
+ We have seen in lecture 9 (page \pageref{lec09H1(g,g)}) that $\D er(\g)/ad(\g) \simeq
+ H^1(\g,\g)$. The conclusion is that $\D er(\g) = ad(\g)\cong \g$---that is, all
+ derivations on a semisimple Lie algebra are inner.
+
+ Now we know that $G$ and $\aut \g$ have the same Lie algebras. If $f\in \aut \g$ is
+ central (i.e.\ commutes with all automorphisms), then we have
+ \begin{align*}
+   \bigl(\exp(t\cdot ad_x)\bigr) y &= f\circ \bigl(\exp (t\cdot ad_x)\bigr)\circ
+   f^{-1}y & (f \text{ is central})\\
+   &= \exp(t\cdot ad_{f(x)}) y & (f \text{ an automorphism of }\g)
+ \end{align*}
+ Comparing the $t^1$ coefficients, we see that $ad_{f(x)}=ad_x$ for all $x$. Since $\g$
+ has no center, $f(x)=x$ for all $x$. Therefore, $\aut \g$ has trivial center.
+
+ It follows that the connected component of the identity of $\aut \g$ is $Ad G$.

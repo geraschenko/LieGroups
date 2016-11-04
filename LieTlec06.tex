@@ -1,0 +1,261 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{6}
+ \sektion{Lecture 6 - Hopf Algebras} \index{Hopf Algebras|idxbf}
+
+ Last time: We showed that a finite dimensional Lie algebra $\g$ uniquely determines a
+ connected simply connected Lie group. We also have a ``map'' in the other direction
+ (taking tangent spaces). So we have a nice correspondence between Lie algebras and
+ connected simply connected Lie groups.
+
+ There is another nice kind of structure: Associative algebras. How do these relate to
+ Lie algebras and groups?
+
+ Let $\Gamma$ be a finite group and let $\CC[\Gamma]:=\{\sum_{g} c_gg|g\in \Gamma,
+ c_g\in\CC\}$ be the $\CC$ vector space with basis $\Gamma$. We can make $\CC[\Gamma]$
+ into an associative algebra by taking multiplication to be the multiplication in
+ $\Gamma$ for basis elements and linearly extending this to the rest of
+ $\CC[\Gamma]$.\footnote{``If somebody speaks Danish\index{Danish}, I would be happy
+ to take lessons.''}
+
+ \begin{remark}Recall that the tensor product V and W is the linear span of elements
+ of the form $v\otimes w$, modulo some linearity relations. If $V$ and $W$ are
+ infinite dimensional, we will look at the \emph{algebraic tensor product} of $V$ and
+ $W$, i.e. we only allow finite sums of the form $\sum a_i\otimes b_i$.
+ \end{remark}
+
+ We have the following maps
+ \begin{itemize}
+ \item[] Comultiplication\index{comultiplication}: $\Delta:\CC[\Gamma]\to
+  \CC[\Gamma]\otimes \CC[\Gamma],$ given by $\Delta(\sum x_g
+  g)=\sum x_gg\otimes g$
+ \item[] Counit\index{counit}:  $\varepsilon:\CC[\Gamma]\to \CC$, given by $\varepsilon(\sum x_g
+  g)=\sum x_g$.
+ \item[] Antipode\index{antipode}: $S:\CC[\Gamma]\to \CC[\Gamma]$ given by $S(\sum x_g
+  g)=\sum x_gg^{-1}$.
+ \end{itemize}
+
+ You can check that
+ \begin{itemize}
+ \item $\Delta(xy)=\Delta(x)\Delta(y)$ (i.e.\ $\Delta$ is an algebra homomorphism),
+
+ \item $(\Delta\otimes\id)\circ \Delta = (\id\otimes\Delta)\circ \Delta$. (follows
+ from the associativity of $\otimes$),
+
+ \item $\varepsilon(xy)=\varepsilon(x)\varepsilon(y)$ (i.e.\ $\varepsilon$ is an
+ algebra homomorphism),
+
+ \item $S(xy)=S(y)S(x)$ (i.e. $S$ is an algebra antihomomorphism).
+ \end{itemize}
+
+ Consider
+ \[
+    \CC[\Gamma]\xrightarrow{\Delta} \CC[\Gamma]\otimes \CC[\Gamma]
+    \xrightarrow{S\otimes\id,\id\otimes S} \CC[\Gamma]\otimes
+    \CC[\Gamma]\xrightarrow{m} \CC[\Gamma].
+ \]
+ You get
+ \[
+   m(S\otimes \id)\Delta(g) = m(g^{-1}\otimes g) = e
+ \]
+ so the composition sends $\sum x_g g$ to $(\sum_g x_g) e = \varepsilon(x)1_A$.
+
+ So we have
+ \begin{enumerate}
+ \item $A=\CC[\Gamma]$ an associative algebra with $1_A$
+ \item $\Delta:A\to A\otimes A$ which is coassociative and is a homomorphism of
+ algebras
+ \item $\varepsilon: A\to \CC$ an algebra homomorphism, with $(\varepsilon\otimes
+ \id)\Delta = (\id\otimes \varepsilon)\Delta = \id$.
+ \end{enumerate}
+
+ \begin{definition}Such an $A$ is called a \emph{bialgebra}\index{bialgebra|idxbf}, with
+  comultiplication $\Delta$ and counit $\varepsilon$.
+ \end{definition}
+
+ We also have $S$, the antipode, which is an algebra anti-automorphism, so it is a
+ linear isomorphism with $S(ab)=S(b)S(a)$, such that
+ \[\xymatrix{
+  A\otimes A \ar[rr]^{S\otimes\id}_{\id\otimes S} & & A\otimes A \ar[d]^m \\
+  A\ar[u]^{\Delta}\ar[r]^{\varepsilon} & \CC\ar[r]^{1_A} & A
+ }\]
+ \begin{definition}
+   A bialgebra with an antipode is a \emph{Hopf algebra}.
+ \end{definition}
+
+  If $A$ is finite dimensional, let $A^*$ be the dual vector space. Define the
+  multiplication, $\Delta_*$, $S_*$, $\varepsilon_*, 1_{A^*}$ on $A^*$ in the following
+  way:
+ \begin{itemize}
+ \item $lm(a):=(l\otimes m)(\Delta a)$ for all $l,m\in A^*$
+ \item $\Delta_*(l)(a\otimes b):= l(ab)$
+ \item $S_*(l)(a) := l(S(a))$
+ \item $\varepsilon_*(l) := l(1_A)$
+ \item $1_{A^*}(a) := \varepsilon(a)$
+ \end{itemize}
+
+ \begin{theorem}
+   $A^*$ is a Hopf algebra with this structure, and we say it is \emph{dual to} $A$.
+   If $A$ is finite dimensional, then $A^{**}=A$.
+ \end{theorem}
+ \begin{exercise}
+   Prove it.
+ \end{exercise}
+
+ We have an example of a Hopf algebra ($\CC[\Gamma]$), what is the dual Hopf
+ algebra?\footnote{ If you want to read more, look at S.~Montgomery's \textsl{Hopf
+ algebras}, AMS, early 1990s. \cite{Montgomery}} Let's compute $A^*=\CC[\Gamma]^*$.
+
+ Well, $\CC[\Gamma]$ has a basis
+ $\{g\in \Gamma\}$. Let $\{\delta_g\}$ be the dual basis, so $\delta_g(h)=0$ if $g\neq
+ h$ and 1 if $g=h$. Let's look at how we multiply such things
+ \begin{itemize}
+ \item $\delta_{g_1}\delta_{g_2}(h) = (\delta_{g_1}\otimes \delta_{g_2})(h\otimes
+ h) = \delta_{g_1}(h)\delta_{g_2}(h)$.
+ \item $\Delta_*(\delta_g)(h_1\otimes h_2) = \delta_g(h_1h_2)$
+ \item $S_*(\delta_g)(h) = \delta_g(h^{-1})$
+ \item $\varepsilon_*(\delta_g) = \delta_g(e) = \delta_{g,e}$
+ \item $1_{A^*}(h) = 1$.
+ \end{itemize}
+
+ It is natural to think of $A^*$ as the set of functions $\Gamma\to \CC$, where
+ $(\sum x_g\delta_g)(h) = \sum x_g\delta_g(h)$. Then we can think about functions
+ \begin{itemize}
+ \item $(f_1 f_2)(h) = f_1(h)f_2(h)$
+ \item $\Delta_*(f)(h_1\times h_2) = f(h_1h_2)$
+ \item $S_*(f)(h) = f(h^{-1})$
+ \item $\varepsilon_*(f) = f(e)$
+ \item $1_{A^*} = 1$ constant.
+ \end{itemize}
+ So this is the Hopf algebra $C(\Gamma)$, the space of functions on $\Gamma$. If
+ $\Gamma$ is any affine algebraic group, then $C(\Gamma)$ is the space of polynomial
+ functions on $\Gamma$, and all this works. The only concern is that we need
+ $C(\Gamma\times \Gamma)\cong C(\Gamma)\otimes C(\Gamma)$, which we only have in the
+ finite dimensional case; you have to take completions of tensor products
+ otherwise.
+
+ So we have the notion of a bialgebra (and duals), and the notion of a Hopf algebra
+ (and duals). We have two examples: $A=\CC[\Gamma]$ and $A^*=C(\Gamma)$. A natural
+ question is, ``what if $\Gamma$ is an infinite group or a Lie group?'' and ``what are
+ some other examples of Hopf algebras?''
+
+ Let's look at some infinite dimensional examples. If $A$ is an infinite dimensional
+ Hopf algebra, and $A\otimes A$ is the algebraic tensor product (finite linear
+ combinations of formal $a\otimes b\ $ s). Then the comultiplication should be $\Delta:
+ A\to A\otimes A$. You can consider cases where you have to take some completion of
+ the tensor product with respect to some topology, but we won't deal with this kind of
+ stuff. In this case, $A^*$ is too big, so instead of the notion of the dual Hopf
+ algebra, we have dual pairs.
+ \begin{definition}
+   A \emph{dual pairing}\index{dual pairing} of Hopf algebras $A$ and $H$ is a pair with a
+   bilinear map $\langle\ ,\,\rangle:A\otimes H \to \CC$ which is nondegenerate such
+   that
+   \begin{itemize}
+   \item[(1)] $\langle \Delta a, l\otimes m\rangle =\langle a,lm\rangle$
+   \item[(2)] $\langle ab,l \rangle = \langle a\otimes b, \Delta_* l \rangle$
+   \item[(3)] $\langle S a, l \rangle = \langle a,S_* l \rangle$
+   \item[(4)] $\varepsilon(a) = \langle a,1_{H} \rangle, \varepsilon_{H}(l) = \langle 1_A,l
+   \rangle$
+   \end{itemize}
+ \end{definition}
+
+ Exmaple: $A=\CC[x]$, then what is $A^*$? You can evaluate a polynomial at 0, or you
+ can differentiate some number of times before you evaluate at 0. $A^* = $ span of
+ linear functionals on polynomial functions of $\CC$ of the form
+ \[
+    l_n(f) = \left( \der{}{x}\right)^n f(x){\big |}_{x=0}.
+ \]
+ A basis for $\CC[x]$ is $1,x^n$ with $n\ge 1$, and we have
+ \[
+    l_n(x^m) = \left\{
+    \begin{array}{cc}
+      m! & ,n=m\\
+      0 & ,n\neq m
+    \end{array}\right.
+ \]
+ What is the Hopf algebra structure on $A$? We already have an algebra with identity.
+ Define $\Delta(x) = x\otimes 1+1\otimes x$ and extend it to an algebra homomorphism,
+ then it is clearly coassociative. Define $\varepsilon(1)=1$ and $\varepsilon(x^n)=0$
+ for all $n\ge 1$. Define $S(x)=-x$, and extend to an algebra homomorphism. It is easy
+ to check that this is a Hopf algebra.
+
+ Let's compute the Hopf algebra structure on $A^*$. We have
+ \begin{align*}
+   l_nl_m(x^N) &= (l_n\otimes l_m)(\Delta(x^N)) \\
+            &= (l_n\otimes l_m) (\sum \binom{N}{k} x^{N-k}\otimes x^k)
+ \end{align*}
+ \begin{exercise}
+   Compute this out. The answer is that $A^*=\CC[y=\der{}{x}]$, and the Hopf algebra
+   structure is the same as $A$.
+ \end{exercise}
+ This is an example of a dual pair: $A=\CC[x], H=\CC[y]$, with $\langle x^n,y^m\rangle
+ = \delta_{n,m} m!$.
+
+ Summary: If $A$ is finite dimensional, you get a dual, but in the infinite
+ dimensional case, you have to use dual pairs.
+
+ \subsektion{The universal enveloping algebra} \index{universal enveloping algebra|(}
+
+ The idea is to construct a map from Lie algebras to associative algebras so that the
+ representation theory of the associative algebra is equivalent to the representation
+ theory of the Lie algebra.
+
+  1) let $V$ be a vector space, then we can form the free associative algebra (or
+ tensor algebra) of $V$: $T(V) = \CC\oplus (\oplus_{n\ge 1} V^{\otimes n})$. The
+ multiplication is given by concatenation: $(v_1\otimes\cdots\otimes v_n)\cdot
+ (w_1\otimes\cdots\otimes w_m) = v_1\otimes\cdots\otimes v_n\otimes w_1\otimes\cdots
+ w_m$. It is graded: $T_n(V)T_m(V)\subseteq T_{n+m}(V)$. It is also a Hopf algebra,
+ with $\Delta(x)=x\otimes 1+1\otimes x$, $S(x)=-x$, $\varepsilon(1)=1$ and
+ $\varepsilon(x)=0$. If you choose a basis $e_1,\dots, e_n$ of $V$, then $T(V)$ is the
+ free associative algebra $\langle e_1,\dots, e_n\rangle$. This algebra is
+ $\ZZ_+$-graded: $T(V) = \oplus_{n\ge 0} T_n(V)$, where the degree of 1 is zero and the
+ degree of each $e_i$ is 1. It is also a $\ZZ$-graded bialgebra:
+ $\Delta(T_n(V))\subseteq \oplus (T_i\oplus T_{n-i}), S(T_n(V))\subset T_n(V),
+ \varepsilon : T(V)\rightarrow \CC$ is a mapping of graded spaces $((\CC)_n=\{0\})$.
+ \begin{definition}
+   Let $A$ be a Hopf algebra. Then a two-sided ideal $I\subseteq A$ is a \emph{Hopf
+   ideal}\index{Hopf ideal} if $\Delta(I)\subseteq A\otimes I + I\otimes A$, $S(I)=I$,
+   and $\varepsilon(I)=0$.
+ \end{definition}
+ You can check that the quotient of a Hopf algebra by a Hopf ideal is a Hopf algebra
+ (and that the kernel of a map of Hopf algebras is always a Hopf ideal).
+
+ \begin{exercise}
+   Show that $I_0 = \langle v\otimes w-w\otimes v| v,w\in V=T_1(V)\subseteq T(V)\rangle$
+   is a homogeneous Hopf ideal.
+ \end{exercise}
+ \begin{corollary}
+   $S(V) = T(V)/I_0$ is a graded Hopf algebra.
+ \end{corollary}
+  Choose a basis $e_1,\dots, e_n$ in $V$, so that $T(V)=\langle e_1,\dots, e_n\rangle$
+  and $S(V) = \langle e_1,\dots, e_n\rangle/\langle e_ie_j-e_je_i\rangle$
+  \begin{exercise}
+    Prove that the Hopf algebra $S(V)$ is isomorphic to $\CC[e_1]\otimes\cdots\otimes
+    \CC[e_n]$.
+  \end{exercise}
+  \begin{remark}
+    From the discussion of $\CC[x]$, we know that $S(V)$ and $S(V^*)$ are dual.
+  \end{remark}
+  \begin{exercise}
+    Describe the Hopf algebra structure on $T(V^*)$ that is determined by the
+    pairing $\langle v_1\otimes \cdots\otimes v_n, l_1\otimes \cdots\otimes l_m\rangle
+    = \delta_{m,n} l_1(v_1)\cdots l_n(v_n)$. (free coalgebra of $V^*$)
+  \end{exercise}
+
+  Now assume that $\g$ is a Lie algebra.
+  \begin{definition}
+    The universal enveloping algebra of $\g$ is $U(\g) = T(\g)/\langle x\otimes
+    y-y\otimes x - [x,y]\rangle$.
+  \end{definition}
+    Exercise: prove that $\langle x\otimes y-y\otimes x - [x,y]\rangle$ is a Hopf
+    ideal.
+  \begin{corollary}
+    $U\g$ is a Hopf algebra.
+  \end{corollary}
+
+  If $e_1,\dots, e_n$ is a basis for $V$. $U\g = \langle e_1,\dots, e_n| e_ie_j-e_je_i
+  = \sum_k c_{ij}^k e_k\rangle$, where $c_{ij}^k$ are the structure constants of $[\ ,\,]$.
+  \begin{remark}
+    The ideal $\langle e_ie_j-e_je_i\rangle$ is homogeneous, but $\langle x\otimes
+ y-y\otimes x -
+    [x,y]\rangle$ is not, so $U\g$ isn't graded, but it is \emph{filtered}.
+  \end{remark}

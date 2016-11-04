@@ -1,0 +1,367 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{17}
+ \sektion{Lecture 17 - Constructions of Exceptional simple Lie Algebras}\anton{We
+ skipped much of this section during editing ... come back to it}
+
+ We'll begin with the construction of $G_2$.
+
+ \anton{remark about octonians goes here. see FH pp 363}
+ We saw here that $G_2$ is isomorphic to the Lie algebra of automorphisms of a generic 3-form in
+ 7 dimensional space. The picture of the projective plane is related to Cayley
+ numbers,
+%% If you try to come up with an 8 dimensional algebra which is not
+%% associative, the multiplication is given by the lines in the plane. What is
+%% interesting is that any line plus the 1 gives a copy of the quaternions. This is
+ an important nonassociative division algebra, of which  $G_2$ is the algebra of automorphisms.
+
+
+ Consider the picture
+ \[ \newcommand\thirdrootthree{.57735027}
+ \begin{xy}<3.75em,0em>:
+   (0,0) ="v1"  *+!R{v_1} *{\bullet},
+   (1,0) ="w2"  *+!U{w_2} *{\bullet},
+   (2,0) ="v3"  *+!L{v_3} *{\bullet},
+   a(60) ="w3"  *+!DR{w_3} *{\bullet},
+   "w3"+a(60) ="v2" *+!D{v_2} *{\bullet},
+   "v3"+a(120)="w1" *+!DL{w_1} *{\bullet},
+   (1,\thirdrootthree)="u" *+!(-.15,-.27){u} *{\bullet},
+   "v1";"v2" **@{-};{?(.75)*@{>}},
+   "v3" **@{-};{?(.75)*@{>}},
+   "v1" **@{-};{?(.75)*@{>}},
+   "w1" **@{-}, {?(.5)*@{>}},
+   "w3";"v3" **@{-}, {?(.5)*@{<}},
+   "w2";"v2" **@{-}, {?(.5)*@{<}},
+   "u", *\xycircle(\thirdrootthree,\thirdrootthree){},
+    *{\rotatebox{20}{\xycircle(\thirdrootthree,\thirdrootthree){=<5em>@{<}}}}
+ \end{xy}\]
+ This is the projective plane over $\FF_2$.
+
+ Consider the standard 7 dimensional representation of $\gl(7)$, call it
+ $E$. Take a basis given by points in the projective plane above.
+
+ \begin{exercise} \label{lec17Ex1}
+    Consider the following element of $\Lambda^3 E$.
+    \[
+    \w=v_1\wedge v_2\wedge v_3 +
+    w_1\wedge w_2\wedge w_3 + u\wedge v_1\wedge w_1 + u\wedge v_2 \wedge w_2 + u\wedge
+    v_3\wedge w_3
+    \]
+    Prove that $\gl(7)\w=\Lambda^3 E$.
+    \begin{solution}
+      It is enough to show that each basis vector of $\Lambda^3 E$ is in the orbit of
+      $\w$. Let $p_u$, $p_v$, and $p_1$ be the projections onto $span\{u\}$,
+      $span\{v_1,v_2,v_3\}$, and $span\{v_1,w_1\}$ respectively. For $x,y\in
+      S:=\{u,v_1,v_2,v_3,w_1,w_2,w_3\}$, let $\phi_{x\to y}$ be the element of
+      $\gl(7)$ sending $x$ to $y$, and sending the rest of $S$ to zero. Then a little
+      messing around produces
+      \[\renewcommand\arraystretch{1.2}
+      \begin{array}{cc|cc}
+        x & x\cdot \w & x & x\cdot \w\\ \hline
+        \frac{1}{3}(p_v-p_u) & v_1\wedge v_2\wedge v_3 & \phi_{v_1\to u} & u\wedge v_2\wedge v_3\\
+        \half p_1 + \half p_u - \frac{1}{6}\id & u\wedge v_1\wedge w_1 & \phi_{w_1\to w_2} & u\wedge v_1\wedge w_2\\
+        \phi_{v_3\to w_1}+\phi_{w_2\to u} & v_1\wedge v_2\wedge w_1 & \phi_{v_3\to w_3} & v_1\wedge v_2\wedge w_3
+      \end{array}\]
+      Any other basis vector can be obtained from one of these (up to a sign) by
+      permuting indices and/or swapping $v$'s and $w$'s, so we can get all of
+      them.\footnote{Since $\w$ is not quite invariant under permutations of the
+      indices or swapping of $v$'s and $w$'s, you sometimes have to tweak a sign
+      (e.g.\ to get $w_1\wedge w_2\wedge v_1$, take $x=\phi_{w_3\to v_1}-\phi_{v_2\to
+      u}$).}
+    \end{solution}
+ \end{exercise}
+ \begin{warning}
+   Don't forget that $\gl(7)$ acts on $\Lambda^3 E$ as a \emph{Lie algebra}, not as an
+   associative algebra. That is, $x(a\wedge b\wedge c)=(xa)\wedge b\wedge c + a\wedge
+   xb\wedge c + a\wedge b\wedge xc$. In particular, the action of $x$ followed by the
+   action of $y$ is \emph{not} the same as the action of $yx$.
+ \end{warning}
+
+ \begin{claim}
+   $\g = \{x\in \gl(7)|x\w=0\}$ is a simple Lie algebra with root system $G_2$.
+ \end{claim}
+ \begin{proof}
+   It is immediate that $\g$ is a Lie algebra\anton{How do we know it is simple?}.
+   Let's pick a candidate for the Cartan subalgebra. Consider linear operators which
+   are diagonal in the given basis $u,v_1,v_2,v_3,w_1,w_2,w_3$,
+   take $h = diag(c,a_1,a_2,a_3,b_1,b_2,b_3)$. If we want $h\in \g$, we must have
+   \begin{align*}
+    h\w &= (a_1+a_2+a_3)v_1v_2v_3 + (b_1+b_2+b_3)w_1w_2w_3 + \\
+        & \quad + (c+a_1+b_1)uv_1w_1 + (c+a_2+b_2)uv_2w_2 + (c+a_3+b_3)uv_3w_3 = 0
+   \end{align*}
+   which is equivalent to $c=0$, $a_1+a_2+a_3=0$,
+   and $b_i=-a_i$. So our Cartan subalgebra is two dimensional.
+
+   If you consider the root diagram for $G_2$ and look at only the long roots, you get
+   a copy of $A_2$. This should mean that you have an embedding $A_2\subseteq
+   G_2$,\footnote{Note that this is not true of the short roots because the bracket of
+   elements in ``adjacent'' short root spaces produces an element in a long root
+   space, so the short root spaces will generate all of $G_2$.} so we should look for
+   a copy of $\sl(3)$ in our $\g$. We can write $E = ku\oplus V\oplus W$, where
+   $V=\langle v_1,v_2,v_3\rangle$ and $W=\langle w_1,w_2,w_3\rangle$. Let's consider
+   the subalgebra which not only kills $\w$, but also kills $u$. Let $\g_0 = \{x\in
+   \g| xu=0\}$.
+
+   \anton{begin my poor explanation}
+
+   Say $x\in \g_0$ is of the form
+   \[
+    x = \left(\begin{array}{c|cc}
+      0 & a & b\\ \hline
+      0 & A & B\\
+      0 & C & D\\
+    \end{array}\right),
+   \]
+   where $a,b$ are row vectors, then
+   \[
+     0 = x\cdot \w =
+       \underset{\shortstack{$vvv$\\
+                      $\fbox{$uvv$}_3$\\
+                      $\fbox{$wvv$}_1$}}{x(v_1v_2v_3)}
+     + \underset{\shortstack{$www$\\
+                      $\fbox{$uww$}_3$\\
+                      $\fbox{$vww$}_1$}}{x(w_1w_2w_3)}
+     + \underset{\shortstack{$\fbox{$uvw$}_4$\\
+        \rlap{\rule[2.5pt]{4.5ex}{.4pt}}$uuw$ \\
+        \rlap{\rule[2.5pt]{4ex}{.4pt}}$uuv$ \\
+                 $\fbox{\shortstack{$uvv$ \\
+                                    $uww$}}_{2}$}}{u\wedge x(v_1w_1+ v_2w_2+v_3w_3)}
+   \]
+   where each term lies in the span of the basis vectors below it. Since the terms in
+   boxes labelled 1 appear in only one way, we must have $B=C=0$. From that, it
+   follows that the terms boxed an labelled $2$ cannot appear. Thus, the terms in
+   boxes labelled 3 only appear in one way, so we must have $a=b=0$. Since the terms
+   in boxes labelled 2 appear in only one place (though in two ways), we must have
+   $D=-A^t$. Finally, since $vvv$ only appears in one place (in three different ways),
+   we must have $tr\, A=0$.
+
+   \anton{end poor explanation. Is there a better way?}
+
+   For $x\in \g_0$ we have $x(v_1\wedge v_2\wedge v_3)=0$ and
+   $x(w_1\wedge w_2\wedge w_3)=0$, so $x$ preserves $V$ and $W$. It also must kill the
+   2-form $\alpha = v_1\wedge w_1+ v_2\wedge w_2+ v_3\wedge w_3$, since
+   $0=x(u\wedge\alpha)=xu\wedge\alpha+u\wedge x\alpha=u\wedge x\alpha$ forces $x\alpha
+   =0$. This 2-form gives a pairing, so that $V^* \simeq W$. We can compute exactly
+   what the pairing is, $\langle v_i,w_j\rangle =\delta_{ij}$. Therefore the operator
+   $x$ must be of the form
+   \[
+    x = \left(\begin{array}{c|cc}
+      0 & 0 & 0\\ \hline
+      0 & A & 0\\
+      0 & 0 & -A^t\\
+    \end{array}\right), \text{ where }tr(A)=0.
+   \]
+
+  %% Why does $x$ preserve the form? It is a non-degenerate 2-form on $V\oplus W$, so it
+  %% identifies it with $V^*\oplus W^*$. And $V$ and $W$ are isotropic with respect to
+  %% this form (lets call the form $\alpha$).  Then we have that $\langle w,v\rangle =
+  %% \alpha(v,w)$. $x$ preserves $\alpha$ ... to show that, we need
+  %% $\alpha(Av,w)+\alpha(v,-A^t w)=0$.
+  %% this is showing that anyone of that block matrix form preserves \alpha %%
+
+
+   The total dimension of $G_2$ is 14, which we also know by the exercise is the
+   dimension of $\g$. We saw the Cartan subalgebra has dimension 2, and this $\g_0$
+   piece has dimension 8 (two of which are the Cartan). So we still need another 6
+   dimensional piece.
+
+   For each $v\in V$, define a linear operator $X_v$ which acts by $X_v(u)=v$.
+   $\Lambda^2 V\simeq_\gamma W$ is dual to $V$ (since $\Lambda^3 V=\CC$). Then $X_v$
+   acts by $X_v(v')= \gamma(v\wedge v')$ and $X_v(w)=2\langle v,w\rangle u$. Check
+   that this kills $\w$, and hence is in $\g$.\anton{clarify how you'd think if this
+   $X_v$\dots what constraints does being in a root space put on $X_v$?}
+
+   Similarly, you can define $X_w$ for each $w\in W$ by $X_w(u)=w,
+   X_w(w')=\gamma(w\wedge w'), X_w(v) = 2\langle w,v\rangle u$.
+
+   If you think about a linear operator which takes $u\mapsto v_i$, it must be
+   in some root space, this tells you about how it should act
+   on $V$ and $W$. This is how we constructed $X_v$ and $X_w$, so we know that
+   $X_{v_i}$ and $X_{w_i}$ are in some root spaces. We can check that their roots
+   are the short roots in the diagram,
+
+   \[\begin{xy}
+   (0,0);(0,0);
+   \ar a(30) ="a" *+!L{X_{v_1}},
+   \ar a(150)-"a"="b",
+   \ar "b"+"a" *+!R{X_{v_2}},
+   \ar "b"+"a"+"a" *+!D{X_{w_3}},
+   \ar "b"+"a"+"a"+"a",
+   \ar "b"+"b"+"a"+"a"+"a",
+   \ar -"a" *+!R{X_{w_1}},
+   \ar -"b",
+   \ar -"b"-"a" *+!L{X_{w_2}},
+   \ar -"b"-"a"-"a" *+!U{X_{v_3}},
+   \ar -"b"-"a"-"a"-"a",
+   \ar -"b"-"b"-"a"-"a"-"a",
+ \end{xy}\]
+   and so they span the remaining 6 dimensions of $G_2$.
+   To properly complete this construction, we should check that this is
+   semisimple, but we're not going to.
+ \end{proof}
+
+ Let's analyze what we did with $G_2$, so that we can do a similar thing to construct $E_8$.
+ We discovered certain phenomena,
+ we can write $\g = \underbrace{\g_0}_{\sl(3)}\oplus \underbrace{\g_1}_V\oplus
+ \underbrace{\g_2}_W$. This gives us a $\ZZ/3$-grading: $[\g_i,\g_j]\subseteq
+ \g_{i+j (mod\ 3)}$. As an $\sl(3)$ representation, it has three components: $ad$, standard,
+ and the dual to the standard. We get that $W\cong V^*\simeq \Lambda^2 V$. Similarly,
+ $V\simeq \Lambda^2 W$. This is called \emph{Triality}\index{triality|idxbf}.
+
+ More generally, say we have $\g_0$ a semisimple Lie algebra, and $V,W$ representations of
+ $\g_0$, with intertwining maps
+ \begin{align*}
+   \alpha:\Lambda^2 V&\to W \\
+   \beta: \Lambda^2 W&\to V \\
+   V&\simeq W^* . \\
+ \end{align*}
+  We also have $\gamma: V\otimes W\simeq V\otimes V^*\to \g_0$ (representations are semisimple,
+  so the map $\g_0\to \gl(V)\simeq V\otimes V^*$ splits).
+  We normalize $\gamma$ in the following way. Let $B$ be the Killing form, and normalize $\gamma$ so that
+  $B(\gamma(v\otimes w),X) = \langle w,Xv\rangle$. Make a Lie algebra $\g =
+  \g_0\oplus V\oplus W$ by defining $[X,v]=Xv$ and $[X,w]=Xw$ for $X\in \g_0, v\in V,w\in
+  W$. We also need to define  $[\ ,\,]$ on $V$,$W$ and between $V$ and $W$. These are actually
+  forced, up to coefficients:
+  \[ [v_1,v_2] = a\alpha(v_1\wedge v_2) \]
+  \[ [w_1,w_2] = b\beta(w_1\wedge w_2) \]
+  \[ [v,w] = c\gamma(v\otimes w). \]
+ There are some conditions on the coefficients $a,b,c$
+ imposed by the Jacobi identity;
+ $[x,[y,z]] = [[x,y],z]+[y,[x,z]]$. Suppose $x\in \g_0$, with $y,z\in \g_i$ for
+ $i=0,1,2$, then there is nothing to check, these identities come for free because
+ $\alpha,\beta, \gamma$ are $\g_0$-invariant maps. There are only a few more cases to
+ check, and only one of them gives you a condition. Look at
+ \[
+    [v_0,[v_1,v_2]] = ca\gamma(v_0\otimes \alpha(v_1\wedge v_2)) \tag{RHS}
+ \]
+ and it must be equal to
+ \begin{align*}
+   [[v_0,v_1],v_2]+&[v_1,[v_0,v_2]] = \\ & -ac\gamma(v_2\otimes \alpha(v_0\wedge v_1)) +
+   ac\gamma(v_1\otimes \alpha(v_0\wedge v_1)) \tag{LHS}
+ \end{align*}
+ This doesn't give a condition on $ac$, but we need to check that it is satisfied.
+ It suffices to check that $B(RHS,X)=B(LHS,X)$ for any $X\in \g_0$. This
+ gives us the following condition:
+ \begin{align*}
+   \langle \alpha ( v_1\wedge v_2),Xv_0\rangle &= \langle \alpha(v_0\wedge
+   v_2),Xv_1\rangle - \langle \alpha(v_0\wedge v_1),Xv_2\rangle
+ \end{align*}
+ The fact that $\alpha$ is an intertwining map for $\g_0$ gives us the identity:
+ \begin{align*}
+   \langle \alpha ( v_1\wedge v_2),Xv_0\rangle &= \langle \alpha(Xv_1\wedge
+   v_2),v_0\rangle - \langle \alpha(v_1\wedge Xv_2),v_0\rangle
+ \end{align*}
+ and we also have that
+ \[
+   \langle \alpha ( v_1\wedge v_2),v_0\rangle = \langle \alpha(v_0\wedge
+   v_2),v_1\rangle = \langle \alpha(v_0\wedge v_1),v_2\rangle
+ \]
+ With these two identities it is easy to show that the equation
+ (and hence this Jacobi identity) is satisfied.
+
+ We also get the Jacobi identity on $[w,[v_1,v_2]]$, which is equivalent to:
+ \[ ab\beta (w\wedge \alpha(v_1\wedge v_2)) = c(\gamma(v_1\otimes w)v_2-\gamma(v_2\otimes w)v_1)
+ \]
+ It suffices to show for any $w'\in W$ that the pairings of each side with $w'$ are equal,
+ \begin{align*}
+   ab\langle w',\beta(w\wedge \alpha(v_1\wedge v_2)\rangle = c B&(\gamma(v_1\otimes
+   w),\gamma(v_2\otimes w')) \\ &- c B(\gamma(v_2\otimes w),\gamma(v_1\otimes w'))
+ \end{align*}
+ This time we will get a condition on $a$, $b$, and $c$.
+ You can check that any of the other cases of the Jacobi identity give you the same conditions.
+
+ Now we will use this to construct $E_8$. Write $\g = \g_0\oplus V\oplus W$, where we
+ take $\g_0=\sl(9)$. Let $E$ be the 9 dimensional representation of $\g_0$. Then take
+ $V=\Lambda^3 E$ and $W=\Lambda^3 E^* \simeq \Lambda^6 E$. We have a pairing
+ $\Lambda^3 E \otimes \Lambda^6 E\to k$, so we have $V\simeq W^*$. We would like to
+ construct $\alpha: \Lambda^2 \to W$, but this is just given by $v_1\wedge v_2$
+ including into $\Lambda^6 E\simeq W$. Similarly, we get $\beta:\Lambda^2 W\to V$. You
+ get that the rank of $\g$ is 8 (= rank of $\g_0$). Notice that $\dim V =
+ \binom{9}{3} = 84$, which is the same as $\dim W$, and $\dim \g _0 = \dim \sl(9)=80$.
+Thus, we have that $\dim \g = 84 + 84+80=248$, which is the dimension of $E_8$, and
+this is indeed $E_8$.
+
+ Remember that we previously got $E_7$ and $E_6$ from $E_8$. Look at the diagram for $E_8$:
+ \[ \begin{xy}
+   (0,0) *+!D{\varepsilon_1-\varepsilon_2} *\cir<2pt>{};
+   (1,0) *+!U{\varepsilon_2-\varepsilon_3} *\cir<2pt>{} **@{-};
+   p+(1,0) *+!D{\varepsilon_3-\varepsilon_4} *\cir<2pt>{} **@{-};
+   p+(1,0) *+!U{\varepsilon_4-\varepsilon_5} *\cir<2pt>{} **@{-};
+   p+(1,0) *+!D{\varepsilon_5-\varepsilon_6} *\cir<2pt>{} **@{-};
+   p+(0,-1) *+!U{\varepsilon_6+\varepsilon_7+\varepsilon_8} *\cir<2pt>{} **@{-},
+   p+(1,0) *+!U{\varepsilon_6-\varepsilon_7} *\cir<2pt>{} **@{-};
+   p+(1,0) *+!D{\varepsilon_7-\varepsilon_8} *\cir<2pt>{} **@{-};
+ \end{xy}\]
+ The extra guy, $\varepsilon_6+\varepsilon_7+\varepsilon_8$, corresponds to the 3-form. When you cut out
+ $\varepsilon_1-\varepsilon_2$, you can figure out what is left and you get $E_7$.
+ Then you can additionally cut out $\varepsilon_2-\varepsilon_3$ and get $E_6$.
+
+ Fianally, we construct $F_4$:\qquad $\begin{xy}
+   (0,0) *\cir<2pt>{};
+   (1,0)  *\cir<2pt>{} **@{-};
+   p+(1,0)="x" *\cir<2pt>{} **@{=} ?*@{>};
+   "x" *{\hspace{4pt}};"x"+(1,0)  *\cir<2pt>{} **@{-};
+ \end{xy}$
+
+ We know that any simple algebra can be determined by generators and relations, with a
+ $X_i,Y_i,H_i$ for each node $i$. But sometimes our diagram has a symmetry, like
+ switching the horns on a $D_n$, which induces an automorphism of the Lie algebra
+ given by $\gamma(X_i)=X_i$ for $i<n-1$ and switches $X_{n-1}$ and $X_n$. Because the arrows
+ are preserved, you can check that the Serre relations still hold. Thus, in general,
+ an automorphism of the diagram induces an automorphism of the Lie algebra (in a very
+ concrete way).
+
+ \begin{theorem}
+   $(\aut \g)/(\aut_0 \g) = \aut \Gamma$. So the connected component of the identity
+   gives some automorphisms, and the connected components are parameterized by
+   automorphisms of the diagram.
+ \end{theorem}
+
+ $D_n$ is the diagram for $SO(2n)$. We have that $SO(2n)\subset O(2n)$, and the group
+ of automorphisms of $SO(2n)$ is $O(2n)$.
+ This isn't true of  $SO(2n+1)$, because the automorphisms given by
+ $O(2n+1)$ are the same as those from $SO(2n+1)$. This corresponds the the fact that $D_n$
+ has a nontrivial automorphism, but $B_n$ doesn't.
+
+ Notice that $E_6$ has a symmetry; the involution:
+ \[\begin{xy}
+   (0,0)="1" *\cir<2pt>{};
+   (1,0)="2"  *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(0,-1) *\cir<2pt>{} **@{-},
+   p+(1,0)="22" *\cir<2pt>{} **@{-};
+   p+(1,0)="11" *\cir<2pt>{} **@{-};
+   "1" *+{\ };"11" *+{\ } **\crv{(2,1.5)} ?<*@{<} ?>*@{>},
+   "2" *+{\ };"22" *+{\ } **\crv{(2,1)} ?<*@{<} ?>*@{>},
+ \end{xy}\]
+
+ Define $X_1'=X_1+X_5, X_2' = X_2+X_4, X_3' = X_3, X_6'=X_6$, and the same with $Y$'s,
+ the fixed elements of this automorphism. We
+ have that $H_1'=H_1+H_5$ (you have to check that this works), and similarly for the
+ other $H$'s. As the set of fixed elements, you get an algebra of rank 4 (which must
+ be our $F_4$). You can check that
+ $\alpha_1'(H_2')=-1,\alpha_2'(H_1')=-1,\alpha_3'(H_1')=0,\alpha_3'(H_2')=-2,\alpha_2'(H_3')=-1$,
+ so this is indeed $F_4$ as desired. In fact, any diagram with multiple edges can be
+ obtained as the fixed algebra of some automorphism:
+ \begin{exercise}
+   Check that $G_2$ is the fixed algebra of the automorphism of $D_4$:
+   \[\begin{xy}
+     (0,0) *\cir<2pt>{};
+     a(60)="1" *\cir<2pt>{} **@{-},
+     a(180)="2" *\cir<2pt>{} **@{-},
+     a(-60)="3" *\cir<2pt>{} **@{-},
+     \ar@/_2ex/ "1" *+{\ };"2" *+{\ }
+     \ar@/_2ex/ "2" *+{\ };"3" *+{\ }
+     \ar@/_2ex/ "3" *+{\ };"1" *+{\ }
+   \end{xy}\]
+   Check that $B_n,C_n$ can be obtained from $A_{2n}, A_{2n+1}$
+   \[\begin{xy}
+     (0,0)="1" *\cir<2pt>{};
+     (1,0)="2"  *\cir<2pt>{} **@{-};
+     p+(.6,0) **@{-};
+     p+(.8,0) **{\,.\,};
+     p+(.6,0)="22" *\cir<2pt>{} **@{-};
+     p+(1,0)="11" *\cir<2pt>{} **@{-};
+     "1" *+{\ };"11" *+{\ } **\crv{(2,1.5)} ?<*@{<} ?>*@{>},
+     "2" *+{\ };"22" *+{\ } **\crv{(2,1)} ?<*@{<} ?>*@{>},
+   \end{xy}\]
+ \end{exercise}

@@ -1,0 +1,468 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{21}
+ \sektion{Lecture 21 - An overview of Lie groups} \index{Borcherds, Richard E.|(}
+
+ The (unofficial) goal of the last third of the course is to prove no theorems. We'll
+ talk about
+ \begin{enumerate}
+ \item Lie groups in general,
+ \item Clifford algebras and Spin groups,
+ \item Construction of all Lie groups and all representations. You might say this
+ is impossible, so let's just try to do all simple ones, and in particular
+ $E_8,E_7,E_6$.
+ \item Representations of $SL_2(\RR)$. % and of the Heisenberg group ... didn't happen
+ \end{enumerate}
+
+% Today we'll give an overview of Lie algebras and Lie groups. We'll compare with
+% algebraic groups (matrix groups), and finite groups.
+
+ \subsektion{Lie groups in general}
+
+ In general, a Lie group $G$ can be broken up into a number of pieces.
+
+ The connected component of the identity, $G_\text{conn}\subseteq G$, is a
+ normal subgroup, and $G/G_\text{conn}$ is a discrete group.
+ \[
+      1\longrightarrow G_\text{conn} \longrightarrow G \longrightarrow
+      G_\text{discrete}\longrightarrow 1
+ \]
+
+ The maximal connected normal solvable subgroup of $G_\text{conn}$ is called
+ $G_\text{sol}$. Recall that a group is \emph{solvable}\index{solvable!group} if there
+ is a chain of subgroups $G_\text{sol}\supseteq \cdots\supseteq 1$, where consecutive
+ quotients are abelian. The Lie algebra of a solvable group is solvable (by Exercise
+ \ref{lec11hardEx}), so Lie's theorem (Theorem \ref{lec11Lie}) tells us that
+ $G_\text{sol}$ is isomorphic to a subgroup of the group of upper triangular
+ matrices.\anton{almost ... it tells us that $G_\text{sol}/$(some discrete subgroup)
+ is a subgroup of upper triangular matrices}
+
+ Every normal solvable subgroup of $G_\text{conn}/G_\text{sol}$ is discrete, and
+ therefore in the center (which is itself discrete). We call the pre-image of the
+ center $G_*$. Then $G/G_*$ is a product of simple groups (groups with no normal
+ subgroups).\anton{is this obvious? it is clear that this is the adjoint form of a
+ group with semisimple Lie algebra}
+ \[
+    G_\text{sol}\subseteq
+     \left\{ \mat{\ast & & & \smash{\raisebox{-1ex}{\llap{\LARGE $\ast$}}} \\
+                   & \ddots &  & \\
+                   & & \ast & \\
+                 \smash{\rlap{\LARGE 0}} & & & \ast} \right\}
+    \qquad
+    G_\text{nil}\subseteq
+     \left\{ \mat{1 & & & \smash{\raisebox{-1ex}{\llap{\LARGE $\ast$}}} \\
+                   & \ddots &  & \\
+                   & & 1 & \\
+                 \smash{\rlap{\LARGE 0}} & & & 1} \right\}
+ \]
+ Since $G_\text{sol}$ is solvable, $G_\text{nil}:=[G_\text{sol},G_\text{sol}]$ is
+ nilpotent,\index{nilpotent!group} i.e.\ there is a chain of subgroups
+ $G_\text{nil}\supseteq G_1\supseteq\cdots \supseteq G_k=1$ such that $G_i/G_{i+1}$ is
+ in the center of $G_\text{nil}/G_{i+1}$. In fact, $G_\text{nil}$ must be isomorphic
+ to a subgroup of the group of upper triangular matrices with ones on the diagonal.
+ Such a group is called \emph{unipotent}.\index{unipotent group|idxbf}
+
+ We have the picture
+ \[ \vfuzz=5pt
+ \begin{xy}
+   (0,5) *+{G};
+   (0,4) *+{G_\text{conn}} **@{-};
+   (0,3) *+{G_{*}} **@{-};
+   (0,2) *+{G_\text{sol}} **@{-};
+   (0,1) *+{G_\text{nil}} **@{-};
+   (0,0) *+{1} **@{-};
+   (.7,4.5) *=<0em,1.75em>\frm{)} *+!L{\text{discrete; classification hopeless}};
+   (.7,3.5) *=<0em,1.75em>\frm{)} *+!L{\prod \text{connected simples; classified}};
+   (.7,2.5) *=<0em,1.75em>\frm{)} *+!L{\text{abelian discrete}};
+   (.7,1.5) *=<0em,1.75em>\frm{)} *+!L{\text{abelian}};
+        (3.7,2) *=<0em,2.5em>\frm{\}} *++!L{\text{classification trivial}};
+   (.7,0.5) *=<0em,1.75em>\frm{)} *+!L{\text{nilpotent; classification a mess}};
+   (-1,2) *=<0em,10em>\frm{\{} *++!R{\text{connected}}
+ \end{xy}
+ \]
+ The classification of connected simple Lie groups\index{connected} is quite long.
+ There are many infinite series and a lot of exceptional cases. Some infinite series
+ are $PSU(n)$, $PSL_n(\RR)$, and $PSL_n(\CC)$.\footnote{The $P$ means ``mod out by the
+ center''.}
+
+ One way to get many connected simple Lie groups is not observe that there is a unique
+ connected simple Lie group for each simple Lie algebra. We've already classified
+ complex Lie algebras, and it turns out that there a finite number of real Lie
+ algebras which complexify to any given complex Lie algebra. We will classify all such
+ real forms\index{real form} in Lecture~29.
+
+ For example, $\sl_2(\RR)\not\simeq \mathfrak{su}_2(\RR)$, but $\sl_2(\RR)\otimes \CC
+ \simeq \mathfrak{su}_2(\RR)\otimes \CC \simeq \sl_2(\CC)$. By the way, $\sl_2(\CC)$
+ is simple as a \emph{real} Lie algebra, but its complexification is $\sl_2(\CC)\oplus
+ \sl_2(\CC)$, which is not simple. Thus, we cannot obtain all connected simple groups
+ this way.
+ \begin{example}
+   Let $G$ be the group of all shape-preserving transformations of $\RR^4$ (i.e.\
+   translations, reflections, rotations, and scaling). It is sometimes called
+   $\RR^4\cdot\nobreak GO_4(\RR)$. The $\RR^4$ stands for translations, the $G$ means
+   that you can multiply by scalars, and the $O$ means that you can reflect and
+   rotate. The $\RR^4$ is a normal subgroup.  In this case, we have
+   \[
+     \renewcommand\arraycolsep{.3ex}
+     \raisebox{-.4\baselineskip}{\shortstack{$G_\text{conn}/G_\text{sol}$\\ $=SO_4(\RR)$}}
+     \raisebox{.1\baselineskip}{
+       $\left\{ \rule{0pt}{2.6\baselineskip} \right.$}
+     \begin{array}{rl}
+      \RR^4\cdot GO_4(\RR) &= G\\ \\
+      \RR^4\cdot GO_4^+(\RR) &= G_\text{conn}\\ \\
+      \RR^4\cdot \RR^\times &= G_*\\ \\
+      \RR^4\cdot \RR^+ &= G_\text{sol} \\ \\
+      \RR^4 &= G_\text{nil}
+    \end{array}
+    \begin{array}{rl}
+      G/G_\text{conn} &= \ZZ/2\ZZ\\ \\
+      G_\text{conn}/G_* &= PSO_4(\RR) \\
+       & \quad \big(\simeq SO_3(\RR)\times SO_3(\RR)\big)\\
+      G_*/G_\text{sol} &= \ZZ/2\ZZ \\ \\
+      G_\text{sol}/G_\text{nil} &=\RR^+
+    \end{array}
+  \]
+  where $GO_4^+(\RR)$ is the connected component of the identity (those
+  transformations that preserve orientation), $\RR^\times$ is scaling by something
+  other than zero, and $\RR^+$ is scaling by something positive. Note that
+  $SO_3(\RR) = PSO_3(\RR)$ is simple.
+
+  $SO_4(\RR)$ is ``almost'' the product $SO_3(\RR)\times SO_3(\RR)$. To see this,
+  consider the associative (but not commutative) algebra of quaternions, $\HH$. Since
+  $q\bar q = a^2+b^2+c^2+d^2 >0$ whenever $q\neq 0$, any non-zero quaternion has an
+  inverse (namely, $\bar q/q\bar q$). Thus, $\HH$ is a division algebra. Think of
+  $\HH$ as $\RR^4$ and let $S^3$ be the unit sphere, consisting of the quaternions
+  such that $\|q\|=q\bar q=1$. It is easy to check that $\|pq\|=\|p\|\cdot \|q\|$,
+  from which we get that left (right) multiplication by an element of $S^3$ is a
+  norm-preserving transformation of $\RR^4$. So we have a map $S^3\times S^3\to
+  O_4(\RR)$. Since $S^3\times S^3$ is connected, the image must lie in $SO_4(\RR)$. It
+  is not hard to check that $SO_4(\RR)$ is the image. The kernel is
+  $\{(1,1),(-1,-1)\}$. So we have $S^3\times S^3/\{(1,1),(-1,-1)\}\simeq SO_4(\RR)$.
+
+  Conjugating a purely imaginary quaternion by some $q\in S^3$ yields a purely
+  imaginary quaternion of the same norm as the original, so we have a homomorphism
+  $S^3\to O_3(\RR)$. Again, it is easy to check that the image is $SO_3(\RR)$ and that
+  the kernel is $\pm 1$, so $S^3/\{\pm 1\}\simeq SO_3(\RR)$.
+
+  So the universal cover of $SO_4(\RR)$ (a double cover) is the cartesian square of
+  the universal cover of $SO_3(\RR)$ (also a double cover). Orthogonal groups in
+  dimension 4 have a strong tendency to split up like this.\anton{Really? especially
+  in dimension 4?} Orthogonal groups in general tend to have these double covers, as
+  we shall see in Lectures 23~and~24. These double covers are important if you want
+  to study fermions.\index{fermions}
+ \end{example}
+
+% \begin{example}
+% Let $G$ be the group of all shape-preserving (translations, rotations, reflections,
+% dilations) transformations of $\RR^4$, sometimes called $\RR^4\cdot\nobreak
+% GO_4(\RR)$.\footnote{$\RR^4$ is translations, $G$ is multiplication by scalers, $O$
+% is reflections and rotations} This is pretty much the smallest possible Lie group with
+% all the properties of a general Lie group.
+% \begin{itemize}
+% \item[(1)] $G$ has a connected component $G_\text{conn}$, which is a normal subgroup, and
+% $G/G_\text{conn}$ is a discrete group.
+%
+% Any Lie group can be built from a connected Lie group and a discrete group
+% (0 dimensional group). Classifying discrete groups is completely hopeless.
+%
+% \item[(2)] We let $G_\text{sol}$ be the maximal normal connected solvable subgroup of
+% $G_\text{conn}$. Recall that solvable means that there is a chain
+% $G_\text{sol}\supseteq G_\text{sol}' \supseteq \cdots \supset 1$ where all
+% consecutive quotients are abelian. So you build solvable groups out of abelian
+% groups.
+%
+% $G_\text{conn}/G_\text{sol}$ is connected and has no solvable normal subgroups. It
+% turns out that it is much easier to deal with the group if you kill off all the
+% solvable subgroups like this. Groups like this are semisimple. They are almost a
+% product of simple groups. A semisimple group $G$ modulo its discrete center is a
+% product of simple groups.
+%
+% The nice thing is that connected simple Lie groups are all completely classified. The
+% list is quite long, and it has a lot of infinite series and a lot of exceptional
+% guys. Some examples are $PSU(n)$, $PSL_n(\RR)$, $PSL_n(\CC)$. You can go from simple
+% Lie groups to simple Lie algebras over $\RR$, then complexify to get Lie algebras
+% over $\CC$. This last step is finite-to-one, and they can be classified fairly
+% easily. For example, the Lie algebras of $\sl_2(\RR)$ and $\mathfrak{su}_2(\RR)$ are
+% different, but they have the same complexification, $\sl_2(\CC)$, which, by the way,
+% is actually simple as a \emph{real} Lie algebra. Its complexification is not simple,
+% it is $\sl_2(\CC)\oplus \sl_2(\CC)$.
+%
+% Suppose $G_\text{sol}$ is solvable. The only thing you can say is that its derived
+% subgroup $G'_\text{sol}$ is nilpotent. That is, $G'\supseteq [G',G']\supseteq
+% [G',[G',G']]\supseteq \cdots\supseteq 1$, or rather there is a chain such that
+% $G_i/G_{i+1}\subseteq $ the center of $G_1/G_{i+1}$. Thus, nilpotent groups can be
+% built up by taking central extensions\index{central extension}. Nilpotent groups are in practice not
+% classifiable. The simply connected ones are all isomorphic to subgroups of
+% upper-triangular matrices
+% \[
+%%    \left\{ \mat{1 & & & \smash{\raisebox{-1ex}{\llap{\Huge $\ast$}}} \\
+%%                   & \ddots &  & \\
+%%                   & & 1 & \\
+%%                 \smash{\rlap{\Huge 0}} & & & 1} \right\}
+%    \left\{ \mat{1 & & & \smash{\raisebox{-1ex}{\llap{\LARGE $\ast$}}} \\
+%                   & \ddots &  & \\
+%                   & & 1 & \\
+%                 \smash{\rlap{\LARGE 0}} & & & 1} \right\}
+%%    \left\{ \mat{1 & & & \ast \\
+%%                   & \ddots &  & \\
+%%                   & & 1 & \\
+%%                 0 & & & 1} \right\}
+% \]
+% If you put arbitrary things on the diagonal, that is what the solvable groups look
+%like.
+%
+% \end{itemize}
+%
+% In our case, $G$ is $\RR^4\cdot\nobreak GO_4(\RR)$. The connected component
+% $G_\text{conn}$ is $\RR^4\cdot\nobreak GO^+_4(\RR)$, which is the stuff that
+% preserves orientation. $G_\text{sol}$ is $\RR^4\cdot\nobreak \RR^+$ (rescaling).
+% $G_\text{nil}$ is $\RR^4$. $G_\text{conn}/G_\text{sol}$ is $SO_4(\RR)$,
+% $G_\text{sol}/G_\text{nil}$ is $\RR^+$. $G_\text{conn}/G_*$ is $PSO_4(\RR)\simeq
+% SO_3(\RR)\times SO_3(\RR)$. $G_*/G_\text{sol}$ is $\ZZ/2\ZZ$.
+%
+% Note: What is $O_4(\RR)$? It almost is the product $O_3(\RR)\times O_3(\RR)$. To see
+% this is to look at the quaternions $\HH$, which is an associative, but not
+% commutative algebra. Notice that $q\bar q = a^2+b^2+c^2+d^2$, which is $>0$ if $q\neq
+% 0$, so any non-zero quaternion has an inverse. Thus, $\HH$ is a division algebra. Put
+% $\RR^4$ to be the quaternions, and $S^3$ is the unit sphere in this $\RR^4$
+% consisting of the quaternions such that $\|q\|=q\bar q=1$. It is easy to check that
+% $\|pq\|=\|p\|\, \|q\|$. So left or right multiplication by an element of $S^3$ give
+% rotations of $\RR^4$. Thus, we have that $S^3\times S^3\to O_4(\RR)$, and the image
+% is $SO_4(\RR)$. This is not quite injective because the kernel is
+% $\{(1,1),(-1,-1)\}$. So you get $S^3\times S^3/(-1,-1)\simeq SO_4(\RR)$.
+%
+% Let $\RR^3$ be the purely imaginary quaternions. Then $q\in S^3$ acts by conjugation
+% on $\RR^3$, so we get $S^3\to O_3(\RR)$, and again it is not quite injective or
+% surjective. The image is $SO_3(\RR)$ and the kernel is $\{1,-1\}$, so
+% $S^3/\{1,-1\}\simeq SO_3(\RR)$. So we almost have that $SO_4$ isomorphic to
+% $SO_3\times SO_3$. If you take a double cover of $SO_4(\RR)$, it is the product of
+% two copies of a double cover of $SO_3(\RR)$. Orthogonal groups in dimension 4 have a
+% strong tendency to split up like this.
+% \end{example}
+
+ \subsektion{Lie groups and Lie algebras}
+
+ Let $\g$ be a Lie algebra. We can set $\g_\text{sol} = \text{rad}\, \g$ to be the
+ maximal solvable ideal (normal subalgebra), and $\g_\text{nil} =
+ [\g_\text{sol},\g_\text{sol}]$. Then we get the chain
+ \[\vfuzz=5pt
+ \begin{xy}
+   (0,3) *+{\g};
+   (0,2) *+{\g_\text{sol}} **@{-};
+   (0,1) *+{\g_\text{nil}} **@{-};
+   (0,0) *+{0} **@{-};
+   (.5,2.7);(.5,2.3) **\frm{)}; (.5,2.5) *+!L{\prod\text{simples; classification known}};
+   (.5,1.7);(.5,1.3) **\frm{)}; (.5,1.5) *+!L{\text{abelian; easy to classify}};
+   (.5,0.7);(.5,0.3) **\frm{)}; (.5,0.5) *+!L{\text{nilpotent; classification a mess}};
+ \end{xy}
+ \]
+ We have an equivalence of categories between simply connected Lie groups and Lie
+ algebras. The correspondence cannot detect
+ \begin{itemize}
+   \item Non-trivial components of $G$. For example, $SO_n$ and $O_n$ have the same
+   Lie algebra.
+
+   \item Discrete normal (therefore central, Lemma \ref{lec05L:discCentral}) subgroups
+   of $G$. If $Z\subseteq G$ is any discrete normal subgroup, then $G$ and $G/Z$ have
+   the same Lie algebra. For example, $SU(2)$ has the same Lie algebra as
+   $PSU(2)\simeq SO_3(\RR)$.
+ \end{itemize}
+ If $\tilde G$ is a connected and simply connected Lie group with Lie algebra $\g$,
+ then any other connected group $G$ with Lie algebra $\g$ must be isomorphic to
+ $\tilde G/Z$, where $Z$ is some discrete subgroup of the center. Thus, if you know
+ all the discrete subgroups of the center of $\tilde G$, you can read off all the
+ connected Lie groups with the given Lie algebra.
+
+ Let's find all the groups with the algebra $\so_4(\RR)$. First let's find a simply
+ connected group with this Lie algebra. You might guess $SO_4(\RR)$, but that isn't
+ simply connected. The simply connected one is $S^3\times S^3$ as we saw earlier (it
+ is a product of two simply connected groups, so it is simply connected). The center
+ of $S^3$ is generated by $-1$, so the center of $S^3\times S^3$ is $(\ZZ/2\ZZ)^2$,
+ the Klein four group. There are three subgroups of order 2
+ \[\xymatrix @!0 @R=3em @C=4em {
+   & (\ZZ/2\ZZ)^2 \ar@{-}[dl] \ar@{-}[d] \ar@{-}[dr]\\
+   (-1,1) \ar@{-}[dr]& (-1,-1) \ar@{-}[d]& (1,-1) \ar@{-}[dl]\\
+   & 1
+ }\qquad
+ \xymatrix @!0 @R=3em @C=5.8em{
+   & PSO_4(\RR) \ar@{-}[dl] \ar@{-}[d] \ar@{-}[dr]\\
+   SO_3(\RR)\times S^3 \ar@{-}[dr]& SO_4(\RR) \ar@{-}[d]& S^3\times SO_3(\RR) \ar@{-}[dl]\\
+   & S^3\times S^3
+ }\]
+ Therefore, there are 5 groups with Lie algebra $\so_4$.
+
+ \subsektion{Lie groups and finite groups}
+ \begin{enumerate}
+ \item The classification of finite simple groups resembles the classification of
+ connected simple Lie groups when $n\ge 2$. \anton{what is $n$?}
+
+ For example, $PSL_n(\RR)$ is a simple Lie group, and $PSL_n(\FF_q)$ is a finite
+ simple group except when $n=q=2$ or $n=2,q=3$. Simple finite groups form about 18
+ series similar to Lie groups, and 26 or 27 exceptions, called sporadic groups, which
+ don't seem to have any analogues for Lie groups.\anton{what about exceptional Lie
+ groups?}
+
+ \item Finite groups and Lie groups are both built up from simple and abelian groups.
+ However, the way that finite groups are built is much more complicated than the way
+ Lie groups are built. Finite groups can contain simple subgroups in very complicated
+ ways; not just as direct factors.
+
+ For example, there are \emph{wreath products}.\index{wreath product|idxbf} Let $G$
+ and $H$ be finite simple groups with an action of $H$ on a set of $n$ points. Then
+ $H$ acts on $G^n$ by permuting the factors. We can form the semi-direct product
+ $G^n\ltimes H$, sometimes denoted $G\wr H$. There is no analogue for (finite
+ dimensional) Lie groups. There \emph{is} an analogue for infinite dimensional Lie
+ groups, which is why the theory becomes hard in infinite dimensions.
+
+ \item The commutator subgroup of a solvable finite group need not be a nilpotent
+ group. For example, the symmetric group $S_4$ has commutator subgroup $A_4$, which is
+ not nilpotent.
+
+% \item[(4)] (non-trivial) Nilpotent finite groups are never usually subgroups of upper
+% triangular matrices (with ones on the diagonal).
+ \end{enumerate}
+
+ \subsektion{Lie groups and Algebraic groups (over \texorpdfstring{$\RR$}{the reals})}
+ By algebraic group, we mean an algebraic variety which is also a group, such as
+ $GL_n(\RR)$. Any algebraic group is a Lie group. Probably all the Lie groups you've
+ come across have been algebraic groups. Since they are so similar, we'll list some
+ differences.
+ \begin{enumerate}
+ \item Unipotent and semisimple abelian algebraic groups are totally different, but
+ for Lie groups they are nearly the same. For example $\RR\simeq
+ \left\{\matrix{1}{\ast}{0}{1}\right\}$ is unipotent and $\RR^\times \simeq
+ \left\{\matrix{a}00{a^{-1}}\right\}$ is semisimple. As Lie groups, they are closely
+ related (nearly the same), but the Lie group homomorphism $\exp: \RR\to \RR^\times$
+ is not algebraic (polynomial), so they look quite different as algebraic groups.
+
+ \item Abelian varieties are different from affine algebraic groups. For example,
+ consider the (projective) elliptic curve $y^2=x^3+x$ with its usual group operation
+ and the group of matrices of the form $\matrix{a}b{-b}a$ with $a^2+b^2=1$. Both are
+ isomorphic to $S^1$ as Lie groups, but they are completely different as algebraic
+ groups; one is projective and the other is affine.
+
+ \item Some Lie groups do not correspond to ANY algebraic group. We give two examples
+ here.
+
+ The \emph{Heisenberg group}\index{Heisenberg group|idxit} is the subgroup of
+ symmetries of $L^2(\RR)$ generated by translations ($f(t)\mapsto f(t+x)$),
+ multiplication by $e^{2\pi ity}$ ($f(t)\mapsto e^{2\pi ity} f(t)$), and
+ multiplication by $e^{2\pi iz}$ ($f(t)\mapsto e^{2\pi iz}f(t)$). The general element
+ is of the form $f(t)\mapsto e^{2\pi i(yt+z)}f(t+x)$. This can also be modelled as
+ \[
+ \left.\left\{\mat{1 & x & z \\ 0 & 1 & y \\ 0 & 0 & 1}\right\}\right/
+ \left\{\left.\mat{1 & 0 & n \\ 0 & 1 & 0 \\ 0 & 0 & 1} \right| n\in \ZZ\right\}
+ \]
+ It has the property that in any finite dimensional representation, the center
+ (elements with $x=y=0$) acts trivially, so it cannot be isomorphic to any algebraic
+ group.
+
+ The \emph{metaplectic group}.\index{metaplectic group|idxbf} Let's try to find all
+ connected groups with Lie algebra $\sl_2(\RR) = \{\matrix{a}{b}{c}{d}| a+d=0\}$.
+ There are two obvious ones: $SL_2(\RR)$ and $PSL_2(\RR)$. There aren't any other ones
+ that can be represented as groups of finite dimensional matrices. However, if you
+ look at $SL_2(\RR)$, you'll find that it is not simply connected. To see this, we
+ will use Iwasawa decomposition (without proof).
+ \begin{theorem}[Iwasawa decomposition]\label{lec21T:Iwasawa}\index{Iwasawa
+ decomposition!idxbf}
+   If $G$ is a (connected) semisimple Lie group, then there are closed subgroups $K$,
+   $A$, and $N$, with $K$ compact, $A$ abelian, and $N$ unipotent, such that the
+   multiplication map $K\times A\times N\to G$ is a surjective diffeomorphism.
+   Moreover, $A$ and $N$ are simply connected.
+ \end{theorem}
+ In the case of $SL_n$, this is the statement that any basis can be obtained uniquely
+ by taking an orthonormal basis ($K=SO_n$), scaling by positive reals ($A$ is the
+ group of diagonal matrices with positive real entries), and shearing ($N$ is the
+ group $\Bigl( \begin{array}{cc}
+        1 \smash{\raisebox{-1.5ex}{\rlap{\scriptsize $\ddots$}}}& \ast\\ 0 & 1
+        \end{array}\Bigr)$). This is exactly the result of the Gram-Schmidt
+ process.\index{Gram-Schmidt}
+
+ The upshot is that $G\simeq K\times A \times N$ (topologically), and $A$ and $N$ do
+ not contribute to the fundamental group, so the fundamental group of $G$ is the same
+ as that of $K$. In our case, $K=SO_2(\RR)$ is isomorphic to a circle, so the
+ fundamental group of $SL_2(\RR)$ is $\ZZ$.
+
+ So the universal cover $\widetilde{SL_2(\RR)}$ has center $\ZZ$. Any
+ finite dimensional representation of $\widetilde{SL_2(\RR)}$ factors through
+ $SL_2(\RR)$, so none of the covers of $SL_2(\RR)$ can be written as a group of
+ finite dimensional matrices. Representing such groups is a pain.
+
+ The most important case is the metaplectic group $Mp_2(\RR)$, which is the connected
+ double cover of $SL_2(\RR)$. It turns up in the theory of modular forms of
+ half-integral weight and has a representation called the metaplectic representation.
+ \end{enumerate}
+
+ \subsektion{Important Lie groups}
+
+ \underline{Dimension 1}: There are just $\RR$ and $S^1 = \RR/\ZZ$.
+
+ \underline{Dimension 2}: The abelian groups are quotients of $\RR^2$ by some discrete
+ subgroup; there are three cases: $\RR^2$, $\RR^2/\ZZ = \RR\times S^1$, and
+ $\RR^2/\ZZ^2 = S^1\times S^1$.
+
+ There is also a non-abelian group, the group of all matrices of the form $\matrix
+ ab0{a^{-1}}$, where $a>0$. The Lie algebra is the subalgebra of $2\times 2$ matrices
+ of the form $\matrix hx0{-h}$, which is generated by two elements $H$ and $X$, with
+ $[H,X]=2X$.
+
+ \underline{Dimension 3}: There are some boring abelian and solvable groups, such as
+ $\RR^2\ltimes \RR^1$, or the direct sum of $\RR^1$ with one of the two dimensional
+ groups. As the dimension increases, the number of boring solvable groups gets huge,
+ and nobody can do anything about them, so we ignore them from here on.
+
+ You get the group $SL_2(\RR)$, which is the most important Lie group of all. We saw
+ earlier that $SL_2(\RR)$ has fundamental group $\ZZ$. The double cover $Mp_2(\RR)$ is
+ important. The quotient $PSL_2(\RR)$ is simple, and acts on the open upper half plane
+ by linear fractional transformations
+
+ Closely related to $SL_2(\RR)$ is the compact group $SU_2$. We know that $SU_2\simeq
+ S^3$, and it covers $SO_3(\RR)$, with kernel $\pm 1$. After we learn about Spin
+ groups, we will see that $SU_2 \cong \spin_3(\RR)$. The Lie algebra $\mathfrak{su}_2$
+ is generated by three elements $X$, $Y$, and $Z$ with relations $[X,Y]=2Z$,
+ $[Y,Z]=2X$, and $[Z,X]=2Y$.\footnote{An explicit representation is given by
+ $X=\matrix 01{-1}0$, $Y=\matrix 0ii0$, and $Z=\matrix i00{-i}$. The cross product on
+ $\RR^3$ gives it the structure of this Lie algebra.}
+
+ The Lie algebras $\sl_2(\RR)$ and
+ $\mathfrak{su}_2$ are non-isomorphic, but when you complexify, they both become
+ isomorphic to $\sl_2(\CC)$.
+
+ There is another interesting 3 dimensional algebra. The Heisenberg algebra is the Lie
+ algebra of the Heisenberg group. It is generated by $X,Y,Z$, with $[X,Y]=Z$ and $Z$
+ central. You can think of this as strictly upper triangular matrices.
+
+ \underline{Dimension 6}: (nothing interesting happens in dimensions 4,5) We get the
+ group $SL_2(\CC)$. Later, we will see that it is also called $\spin_{1,3}(\RR)$.
+
+ \underline{Dimension 8}: We have $SU_3(\RR)$ and $SL_3(\RR)$. This is the first time
+ we get a non-trivial root system.
+
+ \underline{Dimension 14}: $G_2$, which we will discuss a little.
+
+ \underline{Dimension 248}: $E_8$, which we will discuss in detail.
+
+ \smallskip
+ This class is mostly about finite dimensional algebras, but let's mention some
+ infinite dimensional Lie groups or Lie algebras.
+ \begin{enumerate}
+   \item Automorphisms of a Hilbert space form a Lie group.
+
+   \item Diffeomorphisms of a manifold form a Lie group. There is some physics stuff
+   related to this.
+
+   \item \emph{Gauge groups}\index{Guage groups!idxbf} are (continuous, smooth,
+   analytic, or whatever) maps from a manifold $M$ to a group $G$.
+
+   \item The \emph{Virasoro algebra}\index{Virasoro algebra} is generated by $L_n$ for
+   $n\in \ZZ$ and $c$, with relations $[L_n,L_m]=(n-m) L_{n+m} +
+   \delta_{n+m,0}\frac{n^3-n}{12}c$, where $c$ is central (called the \emph{central
+   charge}). If you set $c=0$, you get (complexified) vector fields on $S^1$, where we
+   think of $L_n$ as $ie^{in\theta}\pder{}{\theta}$. Thus, the Virasoro algebra is a
+   central extension
+   \[
+     0\to c\CC \to \text{Virasoro}\to \text{Vect}(S^1)\to 0.
+   \]
+
+   \item Affine Kac-Moody algebras, which are more or less central extensions of
+   certain gauge groups over the circle.
+ \end{enumerate}

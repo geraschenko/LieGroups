@@ -1,0 +1,293 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{26}
+ \sektion{Lecture 26}
+
+ Today we'll finish looking at $W(E_8)$, then we'll construct $E_8$.
+
+ Remember that we still have a fourth method of finding the order of $W(E_8)$. Let $L$
+ be the $E_8$ lattice. Look at $L/2L$, which has 256 elements. Look at this as a set
+ acted on by $W(E_8)$. There is an orbit of size 1 (represented by 0). There is an
+ orbit of size $240/2=120$, which are the roots (a root is congruent mod $2L$ to it's
+ negative). Left over are 135 elements. Let's look at norm 4 vectors. Each norm 4
+ vector, $r$, satisfies $r\equiv -r \mod 2$, and there are $240\cdot 9$ of them, which
+ is a lot, so norm 4 vectors must be congruent to a bunch of stuff. Let's look at
+ $r=(2,0,0,0,0,0,0,0)$. Notice that it is congruent to vectors of the form $(0\dots
+ \pm 2\dots 0)$, of which there are 16. It is easy to check that these are the only
+ norm 4 vectors congruent to $r$ mod 2. So we can partition the norm 4 vectors into
+ $240\cdot 9/16=135$ subsets of 16 elements. So $L/2L$ has 1+120+135 elements, where
+ $1$ is the zero, 120 is represented by 2 elements of norm 2, and 135 is represented
+ by 16 elements of norm 4. A set of 16 elements of norm 4 which are all congruent is
+ called a FRAME. It consists of elements $\pm e_1,\dots, \pm e_8$, where $e_i^2=4$ and
+ $(e_i,e_j)=1$ for $i\neq j$, so up to sign it is an orthogonal basis.
+
+ Then we have
+ \[
+    |W(E_8)| = (\text{\# frames})\times |\text{subgroup fixing a frame}|
+ \]
+ because we know that $W(E_8)$ acts transitively on frames. So we need to know what
+ the automorphisms of an orthogonal base are. A frame is 8 subsets of the form
+ $(r,-r)$, and isometries of a frame form the group $(\ZZ/2\ZZ)^8\cdot S_8$, but these
+ are not all in the Weyl group. In the Weyl group, we found a $(\ZZ/2\ZZ)^7\cdot S_8$,
+ where the first part is the group of sign changes of an EVEN number of coordinates.
+ So the subgroup fixing a frame must be in between these two groups, and since these
+ groups differ by a factor of 2, it must be one of them. Observe that changing an odd
+ number of signs doesn't preserve the $E_8$ lattice, so it must be the group
+ $(\ZZ/2\ZZ)^7\cdot S_8$, which has order $2^7\cdot 8!$. So the order of the Weyl
+ group is
+ \[
+    135\cdot 2^7\cdot 8! = |2^7\cdot S_8| \times \frac{\text{\# norm 4
+    elements}}{2\times \dim L}
+ \]
+ \begin{remark}
+ Similarly, if $\Lambda$ is the Leech lattice, you actually get the order of Conway's
+ group to be
+ \[
+    |2^{12}\cdot M_{24}|\cdot \frac{\text{\# norm 8 elements}}{2\times \dim\Lambda}
+ \]
+ where $M_{24}$ is the Mathieu group (one of the sporadic simple groups). The Leech
+ lattice seems very much to be trying to be the root lattice of the monster group, or
+ something like that. There are a lot of analogies, but nobody can make sense of it.
+ \end{remark}
+
+ $W(E_8)$ acts on $(\ZZ/2\ZZ)^8$, which is a vector space over $\FF_2$, with quadratic
+ form $N(a)=\frac{(a,a)}{2} \mod 2$, so you get a map
+ \[
+    \pm 1\to W(E_8) \to O^+_8(\FF_2)
+ \]
+ which has kernel $\pm 1$ and is surjective. $O^+_8$ is one of the $8$ dimensional
+ orthogonal groups over $\FF_2$. So the Weyl group is very close to being an
+ orthogonal group of a vector space over $\FF_2$.
+
+ What is inside the root lattice/Lie algebra/Lie group $E_8$? One obvious way to find
+ things inside is to cover nodes of the $E_8$ diagram:
+ \[\begin{xy}
+   (0,0) *\cir<2pt>{};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *{\times} *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(0,1) *\cir<2pt>{} **@{-},
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+ \end{xy} \]
+ If we remove the shown node, you see that $E_8$ contains $A_2\times D_5$. We can do
+ better by showing that we can embed the affine $\tilde E_8$ in the $E_8$ lattice.
+ \[\begin{xy}
+   (0,0) *+!UR{-\text{highest root}} *\cir<2pt>{};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(0,1) *\cir<2pt>{} **@{-},
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   (4,-.3) *=(6.3,0)\frm{_\}} *+!U{\text{simple roots}}
+ \end{xy} \]
+ Now you can remove nodes here and get some bigger sub-diagrams. For example, if we
+ cover
+ \[\begin{xy}
+   (0,0) *\cir<2pt>{};
+   p+(1,0) *{\times} *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(0,1) *\cir<2pt>{} **@{-},
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+ \end{xy} \]
+ you get that an $A_1\times E_7$ in $E_8$. The $E_7$ consisted of 126
+ roots orthogonal to a given root. This gives an easy construction of $E_7$ root
+ system, as all the elements of the $E_8$ lattice perpendicular to $(1,-1,0\dots)$
+
+ We can cover
+ \[\begin{xy}
+   (0,0) *\cir<2pt>{};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *{\times} *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(0,1) *\cir<2pt>{} **@{-},
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+ \end{xy} \]
+ Then we get an $A_2\times E_6$, where the $E_6$ are all the vectors with the first 3
+ coordinates equal. So we get the $E_6$ lattice for free too.
+
+ If you cover
+ \[\begin{xy}
+   (0,0) *\cir<2pt>{};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(0,1) *\cir<2pt>{} **@{-},
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *{\times} *\cir<2pt>{} **@{-};
+ \end{xy} \]
+ you see that there is a $D_8$ in $E_8$, which is all vectors of the $E_8$ lattice
+ with integer coordinates. We sort of constructed the $E_8$ lattice this way in the
+ first place.
+
+ We can ask questions like: What is the $E_8$ Lie algebra as a representation of
+ $D_8$? To answer this, we look at the weights of the $E_8$ algebra, considered as a
+ module over $D_8$, which are the 112 roots of the form $(\dots\pm 1\dots \pm 1\dots)$
+ and the 128 roots of the form $(\pm 1/2,\dots)$ and 1 vector 0, with multiplicity 8.
+ These give you the Lie algebra of $D_8$. Recall that $D_8$ is the Lie algebra of
+ $SO_{16}$. The double cover has a half spin representation of dimension $2^{16/2
+ -1}=128$. So $E_8$ decomposes as a representation of $D_8$ as the adjoint
+ representation (of dimension 120) plus a half spin representation of dimension 128.
+ This is often used to construct the Lie algebra $E_8$. We'll do a better construction
+ in a little while.
+
+ We've found that the Lie algebra of $D_8$, which is the Lie algebra of $SO_{16}$, is
+ contained in the Lie algebra of $E_8$. Which \emph{group} is contained in the the compact
+ form of the $E_8$? We found that there were groups
+ \[\xymatrix @R=.75em {
+   & \spin_{16}(\RR) \ar@{-}[dl] \ar@{-}[d] \ar@{-}[dr]\\
+   SO_{16}(\RR) \ar@{-}[dr]& \spin_{16}(\RR)/(\ZZ/2\ZZ) \ar@{-}[d] \ar@{}[r]|{\cong}
+   & *+[F-:<10pt>]{\spin_{16}(\RR)/(\ZZ/2\ZZ)}  \ar@{-}[dl]\\
+   & PSO_{16}(\RR)
+ }\]
+ corresponding to subgroups of the center $(\ZZ/2\ZZ)^2$:
+ \[\xymatrix @R=.75em {
+   & 1 \ar@{-}[dl] \ar@{-}[d] \ar@{-}[dr]\\
+   \ZZ/2\ZZ \ar@{-}[dr]& \ZZ/2\ZZ \ar@{-}[d]& \ZZ/2\ZZ \ar@{-}[dl]\\
+   & (\ZZ/2\ZZ)^2
+ }\]
+ We have a homomorphism $\spin_{16}(\RR)\to E_8$(compact). What is the kernel? The
+ kernel are elements which act trivially on the Lie algebra of $E_8$, which is equal
+ to the Lie algebra $D_8$ plus the half spin representation. On the Lie algebra of
+ $D_8$, everything in the center is trivial, and on the half spin representation, one
+ of the elements of order 2 is trivial. So the subgroup that you get is the circled
+ one.
+
+ \begin{exercise}
+   Show $SU(2)\times E_7$(compact)$/(-1,-1)$ is a subgroup of $E_8$ (compact).
+   Similarly, show that $SU(9)/(\ZZ/3\ZZ)$ is also. These are similar to the example
+   above.
+ \end{exercise}
+
+ \subsektion{Construction of \texorpdfstring{$E_8$}{E8}} Earlier in the course, we had some constructions:
+ \begin{enumerate}
+   \item using the Serre relations, but you don't really have an idea of what it looks
+   like
+   \item Take $D_8$ plus a half spin representation
+ \end{enumerate}
+ Today, we'll try to find a natural map from root lattices to Lie algebras.
+ The idea is as follows: Take a basis element $e^\alpha$ (as a formal symbol)
+ for each root $\alpha$; then take the Lie algebra to be the direct sum of
+   1 dimensional spaces generated by each $e^\alpha$ and $ L$ ($L$ root lattice
+   $\cong$ Cartan subalgebra) . Then we have to define the Lie bracket by setting
+   $[e^\alpha,e^\beta]=e^{\alpha+\beta}$, but then we have a sign problem because
+   $[e^\alpha,e^\beta]\neq -[e^\beta,e^\alpha]$.  Is there some way to resolve the
+   sign problem? The answer is that there is no good way to solve this problem (not
+   true, but whatever). Suppose we had a nice functor from root lattices to Lie
+   algebras. Then we would get that the automorphism group of the lattice has to be
+   contained in the automorphism group of the Lie algebra (which is contained in the
+   Lie group), and the automorphism group of the Lattice contains the Weyl group of
+   the lattice. But the Weyl group is NOT usually a subgroup of the Lie group.
+
+ We can see this going wrong even in the case of $\sl_2(\RR)$. Remember that the Weyl
+ group is $N(T)/T$ where $T=\matrix a00{a^{-1}}$ and $N(T)=T\cup \matrix
+ 0b{-b^{-1}}0$, and this second part is stuff having order 4, so you cannot possibly
+ write this as a semi-direct product of $T$ and the Weyl group.
+
+ So the Weyl group is not usually a subgroup of $N(T)$. The best we can do is to find
+ a group of the form $2^n\cdot W\subseteq N(T)$ where $n$ is the rank. For example,
+ let's do it for $SL(n+1,\RR)$ Then $T = diag(a_1,\dots, a_n)$ with $a_1\cdots a_n=1$.
+ Then we take the normalizer of the torus to be $N(T)=$all permutation matrices with
+ $\pm 1$'s with determinant 1, so this is $2^n\cdot S_n$, and it does not split. The
+ problem we had with signs can be traced back to the fact that this group doesn't
+ split.
+
+ We can construct the Lie algebra from something acted on by $2^n\cdot W$ (but not
+ from something acted on by $W$). We take a CENTRAL EXTENSION\index{central extension}
+ of the lattice by a group of order 2. Notation is a pain because the lattice is
+ written additively and the extension is nonabelian, so you want it to be written
+ multiplicatively. Write elements of the lattice in the form $e^\alpha$ formally, so
+ we have converted the lattice operation to multiplication. We will use the central
+ extension
+ \[
+    1\to \pm 1 \to \hat e^L\to \underbrace{e^L}_{\cong L}\to 1
+ \]
+ We want $\hat e^L$ to have the property that $\hat e^\alpha \hat e^\beta =
+ (-1)^{(\alpha,\beta)} \hat e^\beta \hat e^\alpha$, where $\hat e^\alpha$ is something
+ mapping to $e^\alpha$. What do the automorphisms of $\hat e^L$ look like? We get
+ \[
+    1\to \underbrace{(L/2L)}_{(\ZZ/2)^{\mathrm{rank}(L)}} \to \aut (\hat e^L) \to \aut (e^L)
+ \]
+ for $\alpha\in L/2L$, we get the map $\hat e^\beta \to (-1)^{(\alpha,\beta)}\hat
+ e^\beta$. The map turns out to be onto, and the group $\aut(e^L)$ contains the
+ reflection group of the lattice. This extension is usually non-split.
+
+ Now the Lie algebra is $L\oplus \{$1 dimensional spaces spanned by $(\hat e^\alpha,-\hat
+ e^\alpha)\}$ for $\alpha^2=2$ with the convention that $-\hat e^\alpha$ ($-1$ in the
+ vector space) is $-\hat e^\alpha$ (-1 in the group $\hat e^L$). Now define a Lie
+ bracket by the ``obvious rules'' $[\alpha,\beta]=0$ for $\alpha,\beta \in L$ (the
+ Cartan subalgebra is abelian), $[\alpha,\hat e^\beta] = (\alpha,\beta)\hat e^\beta$ ($\hat
+ e^\beta$ is in the root space of $\beta$), and $[\hat e^\alpha,\hat e^\beta]=0$ if
+ $(\alpha,\beta)\ge 0$ (since $(\alpha+\beta)^2>2$), $[\hat e^\alpha,\hat e^\beta]
+ = \hat e^\alpha \hat e^\beta$ if $(\alpha,\beta)<0$ (product in the group $\hat e^L$), and $[\hat
+ e^\alpha,(\hat e^\alpha)^{-1}]=\alpha$.
+
+ \begin{theorem}
+   Assume $L$ is positive definite. Then this Lie bracket forms a Lie algebra (so it
+   is skew and satisfies Jacobi).
+ \end{theorem}
+ \begin{proof}
+   Easy but tiresome, because there are a lot of cases; let's do them (or most of
+   them).
+
+   We check the Jacobi identity: We want $[[a,b],c]+[[b,c],a]+[[c,a],b]=0$
+   \begin{enumerate}
+     \item all of $a,b,c$ in $L$. Trivial because all brackets are zero.
+     \item two of $a,b,c$ in $L$. Say $\alpha,\beta,e^\gamma$
+     \[
+        \underbrace{[[\alpha,\beta],e^\gamma]}_0+\underbrace{[[\beta,e^\gamma],\alpha]}_{(\beta,\alpha)(-\alpha,\beta)e^\gamma}+[[e^\gamma,\alpha],\beta]
+     \]
+     and similar for the third term, giving a sum of 0.
+
+     \item one of $a,b,c$ in $L$. $\alpha,e^\beta,e^\gamma$. $e^\beta$ has weight
+     $\beta$ and $e^\gamma$ has weight $\gamma$ and $e^\beta e^\gamma$ has weight
+     $\beta+\gamma$. So check the cases, and you get Jacobi:
+\begin{align*}
+  [[\alpha,e^\beta],e^\gamma] &= (\alpha,\beta)[e^\beta,e^\gamma] \\
+  [ [e^\beta,e^\gamma],\alpha] &= -[\alpha,[e^\beta,e^\gamma]] =
+  -(\alpha,\beta+\gamma)[e^\beta,e^\gamma] \\
+  [ [e^\gamma,\alpha],e^\beta] &= -[ [\alpha,e^\gamma],e^\beta] =
+  (\alpha,\gamma)[e^\beta,e^\gamma],
+\end{align*}
+  so the sum is zero.
+
+     \item none of $a,b,c$ in $L$. This is the really tiresome one,
+     $e^\alpha,e^\beta,e^\gamma$. The main point of going through this is to show that
+     it isn't as tiresome as you might think. You can reduce it to two or three cases.
+     Let's make our cases depending on $(\alpha,\beta)$, $(\alpha,\gamma)$,
+     $(\beta,\gamma)$.
+     \begin{enumerate}
+       \item if 2 of these are 0, then all the $[[\ast,\ast],\ast]$ are zero.
+
+       \item $\alpha=-\beta$. By case a, $\gamma$ cannot be orthogonal to them, so say
+       $(\alpha,\gamma)=1$ $(\gamma,\beta)=-1$; adjust so that $e^\alpha e^\beta=1$,
+       then calculate
+\begin{align*}
+  [ [e^\gamma,e^\beta],e^\alpha] - [ [e^\alpha,e^\beta],e^\gamma] + [
+  [e^\alpha,e^\gamma],e^\beta]
+  &= e^\alpha e^\beta e^\gamma - (\alpha,\gamma)e^\gamma + 0\\
+  &= e^\gamma - e^\gamma = 0.
+\end{align*}
+
+       \item $\alpha=-\beta=\gamma$, easy because $[e^\alpha,e^\gamma]=0$ and
+       $[[e^\alpha,e^\beta],e^\gamma] = -[ [e^\gamma,e^\beta],e^\alpha] $
+
+       \item We have that each of the inner products is 1, 0 or $-1$. If some
+        $(\alpha,\beta)=1$, all brackets are 0.
+     \end{enumerate}
+     This leaves two cases, which we'll do next time
+   \end{enumerate}
+
+ \end{proof}

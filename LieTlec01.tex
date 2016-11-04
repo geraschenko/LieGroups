@@ -1,0 +1,137 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{1}
+ \sektion{Lecture 1} \index{Reshetikhin, Nicolai|(}
+
+ \begin{definition}
+   A \emph{Lie group}\index{Lie group} is a smooth manifold $G$ with a group structure such that the
+   multiplication $\mu:G\times G\to G$ and inverse map $\iota:G\to G$ are smooth maps.
+ \end{definition}
+ \begin{exercise}
+   If we assume only that $\mu$ is smooth, does it follow that $\iota$ is smooth?
+   \begin{solution}
+     Yes. Consider $\mu^{-1}(e)\subseteq G\times G$. We would like to use the implicit
+     function theorem to show that there is a function $f$ (which is as smooth as
+     $\mu$) such that $(h,g)\in \mu^{-1}(e)$ if and only if $g=f(h)$. This function
+     will be $\iota$. You need to check that for every $g$, the derivative of left
+     multiplication by $g$ at $g^{-1}$ is non-singular (i.e.\ that $dl_{g}(g^{-1})$ is
+     a non-singular matrix). This is obvious because we have an inverse, namely
+     $dl_{g^{-1}}(e)$.
+   \end{solution}
+ \end{exercise}
+
+ \begin{example}
+   The group of invertible endomorphisms of $\CC^n$, $GL_n(\CC)$, is a Lie group. The
+   automorphisms of determinant 1, $SL_n(\CC)$, is also a Lie group.
+ \end{example}
+ \begin{example}
+   If $B$ is a bilinear form on $\CC^n$, then we can consider the Lie group
+   \[
+    \{ A\in GL_n(\CC)| B(Av,Aw)=B(v,w) \text{ for all }v,w\in \CC^n \}.
+   \]
+   If we take $B$ to be the usual dot product, then we get the group $O_n(\CC)$. If we
+   let $n=2m$ be even and set $B(v,w)= v^T \matrix 0{1_m}{-1_m}0 w$, then we get
+   $Sp_{2m}(\CC)$.
+ \end{example}
+% \begin{example}
+%  $SL_n, O_n, Sp_{2n}$ (for $O_n$ and $Sp_{2n}$, you can describe them as those
+%  linear transformations preserving some quadratic form).
+% \end{example}
+ \begin{example}
+   $SU_n\subseteq SL_n(\CC)$ is a \emph{real form}\index{real form} (look in lectures
+   27,28, and 29 for more on real forms).
+ \end{example}
+ \begin{example}
+   We'd like to consider infinite matrices, but the multiplication wouldn't make
+ sense, so we can think of $GL_n\subseteq GL_{n+1}$ via $A\mapsto
+ \matrix{A}{0}{0}{1}$, then define $GL_{\infty}$ as $\bigcup_n GL_n$. That is,
+ invertible infinite matrices which look like the identity almost everywhere.
+ \end{example}
+ Lie groups are hard objects to work with because they have global characteristics,
+ but we'd like to know about representations of them. Fortunately, there are things
+ called Lie algebras, which are easier to work with, and representations of Lie
+ algebras tell us about representations of Lie groups.
+
+ \begin{definition}
+   A \emph{Lie algebra}\index{Lie algebra} is a vector space $V$ equipped with a
+   \emph{Lie bracket} $[\ ,\,]:V\times V\to V$, which satisfies
+   \begin{enumerate}
+     \item Skew symmetry: $[a,a]=0$ for all $a\in V$, and
+
+     \item Jacobi identity\index{Jacobi identity}: $[a,[b,c]]+[b,[c,a]]+[c,[a,b]]=0$
+     for all $a,b,c\in V$.
+   \end{enumerate}
+   A \emph{Lie subalgebra} of a Lie algebra $V$ is a subspace $W\subseteq V$ which is
+   closed under the bracket: $[W,W]\subseteq W$.
+ \end{definition}
+
+ \begin{example}
+   If $A$ is a finite dimensional associative algebra, you can set $[a,b]=ab-ba$. If
+   you start with $A=\MM_n$, the algebra of $n\times n$ matrices, then you get the Lie
+   algebra $\gl_n$\index{gl(n)@$\gl(n)$}. If you let $A\subseteq \MM_n$ be the algebra
+   of matrices preserving a fixed flag $V_0\subset V_1\subset \cdots V_k \subseteq
+   \CC^n$, then you get \emph{parabolic}index{parabolic subalgebras} Lie sub-algebras
+   of $\gl_n$.
+ \end{example}
+% \underline{Examples}:
+% \begin{itemize}
+% \item[(a)] $A$, a finite dimensional associative algebra with $[a,b]=ab-ba$.
+% \item[(b)] $A=\MM_n \rightsquigarrow \gl_n$
+% \item[(c)] $A\subseteq \MM_n$ matrices of the form ... $\rightsquigarrow$ parabolic Lie sub-algebras of $\gl_n$
+% \end{itemize}
+
+ \begin{example}
+   Consider the set of vector fields on $\RR^n$, $\mathrm{Vect}(\RR^n) = \{
+   \ell=\Sigma e^i(x)\pder{}{x_i} | [\ell_1,\ell_2]=\ell_1\circ
+   \ell_2-\ell_2\circ\ell_1\}$.
+   \begin{exercise}
+     Check that $[\ell_1,\ell_2]$ is a first order differential operator.
+     \begin{solution}
+       Just do it.
+     \end{solution}
+   \end{exercise}
+ \end{example}
+ \begin{example}
+   If $A$ is an associative algebra, we say that $\partial:A\to A$ is a derivation if
+   $\partial(ab)=(\partial a)b+a\partial b$. Inner derivations are those of the form
+   $[d,\cdot ]$ for some $d\in A$; the others are called outer derivations. We denote
+   the set of derivations of $A$ by $\D(A)$, and you can verify that it is a Lie algebra.
+   Note that $\mathrm{Vect}(\RR^n)$ above is just $\D(C^\infty(\RR^n))$.
+ \end{example}
+ The first Hochschild cohomology\index{cohomology!Hochschild}, denoted $H^1(A,A)$, is
+ the quotient $\D(A)/\{$inner derivations$\}$.
+
+ \begin{definition}
+   A \emph{Lie algebra homomorphism} is a linear map $\phi:L\to L'$ that takes the
+   bracket in $L$ to the bracket in $L'$, i.e.\
+   $\phi([a,b]_L)=[\phi(a),\phi(b)]_{L'}$. A \emph{Lie algebra isomorphism} is a
+   morphism of Lie algebras that is a linear isomorphism.\footnote{The reader may
+   verify that this implies that the inverse is also a morphism of Lie algebras.}
+ \end{definition}
+
+ A very interesting question is to classify Lie algebras (up to isomorphism) of
+ dimension $n$ for a given $n$. For $n=2$, there are only two: the trivial bracket
+ $[\ ,\,]=0$, and $[e_1,e_2]=e_2$. For $n=3$, it can be done without too much trouble.
+ Maybe $n=4$ has been done, but in general, it is a very hard problem.
+
+ If $\{e_i\}$ is a basis for $V$, with $[e_i,e_j]=c_{ij}^k e_k$ (the $c_{ij}^k$ are
+ called the \emph{structure constants} of $V$), then the Jacobi identity is some
+ quadratic relation on the $c_{ij}^k$, so the variety of Lie algebras is some
+ quadratic surface in $\CC^{3n}$.\index{variety of Lie algebras}
+
+ Given a smooth real manifold $M^n$ of dimension $n$, we can construct
+ $\mathrm{Vect}(M^n)$, the set of smooth vector fields on $M^n$. For $X\in
+ \mathrm{Vect}(M^n)$, we can define the \emph{Lie derivative}\index{Lie derivative}
+ $L_X$ by $(L_X\cdot f)(m)=X_m\cdot f$, so $L_X$ acts on $C^\infty(M^n)$ as a
+ derivation.
+ \begin{exercise}
+  Verify that $[L_X,L_Y]=L_X\circ L_Y-L_Y\circ L_X$ is of the form $L_Z$ for a unique
+  $Z\in \mathrm{Vect}(M^n)$. Then we put a Lie algebra structure on
+  $\mathrm{Vect}(M^n)=\D(C^\infty(M^n))$ by $[X,Y]=Z$.
+ \end{exercise}
+ There is a theorem (Ado's Theorem\footnote{Notice that if $\g$ has no center, then
+ the adjoint representation\index{adjoint representation} $ad:\g\to \gl(\g)$ is
+ already faithful. See Example \ref{lec07eg:adjoint} for more on the adjoint
+ representation. For a proof of Ado's Theorem, see Appendix E of
+ \cite{FulHar}})\index{Ado's Theorem} that any Lie algebra $\g$ is isomorphic to a Lie
+ subalgebra of $\gl_n$, so if you understand everything about $\gl_n$, you're in
+ pretty good shape.

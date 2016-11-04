@@ -1,0 +1,261 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{8}
+ \sektion{Lecture 8 - The PBW Theorem and Deformations}
+
+ Last time, we introduced the universal enveloping algebra $U\g$ of a Lie algebra
+ $\g$, with its universality property. We discussed graded and filtered spaces and
+ algebras. We showed that under some condition on a filtered algebra $A$, the graded
+ algebra $Gr(A)$ is a Poisson algebra. We also checked that $U\g$ satisfies this
+ condition, and that $Gr(U\g)\simeq S(\g)$ as graded commutative algebras. The latter
+ space can be understood as the space $Pol(\g^*)$ of polynomial functions on $\g^*$.
+ It turns out that the Poisson bracket on $Gr(U\g)$, expressed in $Pol(\g^*)$, is
+ given by
+ \[
+    \{f,g\}(x) = x([df_x,dg_x])
+ \]
+ for $f,g\in Pol(\g^*)$ and $x\in \g^*$. Note that $f$ is a function on $\g^*$ and $x$
+ an element of $\g^*$, so $df_x$ is a linear form on $T_x\g^*=\g^*$, that is,
+ $df_x\in\g$.
+
+ Suppose that $V$ admits a filtration $V_0\subset V_1\subset V_2\subset\cdots $. Then,
+ the associated graded space $Gr(V)=V_0\oplus \bigoplus_{n\ge 1} (V_n/V_{n+1})$ is also
+ filtered. (Indeed, every graded space $W=\bigoplus_{n\ge 0}W_n$ admits the filtration
+ $W_0\subset W_0\oplus W_1\subset W_0\oplus W_1\oplus W_2\subset\cdots$) A natural
+ question is:
+ When do we have $V\simeq Gr(V)$ as filtered spaces ?
+
+ For the filtered space $U\g$, the answer is a consequence of the following theorem.
+ \begin{theorem}[Poincar\'e-Birkhoff-Witt] \index{Poincar\'e-Birkhoff-Witt|see{PBW}}
+ \index{PBW|idxbf}
+   Let $e_1,\dots, e_n$ be any linear basis for $\g$. Let us also denote by
+   $e_1,\dots, e_n$ the image of this basis in the universal enveloping algebra $U\g$.
+   Then the monomials $e_1^{m_1}\cdots e_n^{m_n}$ form a basis for $U\g$.
+ \end{theorem}
+ \begin{corollary}
+ There is an isomorphism of filtered spaces $U\g\simeq Gr(U\g)$.
+ \end{corollary}
+ \begin{proof}[Proof of the corollary]
+
+In $S(\g)$, $e_1^{m_1}\cdots e_n^{m_n}$ also forms a basis, so we get an isomorphism
+$U\g\simeq S(\g)$ of filtered vector spaces by simple identification of the bases.
+Since $Gr(U\g)\simeq S(\g)$ as graded algebras, the corollary is proved.
+ \end{proof}
+ \begin{remark}
+ The point is that these spaces are isomorphic as {\em filtered} vector spaces. Saying
+ that two infinite dimensional vector spaces are isomorphic is totally useless.
+ \end{remark}
+ \begin{proof}[Proof of the theorem]
+  By definition, the unordered monomials $e_{i_1}\cdots e_{i_k}$ for $k\le p$ span the
+  subspace $T_0\oplus \cdots \oplus T_p$ of $T(\g)$, where $T_i=\g^{\otimes i}$. Hence,
+  they also span the quotient $(U\g)_p := T_0\oplus \cdots \oplus T_p/\langle x\otimes
+  y-y\otimes x -[x,y]\rangle$. The goal is now to show that the {\em ordered} monomials
+  $e^{m_1}_1\cdots e^{m_n}_n$ for $m_1+\dots+m_n\le p$ still span $(U\g)_p$. Let's prove
+  this by induction on $p\ge 0$. The case $p=0$ being trivial, consider $e_{i_1}\cdots
+  e_{i_a}\cdots e_{i_k}$, with $k\le p$, and assume that $i_a$ has the smallest value
+  among the indices $i_1,\dots, i_k$. We can move $e_{i_a}$ to the left as follows
+  \begin{align*}
+  e_{i_1}\cdots e_{i_a}\cdots e_{i_k}=e_{i_a}e_{i_1}\cdots \hat e_{i_a}\cdots e_{i_k}
+  + \sum_{b=1}^{a-1} e_{i_1}\cdots e_{i_{b-1}} [e_{i_b},e_{i_a}]\cdots\hat
+  e_{i_a}\cdots e_{i_k}.
+  \end{align*}
+  Using the commutation relations $[e_{i_b},e_{i_a}]=\sum_\ell c_{i_bi_a}^\ell
+  e_\ell$, we see that the term to the right belongs to $(U\g)_{k-1}$. Iterating this
+  procedure leads to an equation of the form
+  \[
+  e_{i_1}\cdots e_{i_a}\cdots e_{i_k}=e_1^{m_1}\cdots e_n^{m_n} + \hbox{terms in
+    $(U\g)_{k-1}$,}
+  \]
+  with $m_1+\dots+m_n=k\le p$. We are done by induction. The proof of the theorem is
+  completed by the following homework.[This should really be done here]
+ \end{proof}
+ \begin{exercise}
+   Prove that these ordered monomials are linearly independant.
+ \end{exercise}
+
+ Let's ``generalize'' the situation. We have $U\g$ and $S(\g)$, both of which are
+ quotients of $T(\g)$, with kernels $\langle x\otimes y-y\otimes x -[x,y]\rangle$ and
+ $\langle x\otimes y-y\otimes x\rangle$. For any $\varepsilon \in \CC$, consider the
+ associative algebra $S_\varepsilon(\g) = T(\g)/\langle x\otimes y-y\otimes x
+ -\varepsilon[x,y]\rangle$. By construction, $S_0(\g)=S(g)$ and $S_1(\g)=U\g$. Recall
+ that they are isomorphic as filtered vector spaces.
+ \begin{remark}
+   If $\varepsilon\neq 0$, the linear map $\phi_\varepsilon: S_\varepsilon(\g) \to
+   U\g$ given by $\phi_\varepsilon(x)=\varepsilon x$ for all $x\in \g$ is an
+   isomorphism of filtered algebras. So, we have nothing new here.
+ \end{remark}
+ We can think of $S_\varepsilon (\g)$ as a non-commutative deformation of the
+ associative commutative algebra $S(\g)$. (Note that commutative deformations of the
+ algebra of functions on a variety correspond to deformations of the variety.)
+
+ \index{universal enveloping algebra|)}
+ \subsektion{Deformations of associative algebras}\index{deformations!of associative
+ algebras|idxbf}
+ Let $(A,m:A\otimes A\to A)$ be an associative algebra, that is, the linear map $m$
+ satisfies the quadratic equation
+ \begin{equation}\label{lec08Eq:1}
+ m(m(a,b),c)=m(a,m(b,c)). %\tag{$\dag$}
+ \end{equation}
+ Note that if $\varphi:A\to A$ is a linear automorphism, the multiplication
+ $m_\varphi$ given by $m_\varphi(a,b)=\varphi^{-1}(m(\varphi(a),\varphi(b)))$ is also
+ associative. We like to think of $m$ and $m_\varphi$ as equivalent associative
+ algebra structures on $A$. The ``moduli space'' of associative algebras on the vector
+ space $A$ is the set of solutions to equation \ref{lec08Eq:1} modulo this equivalence
+ relation.
+
+ One can come up with a notion of deformation for almost any kind of object. In these
+ deformation theories, we are interested in some cohomology theories because they
+ parameterize obstructions to deformations. The knowledge of the cohomology of a
+ given Lie algebra $\g$, enables us say a lot about the deformations of $\g$. We'll
+ come back to this question in the next lecture.
+
+  Let us turn to our original example: the family of associative algebras
+  $S_\varepsilon(\g)$. Recall that by the PBW theorem, we have an isomorphism of
+  filtered vector spaces $S_\varepsilon(\g)\stackrel{\psi}{\to}S(\g)= Pol(\g^*)$, but
+  this is not an isomorphisms of associative algebras. Therefore, the multiplication
+  defined by $f\ast g:=\psi(\psi^{-1}(f)\cdot \psi^{-1}(g))$ is not the normal
+  multiplication on $S(\g)$. We claim that the result is of the form
+  \[
+     f\ast g = fg + \sum_{n\ge 1}\varepsilon^n m_n(f,g) ,
+  \]
+  where $m_n$ is a bidifferential operator of order $n$, that is, it is of the form
+  \[
+  m_n(f,g)=\sum_{I,J}p_n^{I,J} \partial^If\partial^Jg,
+  \]
+  where $I$ and $J$ are multi-indices of length $n$, and $p_n^{I,J}\in Pol(\g^*)$. The
+  idea of the proof is to check this for $f=\psi(e_1^{r_1}\cdots e_n^{r_n}) $ and
+  $g=\psi(e_1^{l_1}\cdots e_n^{l_n})$ by writing
+  \[
+  e_1^{r_1}\cdots e_n^{r_n} \cdot e_1^{l_1}\cdots e_n^{l_n}=e_1^{l_1+r_1}\cdots
+  e_n^{l_n+r_n} + \sum_{k\ge 1} \varepsilon^k m_k(e_1^{r_1}\cdots
+  e_n^{r_n},e_1^{l_1}\cdots e_n^{l_n})
+  \]
+  in $S_\varepsilon(\g)$ using the commuting relations.
+
+  \begin{exercise}
+   Compute the $p_n^{I,J}$ for the Lie algebra $\g$ generated by $X$, $Y$, and $H$
+   with bracket $[X,Y]=H, [H,X]=[H,Y]=0$. This is called the Heisenberg Lie
+   algebra.\index{Heisenberg algebra}
+   \begin{solution}
+     We would like to compute the coefficients of the product $(X^aH^bY^r)(X^sH^cY^d)$
+     once it is rewritten in the PBW basis by repeatedly applying the relations
+     $XY-YX=\e H$, $HX=XH$, and $HY=YH$. Check by induction that
+     \[
+        Y^r X^s = \sum_{n=0}^\infty \e^n (-1)^n n! \binom{r}{n}\binom{s}{n}
+        X^{r-n}H^lY^{s-n}.
+     \]
+     It follows that $p_n^{I,J}$ is zero unless $I=(Y,\dots, Y)$ and $J=(X,\dots,X)$,
+     in which case $p_n^{I,J}=\frac{(-1)^n}{n!} H^n $.
+   \end{solution}
+  \end{exercise}
+
+  So we have a family of products on $Pol(\g^*)$ which depend on $\varepsilon$ in the
+  following way:
+  \[
+   f\ast g = fg + \sum_{n\ge 1}\varepsilon^n m_n(f,g)
+  \]
+  Since $f,g$ are polynomials and $m_n$ is a bidifferential operator of order $n$,
+  this series terminates, so it is a polynomial in $\varepsilon$. If we try to extend
+  this product to $C^\infty(\g^*)$, then there are questions about the convergence of
+  the product $\ast$. There are two ways to deal with this problem. The first one is
+  to take these matters of convergence seriously, consider some topology on
+  $C^\infty(\g^*)$ and demand that the series converges. The other solution is to
+  forget about convergence and just think in terms of formal power series in
+  $\varepsilon$. This is the so-called ``formal deformation'' approach. As we shall
+  see, there are interesting things to say with this seemingly rudimentary point
+  of view.
+
+  \subsektion{Formal deformations of associative algebras} Let $(A,m_0)$ be an
+  associative algebra over $\CC$. Then, a formal deformation of $(A,m_0)$ is a
+  $\CC[[h]]$-linear map $m:A[[h]]\otimes_{\CC[[h]]} A[[h]] \to A[[h]]$ such that
+  \[
+   m(a,b) = m_0(a,b) + \sum_{n\ge 1} h^n m_n(a,b)
+  \]
+  for all $a,b\in A$, and such that $(A[[h]],m)$ is an associative algebra. We say
+  that two formal deformations $m$ and $\tilde m$ are equivalent if there is a
+  $\CC[[h]]$-automorphism $A[[h]]\xrightarrow{\varphi} A[[h]]$ such that $\tilde m =
+  m_\varphi$, with $\varphi(x) = x + \sum_{n\ge 1} h^n \varphi_n(x)$ for all $x\in
+  A$, where $\varphi_n$ is an endomorphism of $A$.
+
+  \smallskip
+  \noindent \underline{Question}: Describe the equivalence classes of formal
+  deformations of a given associative algebra.
+
+   When $(A,m_0)$ is a commutative algebra, the answer is known. Philosophically and
+   historically, this case is relevant to quantum mechanics. In classical mechanics,
+   observables are smooth functions on a phase space $M$, i.e\ they form a commutative
+   associative algebra $C^\infty(M)$. But when you quantize this system (which is
+   needed to describe something on the order of the Planck scale), you cannot think of
+   observables as functions on phase space anymore. You need to deform the commutative
+   algebra $C^\infty(M)$ to a noncommutative algebra. And it works...
+
+   From now on, let $(A,m_0)$ be a commutative associative algebra. Let's write
+   $m_0(a,b)=ab$, and $m(a,b)=a\ast b$. (This is called a star product\index{star
+   product}, and the terminology goes back to the sixties and the work of J.~Vey).
+   Then we have
+   \[
+    a\ast b = ab + \sum_{n\ge 1} h^n m_n(a,b).
+   \]
+   Demanding the associativity of $\ast$ imposes an infinite number of equations for
+   the $m_n$'s, one for each order:
+   \begin{itemize}
+   \item[$h^0$:] $a(bc)=(ab)c$
+   \item[$h^1$:] $am_1(b,c) + m_1(a,bc) = m_1(a,b)c+m_1(ab,c)$
+   \item[$h^2$:] $\dots$ \anton{we should compute this one}
+   \item[$\vdots$]
+   \end{itemize}
+
+   \begin{exercise}
+   Show that the bracket $\{a,b\} = m_1(a,b)-m_1(b,a)$ defines a Poisson structure on
+   $A$. This means that we can think of a Poisson structure on an algebra as the
+   remnants of a deformed product where $a\ast b-b\ast a = h\{a,b\} + O(h)$.
+   \end{exercise}
+
+   One easily checks that if two formal deformations $m$ and $\tilde m$ are equivalent
+   via $\varphi$ (i.e: $\tilde m=m_\varphi$), then the associated $m_1,\tilde m_1$ are
+   related by $m_1(a,b) = \tilde m_1(a,b)+\varphi_1(ab)-\varphi_1(a)b-a\varphi_1(b)$.
+   In particular, two equivalent formal deformations induce the same Poisson
+   structure. Also, it is possible to choose a representative in an equivalence class
+   such that $m_1$ is skew-symmetric (and then, $m_1(a,b)=\frac{1}{2}\{a,b\}$). This
+   leads to the following program for the classification problem:
+   \begin{enumerate}
+   \item Classify all Poisson structures on $A$.
+
+   \item Given a Poisson algebra $(A,\{\ ,\,\})$, classify all equivalence
+   classes of star products on $A$ such that $m_1(a,b)=\frac{1}{2}\{a,b\}$.
+   \end{enumerate}
+
+   Under some mild assumption, it can be assumed that a star product is symmetric,
+   i.e.\ that it satisfies the equation $m_n(a,b)=(-1)^n m_n(b,a)$ for all $n$. The
+   program given above was completed by Maxim Kontsevitch \index{Kontsevitch, Maxim}
+   for the algebra of smooth functions on a manifold $M$. Recall that Poisson
+   structures on $C^\infty(M)$ are given by bivector fields on $M$ that satisfy the
+   Jacobi identity.
+
+  \begin{theorem}[Kontsevich, 1994]
+  Let $A$ be the commutative associative algebra $C^\infty(M)$, and let us fix a
+  Poisson bracket $\{\ ,\,\}$ on $A$. Equivalence classes of symmetric star products
+  on $A$ with $m_1(a,b)=\frac{1}{2}\{a,b\}$ are in bijection with formal deformations
+  of $\{\ ,\,\}$ modulo formal diffeomorphisms of $M$.
+  \end{theorem}
+  A \emph{formal deformation} of $\{\ ,\,\}$ is a Poisson bracket $\{\ ,\,\}_h$ on $A[[h]]$
+  such that
+  \[
+    \{a,b\}_h = \{a,b\} + \sum_{n\ge 1} h^n \mu_n(a,b)
+  \]
+  for all $a,b$ in $A$. A \emph{formal diffeomorphism} of $M$ is an automorphism
+  $\varphi$ of $A[[h]]$ such that $\varphi(f) = f+\sum_{n\ge 1} h^n \varphi_n(f)$
+  and $\varphi(fg)=\varphi(f)\varphi(g)$ for all $f,g$ in $A$.
+
+  We won't prove the theorem (it would take about a month) \anton{find a reference}.
+  As Poisson algebras are Lie algebras, it relates deformations of associative
+  algebras to deformations of Lie algebras.
+
+  \subsektion{Formal deformations of Lie algebras}
+  Given a Lie algebra $(\g, [\ ,\,])$, you want to know how many formal deformations
+  of $\g$ there are. Sometimes, there are none (like in the case of $\sl_n$, as we
+  will see later). Sometimes, there are plenty (as for triangular matrices). The
+  goal is now to construct some invariants of Lie algebras which will tell you whether
+  there are deformations, and how many of them there are. In order to do this, we
+  should consider cohomology theories for Lie algebras. We will focus first on the
+  standard complex $C^\udot (\g,\g) = \bigoplus_{n\ge 0} C^n(\g,\g)$, where
+  $C^n(\g,\g) = \hom(\Lambda^n \g,\g)$.

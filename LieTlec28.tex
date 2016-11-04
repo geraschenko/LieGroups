@@ -1,0 +1,270 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{28}
+ \sektion{Lecture 28}
+
+ Last time, we constructed a Lie algebra of type $E_8$, which was $L\oplus \bigoplus
+ \hat e^\alpha$, where $L$ is the root lattice and $\alpha^2=2$. This gives a double
+ cover of the root lattice:
+ \[
+    1\to \pm 1\to \hat e^L\to e^L\to 1.
+ \]
+ We had a lift for $\w(\alpha)=-\alpha$, given by $\w(\hat
+ e^\alpha)=(-1)^{(\alpha^2/2)}(\hat e^\alpha)^{-1}$. So $\w$ becomes an automorphism of
+ order 2 on the Lie algebra. $e^\alpha\mapsto (-1)^{(\alpha,\beta)} e^\alpha$
+ is also an automorphism of the Lie algebra.
+
+ Suppose $\sigma$ is an automorphism of order 2 of the real Lie algebra $L=L^+ +L^-$
+ (eigenspaces of $\sigma$). We saw that you can construct another real form given by $L^+
+ +iL^-$. Thus, we have a map from conjugacy classes of automorphisms with $\sigma^2=1$
+ to real forms of $L$. This is not in general in isomorphism.
+
+ Today we'll construct some more real forms of $E_8$. $E_8$ has an invariant symmetric
+ bilinear form $(e^\alpha,(e^\alpha)^{-1})=1$, $(\alpha,\beta)=(\beta,\alpha)$. The
+ form is unique up to multiplication by a constant since $E_8$ is an irreducible
+ representation of $E_8$. So the \emph{absolute value of the signature} is an
+ invariant of the Lie algebra.
+
+ For the split form of $E_8$, what is the signature of the invariant bilinear form
+ (the split form is the one we just constructed)? On the Cartan subalgebra $L$, $(\
+ ,\,)$ is positive definite, so we get $+8$ contribution to the signature. On
+ $\{e^\alpha,(e^\alpha)^{-1}\}$, the form is $\matrix 0110$, so it has signature
+ $0\cdot 120$. Thus, the signature is 8. So if we find any real form with a different
+ signature, we'll have found a new Lie algebra.
+
+ Let's first try involutions $e^\alpha\mapsto (-1)^{(\alpha,\beta)}e^\alpha$. But this
+ doesn't change the signature. $L$ is still positive definite, and you still have
+ $\matrix 0110$ or $\matrix 0{-1}{-1}0$ on the other parts. These Lie algebras
+ actually turn out to be isomorphic to what we started with (though we haven't shown
+ that they are isomorphic).
+
+ Now try $\w:e^\alpha\mapsto (-1)^{\alpha^2/2}(e^\alpha)^{-1}$, $\alpha\mapsto
+ -\alpha$. What is the signature of the form? Let's write down the $+$ and $-$
+ eigenspaces of $\w$. The $+$ eigenspace will be spanned by $e^\alpha - e^{-\alpha}$,
+ and these vectors have norm $-2$ and are orthogonal. The $-$ eigenspace will be
+ spanned by $e^\alpha + e^{-\alpha}$ and $L$, which have norm 2 and are orthogonal,
+ and $L$ is positive definite. What is the Lie algebra corresponding to the involution
+ $\w$? It will be spanned by $e^\alpha - e^{-\alpha}$ where $\alpha^2=2$ (norm $-2$), and
+ $i(e^\alpha + e^{-\alpha})$ (norm $-2$), and $iL$ (which is now negative definite).
+ So the bilinear form is \emph{negative definite}, with signature $-248 (\neq \pm 8)$.
+
+ With some more work, you can actually show that this is the Lie algebra of the
+ \emph{compact} form of $E_8$. This is because the automorphism group of $E_8$ preserves the
+ invariant bilinear form, so it is contained in $O_{0,248}(\RR)$, which is compact.
+
+ Now let's look at involutions of the form $e^\alpha\mapsto
+ (-1)^{(\alpha,\beta)}\w(e^\alpha)$. Notice that $\w$ commutes with $e^\alpha\mapsto
+ (-1)^{(\alpha,\beta)}e^\alpha$. The $\beta$'s in $(\alpha,\beta)$ correspond to
+ $L/2L$ modulo the action of the Weyl group $W(E_8)$. Remember this has three orbits,
+ with 1 norm 0 vector, 120 norm 2 vectors, and 135 norm 4 vectors. The norm 0 vector
+ gives us the compact form. Let's look at the other cases and see what we get.
+
+ Suppose $V$ has a negative definite symmetric inner product $(\ ,\,)$, and suppose
+ $\sigma$ is an involution of $V=V_+\oplus V_-$ (eigenspaces of $\sigma$). What is the
+ signature of the invariant inner product on $V_+\oplus iV_-$? On $V_+$, it is
+ negative definite, and on $iV_-$ it is positive definite. Thus, the signature is
+ $\dim V_- - \dim V_+= -\mathrm{tr}(\sigma)$. So we want to work out the traces of these
+ involutions.
+
+ Given some $\beta \in L/2L$, what is $\mathrm{tr}(e^\alpha\mapsto
+ (-1)^{(\alpha,\beta)}e^\alpha)$? If $\beta =0$, the traces is obviously 248 because
+ we just have the identity map. If $\beta^2=2$, we need to figure how many roots have
+ a given inner product with $\beta$. Recall that this was determined before:
+ \begin{center}
+ \begin{tabular}{|c|c|c|}
+ \hline
+ $(\alpha,\beta)$ & \# of roots $\alpha$ with given inner product & eigenvalue\\
+ \hline
+ 2                & 1                                        & 1  \\
+ 1                & 56                                       & -1 \\
+ 0                & 126                                      & 1  \\
+ -1               & 56                                       & -1 \\
+ -2               & 1                                        & 1  \\
+ \hline
+ \end{tabular}
+ \end{center}
+ Thus, the trace is $1-56+126-56+1+8=24$ (the $8$
+ is from the Cartan subalgebra). So the signature of the corresponding form on the Lie
+ algebra is $-24$. We've found a third Lie algebra.
+
+ If we also look at the case when $\beta^2=4$, what happens? How many $\alpha$ with
+ $\alpha^2=2$ and with given $(\alpha,\beta)$ are there?  In this case,
+ we have:
+ \begin{center}
+ \begin{tabular}{|c|c|c|}
+ \hline
+ $(\alpha,\beta)$ & \# of roots $\alpha$ with given inner product & eigenvalue\\
+ \hline
+ 2                & 14                                       & 1  \\
+ 1                & 64                                       & -1 \\
+ 0                & 84                                       & 1  \\
+ -1               & 64                                       & -1 \\
+ -2               & 14                                       & 1  \\
+ \hline
+ \end{tabular}
+ \end{center}
+ The trace will be $14-64+84-64+14+8=-8$. This is just the split form again.
+
+ Summary: We've found $3$ forms of $E_8$, corresponding to 3 classes in $L/2L$, with
+ signatures 8, $-24$, $-248$, corresponding to involutions $e^\alpha\mapsto
+ (-1)^{(\alpha,\beta)}e^{-\alpha}$ of the \emph{compact} form. If $L$ is the
+ \emph{compact} form of a simple Lie algebra, then Cartan\index{Cartan} showed that
+ the other forms correspond exactly to the conjugacy classes of involutions in the
+ automorphism group of $L$ (this doesn't work if you don't start with the compact form
+ --- so always start with the compact form).
+
+ In fact, these three are the \emph{only} forms of $E_8$, but we won't prove that.
+
+ \subsektion{Working with simple Lie groups}
+ As an example of how to work with simple Lie groups, we will look at the
+ general question: Given a simple Lie group, what is its homotopy type?
+ Answer: $G$ has a unique conjugacy class of maximal compact subgroups $K$, and $G$ is
+ homotopy equivalent to $K$.
+ \begin{proof}[Proof for $GL_n(\RR)$]
+   First pretend $GL_n(\RR)$ is simple, even though it isn't; whatever. There is an
+   obvious compact subgroup: $O_n(\RR)$.  Suppose $K$ is \emph{any} compact subgroup of
+   $GL_n(\RR)$. Choose any positive definite form $(\ ,\,)$ on $\RR^n$. This will
+   probably not be invariant under $K$, but since $K$ is compact, we can average it
+   over $K$ get one that is: define a new form
+   $(a,b)_{\mathrm{new}} = \int_K (ka,kb)\, dk$. This gives an
+   invariant positive definite bilinear form (since integral of something
+   positive definite is
+   positive definite). Thus, any compact subgroup preserves some positive definite
+   form. But the subgroup fixing some positive definite bilinear form is conjugate to
+   a subgroup of $O_n(\RR)$ (to see this, diagonalize the form). So $K$ is contained
+   in a conjugate of $O_n(\RR)$.
+
+   Next we want to show that $G=GL_n(\RR)$ is homotopy equivalent to $O_n(\RR)=K$. We
+   will show that $G=KAN$, where $K$ is $O_n$, $A$ is all diagonal matrices with
+   positive coefficients, and $N$ is matrices which are upper triangular with 1s on
+   the diagonal. This is the \emph{Iwasawa decomposition}. In general, we get $K$ compact,
+   $A$ semisimple abelian, and $N$ is unipotent. The proof of this you saw before was
+   called the Grahm-Schmidt process for orthonormalizing a basis. Suppose $v_1,\dots,
+   v_n$ is any basis for $\RR^n$.
+   \begin{enumerate}
+     \item Make it orthogonal by subtracting some stuff, you'll get $v_1$,
+     $v_2-\ast v_1$, $v_3 - \ast v_2 - \ast v_1$, $\dots$.
+     \item Normalize by multiplying each basis vector so that it has norm 1. Now we
+     have an orthonormal basis.
+   \end{enumerate}
+   This is just another way to say that $GL_n$ can be written as $KAN$. Making things
+   orthogonal is just multiplying by something in $N$, and normalizing is just
+   multiplication by some diagonal matrix with positive entries. An orthonormal basis
+   is an element of $O_n$. Tada! This decomposition is just a topological one, not
+   a decomposition as groups. Uniqueness is easy to check.
+
+   Now we can get at the homotopy type of $GL_n$. $N\cong \RR^{n(n-1)/2}$, and $A\cong
+   (\RR^+)^n$, which are contractible. Thus, $GL_n(\RR)$ has the same homotopy type as
+   $O_n(\RR)$, its maximal compact subgroup.
+ \end{proof}
+ If you wanted to know $\pi_1(GL_3(\RR))$, you could calculate $\pi_1(O_3(\RR))\cong
+ \ZZ/2\ZZ$, so $GL_3(\RR)$ has a double cover. Nobody has shown you this double cover
+ because it is \emph{not algebraic}.
+
+ \begin{example}
+  Let's go back to various forms of $E_8$ and figure out (guess) the fundamental
+  groups. We need to know the maximal compact subgroups.
+
+  \begin{enumerate}
+  \item One of them is easy: the
+  compact form is its own maximal compact subgroup. What is the fundamental group?
+  Remember or quote the fact that for compact simple groups, $\pi_1\cong \frac{\text{weight
+  lattice}}{\text{root lattice}}$, which is 1. So this form is simply connected.
+
+  \item $\beta^2=2$ case (signature $-24$).
+  Recall that there were 1, 56, 126, 56, and 1 roots $\alpha$
+  with $(\alpha,\beta)=2,1,0,-1$, and -2 respectively,
+  and there are another $8$ dimensions for the Cartan subalgebra.
+   On the $1,126,1,8$ parts, the form is negative definite. The sum of these root
+   spaces gives a Lie algebra of type $E_7 A_1$ with a negative definite bilinear form
+   (the $126$ gives you the roots of an $E_7$, and the $1$s are the roots of an
+   $A_1$). So it a reasonable guess that the maximal compact subgroup has something to
+   do with $E_7A_1$. $E_7$ and $A_1$ are not simply connected: the compact form of
+   $E_7$ has $\pi_1$ = $\ZZ/2$ and the compact form of $A_1$ also has $\pi_1 = \ZZ/2$.
+   So the universal cover of $E_7A_1$ has center $(\ZZ/2)^2$. Which part of this acts
+   trivially on $E_8$? We look at the $E_8$ Lie algebra as a representation of
+   $E_7\times A_1$. You can read off how it splits form the picture above: $E_8\cong
+   E_7\oplus A_1 \oplus 56 \otimes 2$, where $56$ and $2$ are irreducible, and the
+   centers of $E_7$ and $A_1$ both act as $-1$ on them. So the maximal compact
+   subgroup of this form of $E_8$ is the simply connected compact form of $E_7\times
+   A_1/(-1,-1)$. This means that $\pi_1(E_8)$ is the same as $\pi_1$ of the compact
+   subgroup, which is $(\ZZ/2)^2/(-1,-1)\cong \ZZ/2$. So this simple group has a
+   nontrivial double cover (which is non-algebraic).
+
+   \item For the other (split) form of $E_8$ with signature 8, the maximal compact
+   subgroup is $\spin_{16}(\RR)/(\ZZ/2)$, and $\pi_1(E_8)$ is $\ZZ/2$.
+  \end{enumerate}
+ You can compute any other homotopy invariants with this method.
+ \end{example}
+
+ Let's look at the $56$ dimensional representation of $E_7$ in more detail. We had the
+ picture
+ \[\begin{tabular}{c|c}
+   $(\alpha,\beta)$ & \# of $\alpha$'s\\
+   \hline
+   2 & 1\\
+   1 & 56\\
+   0 & 126\\
+   -1 & 56\\
+   -2 & 1\\
+ \end{tabular}\]
+ The Lie algebra $E_7$ fixes these 5 spaces of $E_8$ of dimensions $1,56,126+8,56,1$.
+ From this we can get some representations of $E_7$. The $126+8$ splits as
+ $1+(126+7)$. But we also get a 56 dimensional representation of $E_7$. Let's show
+ that this is actually an irreducible representation. Recall that in calculating
+ $W(E_8)$, we showed that $W(E_7)$ acts transitively on this set of $56$ roots of
+ $E_8$, which can be considered as weights of $E_7$.
+
+ An irreducible representation is called \emph{minuscule} if the Weyl group acts
+ transitively on the weights. This kind of representation is particularly easy to work
+ with. It is really easy to work out the character for example: just translate the
+ 1 at the highest weight around, so every weight has multiplicity 1.
+
+ So the 56 dimensional representation of $E_7$ must actually be the irreducible
+ representation with whatever highest weight corresponds to one of the vectors.
+
+ \subsektion{Every possible simple Lie group} We will construct them as follows:
+  Take an involution $\sigma$ of the compact form $L=L^+ + L^-$ of the Lie
+  algebra, and form $L^+ + iL^-$. The way we constructed these was to first construct
+  $A_n$, $D_n$, $E_6$, and $E_7$ as for $E_8$. Then construct the involution
+  $\w:e^\alpha\mapsto -e^{-\alpha}$. We get $B_n$, $C_n$, $F_4$, and $G_2$ as fixed
+  points of the involution $\w$.
+
+ Kac classified all automorphisms of finite order of any compact simple Lie group. The
+ method we'll use to classify involutions is extracted from his method. We can
+ construct lots of involutions as follows:
+ \begin{enumerate}
+ \item Take any Dynkin diagram, say $E_8$, and select some of its vertices,
+ corresponding to simple roots. Get an involution by taking $e^\alpha\mapsto \pm
+ e^\alpha$ where the sign depends on whether $\alpha$ is one of the simple roots we've
+ selected. However, this is not a great method. For one thing, you get a lot of
+ repeats (recall that there are only 3, and we've found $2^8$ this way).
+ \[
+ \begin{xy}
+   (0,0) *\cir<2pt>{};
+   p+(1,0)="a" *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0)="b" *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(0,1)="c" *\cir<2pt>{} **@{-},
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   "a" *\cir<5pt>{} *+++!D{1};
+   "b" *\cir<5pt>{} *+++!D{1};
+   "c" *\cir<5pt>{} *+++!L{1};
+ \end{xy}
+ \]
+ \item Take any diagram automorphism of order 2, such as
+ \[\begin{xy}
+   (0,0)="1" *\cir<2pt>{};
+   (1,0)="2"  *\cir<2pt>{} **@{-};
+   p+(1,0) *\cir<2pt>{} **@{-};
+   p+(0,-1) *\cir<2pt>{} **@{-},
+   p+(1,0)="22" *\cir<2pt>{} **@{-};
+   p+(1,0)="11" *\cir<2pt>{} **@{-};
+   "1" *+{\ };"11" *+{\ } **\crv{(2,1.5)} ?<*@{<} ?>*@{>},
+   "2" *+{\ };"22" *+{\ } **\crv{(2,1)} ?<*@{<} ?>*@{>},
+ \end{xy}\]
+ This gives you more involutions.
+ \end{enumerate}
+
+ Next time, we'll see how to cut down this set of involutions.

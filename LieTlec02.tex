@@ -1,0 +1,125 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{2}
+ \sektion{Lecture 2}
+
+ Last time we talked about Lie groups, Lie algebras, and gave examples. Recall that
+ $M\subseteq L$ is a Lie subalgebra if $[M,M]\subseteq M$. We say that $M$ is a
+ \emph{Lie ideal}\index{Lie ideal} if $[M,L]\subseteq M$.
+
+ \begin{claim}
+   If $M$ is an ideal, then $L/M$ has the structure of a Lie algebra such that the
+   canonical projection is a morphism of Lie algebras.
+ \end{claim}
+ \begin{proof}
+   Take $l_1,l_2\in L$, check that $[l_1+M,l_2+M]\subseteq [l_1,l_2]+M$.
+ \end{proof}
+
+ \begin{claim} For $\phi:L_1\to L_2$ a Lie algebra homomorphism,
+   \begin{enumerate}
+   \item $\ker \phi \subseteq L_1$ is an ideal,
+   \item $\im \phi\subseteq L_2$ is a Lie subalgebra,
+   \item $L_1/\ker\phi \cong \im\phi$ as Lie algebras.
+   \end{enumerate}
+ \end{claim}
+ \begin{exercise}
+   Prove this claim.
+ \end{exercise}
+
+ \subsektion{Tangent Lie algebras to Lie groups} Let's recall some differential
+ geometry. You can look at \cite{Lee:ISM} as a reference. If $f:M\to N$ is a
+ differentiable map, then $df:TM\to TN$ is the derivative. If $G$ is a group, then we
+ have the maps $l_g:x\mapsto gx$ and $r_g:x\mapsto xg$. Recall that a smooth vector
+ field is a smooth section of the tangent bundle $TM\to M$.
+ \begin{definition}
+   A vector field $X$ is \emph{left invariant} if $(dl_g)\circ X=X\circ l_g$ for all
+   $g\in G$. The set of left invariant vector fields is called $\mathrm{Vect}_L(G)$.
+   \[\xymatrix{
+    TG \ar[r]^{dl_g} & TG\\
+    G\ar[u]^X \ar[r]^{l_g} & G\ar[u]_X
+   }\]
+ \end{definition}
+
+ \begin{proposition}
+   $\mathrm{Vect}_L(G)\subseteq \mathrm{Vect}(G)$ is a Lie subalgebra.
+ \end{proposition}
+ \begin{proof}
+   We get an induced map $l_g^*:C^\infty(G)\to C^\infty(G)$, and $X$ is left invariant
+   if and only if $L_X$ commutes with $l_G^*$. Then\\
+    $X,Y$ left invariant $\Longleftrightarrow [L_X,L_Y]$ invariant $\Longleftrightarrow [X,Y]$
+    left invariant.
+ \end{proof}
+ All the same stuff works for right invariant vector fields $\mathrm{Vect}_R(G)$.
+
+ \begin{definition}
+   $\g = \mathrm{Vect}_L(G)$ is the tangent Lie algebra of $G$. \index{Lie algebra!of
+   a Lie group}
+ \end{definition}
+
+ \begin{proposition}
+   There are vector space isomorphisms $\mathrm{Vect}_L(G)\simeq T_eG$ and
+   $\mathrm{Vect}_R(G)\simeq T_eG$. Moreover, the Lie algebra structures on $T_eG$
+   induced by these isomorphisms agree.
+ \end{proposition}
+ Note that it follows that $\dim \g=\dim G$.
+ \begin{proof}
+   \anton{I think this proof could be improved ... it is incomplete as is}
+   Recall fibre bundles. $dl_g:T_eG\xrightarrow{\sim} T_gG$, so $TG\simeq T_e\times
+   G$. $X$ is a section of $TG$, so it can be thought of as
+   $X:G\to T_eG$, in which case the left invariant fields are exactly those which are
+   constant maps, but the set of constants maps to $T_eG$ is isomorphic to $T_eG$.
+ \end{proof}
+
+ If $G$ is an $n$ dimensional $C^\w$ Lie group, then $\g$ is an $n$ dimensional Lie algebra.
+ If we take local coordinates near $e\in G$ to be $x^1,\dots, x^n:U_e\to \RR^n$ with
+ $m:\RR^n\times \RR^n\to \RR^n$ the multiplication (defined near 0). We have a power
+ series for $m$ near 0,
+ \[
+    m(x,y) = Ax+By+\alpha_2(x,y)+\alpha_3(x,y)+\cdots
+ \]
+ where $A,B:\RR^n\to \RR^n$ are linear, $\alpha_i$ is degree $i$. Then we can consider
+ the condition that $m$ be associative (only to degree 3): $m(x,m(y,z))=m(m(x,y),z)$.
+ \begin{align*}
+   m(x,m(y,z)) &= Ax+Bm(y,z)+\alpha_2(x,m(y,z))+\alpha_3(x,m(y,z))+\cdots\\
+        &=
+        Ax+B(Ay+Bz+\alpha_2(y,z)+\alpha_3(y,z)))\\
+        &\qquad +\alpha_2(x,Ay+Bz+\alpha_2(y,z))+\alpha_3(x,Ay+Bz)\\
+   m(m(x,y),z) &= \anton{\text{compute this stuff}}
+ \end{align*}
+ Comparing first order terms (remember that $A,B$ must be non-singular), we can get that
+ $A=B=I_n$. From the second order term, we can get that $\alpha_2$ is bilinear!
+ Changing coordinates ($\phi(x)=x+\phi_2(x)+\phi_3(x)+\cdots$, with
+ $\phi^{-1}(x)=x-\phi_2(x)+\tilde\phi_3(x)+\cdots$), we use the fact that
+ $m_\phi(x,y)=\phi^{-1}m(\phi x,\phi y)$ is the new multiplication, we have
+ \[
+    m_\phi(x,y) = x+y + (\underbrace{\phi_2 (x) +\phi_2 (y)+\phi_2 (x+y)}_{\text{can
+    be any symm form}}) + \alpha_2(x,y)+ \cdots
+ \]
+ so we can tweak the coordinates to make $\alpha_2$ skew-symmetric. Looking at order 3, we
+ have
+ \begin{equation}\label{lec02Eq:1}
+  \alpha_2(x,\alpha_2(y,z))+\alpha_3(x,y+z) =
+  \alpha_2(\alpha_2(x,y),z)+\alpha_3(x+y,z)
+ \end{equation}
+ \begin{exercise}
+   Prove that this implies the Jacobi identity for $\alpha_2$. (hint: skew-symmetrize
+   equation \ref{lec02Eq:1})
+ \end{exercise}
+ Remarkably, the Jacobi identity is the only obstruction to associativity; all
+ other coefficients can be eliminated by coordinate changes.
+
+ \begin{example}
+   Let $G$ be the set of matrices of the form $\matrix{a}{b}{0}{a^{-1}}$ for $a,b$
+   real, $a>0$. Use coordinates $x,y$ where $e^x=a$, $y=b$, then
+   \begin{align*}
+      m((x,y),(x',y')) &= (x+x',e^xy'+ye^{-x'})\\
+              &= (x+x',y+y'+ (\underbrace{xy'-x'y}_{skew})+ \cdots).
+   \end{align*}
+   The second order term is skew symmetric, so these are good coordinates. There are
+   $H,E\in T_eG$ corresponding to $x$ and $y$ respectively so that
+   $[H,E]=E$\footnote{what does this part mean?}.
+ \end{example}
+
+ \begin{exercise}
+    Think about this. If $a,b$ commute, then $e^ae^b=e^{a+b}$. If
+    they do not commute, then $e^ae^b=e^{f(a,b)}$. Compute $f(a,b)$ to order 3.
+ \end{exercise}

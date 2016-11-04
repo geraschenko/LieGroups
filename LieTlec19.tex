@@ -1,0 +1,695 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{19}
+ \sektion{Lecture 19 - The Weyl character formula}
+
+ If $\lambda\in P^+$ (i.e.\ $(\lambda, \check \alpha_i)\in \ZZ_{\ge 0}$ for all $i$),
+ then we can construct an irreducible representation with highest weight $\lambda$,
+ which we called $V(\lambda)$. We define the \emph{fundamental
+ weights}\index{weight!fundamental|idxbf} $\w_1,\dots, \w_n$ of a Lie algebra to be
+ those weights for which $(\w_i,\check \alpha_j)=\delta_{ij}$. It is clear that any
+ dominant integral weight can be written as $\lambda = \lambda_1\w_1+\cdots +
+ \lambda_n \w_n$ for $\lambda_i\ge 0$, so people often talk about $V(\lambda)$ by
+ drawing the Dynkin diagram with the the $i$-th vertex labelled by $\lambda_i$.
+
+ With this notation, the first fundamental representation $V(\w_1)$ for $\sl(n)$ is written
+  $\begin{xy}
+   (0,-.15) *+!D{1} *\cir<2pt>{};
+   p+(1,0) *+!D{0} *\cir<2pt>{} **@{-};
+   p+(.5,0) **@{-};
+   p+(.6,0) **{\hspace{1pt}.\hspace{1pt}};
+   p+(.5,0) *+!D{0} *\cir<2pt>{} **@{-};
+   p+(1,0) *+!D{0} *\cir<2pt>{} **@{-};
+ \end{xy}$, which happens to be the standard representation
+ (see Example \ref{lec19Eg:Fund_sl(n+1)} below).
+ Similarly, the adjoint representation is
+ $\begin{xy}
+   (0,-.15) *+!D{1} *\cir<2pt>{};
+   p+(1,0) *+!D{0} *\cir<2pt>{} **@{-};
+   p+(.5,0) **@{-};
+   p+(.6,0) **{\hspace{1pt}.\hspace{1pt}};
+   p+(.5,0) *+!D{0} *\cir<2pt>{} **@{-};
+   p+(1,0) *+!D{1} *\cir<2pt>{} **@{-};
+ \end{xy}$.
+ \begin{warning}
+   Another common notation (incompatible with this one) is to write $\lambda = \sum
+   k_i\alpha_i$ and label the $i$-th vertex by $k_i$. In this notation, the standard
+   representation is
+   $\begin{xy}
+   (0,0) *+{1};
+   p+(1,0) *+{0} **@{-};
+   p+(.5,0) **@{-};
+   p+(.6,0) **{\hspace{1pt}.\hspace{1pt}};
+   p+(.5,0) *+{0} **@{-};
+   p+(1,0) *+{0} **@{-};
+ \end{xy}$
+ and the adjoint representation is
+ $\begin{xy}
+   (0,0) *+{1};
+   p+(1,0) *+{1} **@{-};
+   p+(.5,0) **@{-};
+   p+(.6,0) **{\hspace{1pt}.\hspace{1pt}};
+   p+(.5,0) *+{1} **@{-};
+   p+(1,0) *+{1} **@{-};
+ \end{xy}$. In these notes, we will draw the diagram differently to distinguish
+ between the two notations.
+ \end{warning}
+
+ Observe that if $v\in V$ a highest vector of weight $\lambda$, and $w\in W$ another
+ highest weight vector of weight $\mu$ in another representation, then $v\otimes w\in
+ V\otimes W$ is a highest weight vector of weight $\lambda+\mu$. It follows that every
+ finite dimensional irreducible representation can be realized as a subrepresentation
+ of a tensor product of fundamental representations.
+ \begin{example}\label{lec19Eg:Fund_sl(n+1)}\index{sl(n)@$\sl(n)$|idxit}
+   Let's calculate the fundamental weights for $\sl(n+1)$. Recall that we have simple
+   roots $\e_1-\e_2, \dots, \e_n-\e_{n+1}$, and they are equal to their coroots (since
+   they have length $\sqrt 2$). It follows that $\w_i=\e_1+\cdots +\e_i$ for
+   $i=1,\dots, n$.
+
+   Let $E$ be the standard $(n+1)$-dimensional representation of $\sl(n+1)$. Let
+   $e_1,\dots, e_{n+1}$ be a basis for $E$. Note that $e_i$ has weight $\e_i$, and
+   $\e_i-\e_j$ can be written as a non-negative sum of positive roots exactly when
+   $i\le j$. Thus, the weights of $E$, in decreasing order, are $\e_1$, $\e_2$, \dots,
+   $\e_{n+1}$.
+
+   Consider the representation $\Lambda^k E$. We'd like to write down its weights.
+   Note that $\Lambda^k E$ is spanned by the vectors $e_{i_1}\wedge \cdots \wedge
+   e_{i_k}$, which have weights $\e_{i_1}+\cdots +\e_{i_k}$. Thus, the highest weight
+   is $\e_1+\cdots + \e_k=\w_k$, so we know that $V(\w_k)\subseteq \Lambda^k E$.
+
+   Note also that $\weyl \cong S_{n+1}$ acts by permutation of the $e_i$, so it can
+   take any weight space to any other weight space. Such a representation (where all
+   the weight spaces form a single orbit of the Weyl group) is called
+   \emph{minuscule}\index{minuscule representation|idxbf}. Since the character of any
+   subrepresentation must be $\weyl$-invariant, minuscule representations are always
+   irreducible. So $\Lambda^k E= V(\w_k)$ is a fundamental representation.
+ \end{example}
+ \begin{remark}[Highest weights of duals]
+   One of the weights of $V(\lambda)^*$ is $-\lambda$, but to compute the highest
+   weight, we need to get back into $P^+$, so we apply the longest word $w$ in the
+   Weyl group. Thus, $-w(\lambda)$ is the highest weight of $V(\lambda)^*$. This means
+   that there is a fixed involution of the Weyl chamber (namely, $-w$) which takes the
+   highest weight of a representation to the highest weight of its dual. It is clear
+   that $-w$ preserves the set of simple roots and preserves inner products, so it
+   corresponds to an involution of the Dynkin diagram.
+
+   In the case of $\sl(n+1)$, the involution is
+   \begin{xy}
+     (0,0)="1" *\cir<2pt>{};
+     (1,0)="2"  *\cir<2pt>{} **@{-};
+     p+(.6,0) **@{-};
+     p+(.8,0) **{\,.\,};
+     p+(.6,0)="22" *\cir<2pt>{} **@{-};
+     p+(1,0)="11" *\cir<2pt>{} **@{-};
+     "1" *+{\ };"11" *+{\ } **\crv{(2,.5)} ?<*@{<} ?>*@{>},
+     "2" *+{\ };"22" *+{\ } **\crv{(2,.3)} ?<*@{<} ?>*@{>},
+   \end{xy}. In particular, the dual of the standard representation $V(\w_1)$ is
+   $V(\w_n)$.
+ \end{remark}
+% \begin{exercise}
+%   Compute these involutions for the other simple Lie algebras.
+%   \begin{solution}
+%     $B_n$ and $C_n$ have no non-trivial diagram involutions, so
+%   \end{solution}
+% \end{exercise}
+
+% How do you calculate $ch\, V$? Recall that $ch\, V = \sum m_{\mu} e^{\mu}$, where
+% $m_\mu$ is the multiplicity of the weight $\mu$. You can do it with Verma modules.
+% Remember that for Verma modules, you still get a weight decomposition.
+
+ The key to computing the character of $V(\lambda)$ is to write it as a linear
+ combination of characters of Verma modules, as in the following example.
+
+ \index{Weyl character formula|(idxbf}
+ \begin{example} \label{lec19Eg:2w1+w2}
+   Let $\g = \sl(3)$ and let $\lambda = 2\w_1+\w_2$. We try to write $ch\, V(\lambda)$
+   as a linear combination of characters of Verma modules in the na\"\i ve way. We
+   know  that $M(\lambda)$ must appear once and that $ch\, V(\lambda)$ must end up
+   symmetric with respect to the Weyl group. We must subtract off two Verma modules to
+   keep the symmetry. Then we find that we must add back two more and subtract one in
+   order to get zeros outside of the hexagon. In the picture below, each dot can be
+   read as a zero.
+ \[\newcommand\buff{.2} \newcommand\cbuff{.8}
+   \renewcommand\latticebody{\drop{\raisebox{-8.6pt}{\kern-.1pt \mbox{\LARGE $\cdot$}}}}
+   \begin{xy}<2em,0em>:a(30):a(60)::
+     (6,0);(-8,0) **@{--},
+     (0,5);(0,-7) **@{--},
+     (6,-6);(-8,8) **@{--},
+     {(2\buff,1\buff);p+(-1,.5):a(120)::
+      (10\buff,0);(0,0) **@{-};(0,8\buff) **@{-}},
+     0 *{\gdef\buff{.15} \gdef\cbuff{.85}},
+     {(4\buff,-2\cbuff);p+(-1,.5):a(120)::
+      (12\buff,0);(0,0) **@{-};(0,4\buff) **@{-}},
+     {(-3\cbuff,4\buff);p+(-1,.5):a(120)::
+      ( 4\buff,0);(0,0) **@{-};(0,12\buff) **@{-}},
+     0 *{\gdef\buff{.1} \gdef\cbuff{.9}},
+     {(-5\cbuff,2\buff);p+(-1,.5):a(120)::
+      ( 2\buff,0);(0,0) **@{-};(0,8\buff) **@{-}},
+     {(1\buff,-5\cbuff);p+(-1,.5):a(120)::
+      ( 9\buff,0);(0,0) **@{-};(0,2\buff) **@{-}},
+     0 *{\gdef\buff{.15} \gdef\cbuff{.85}},
+     {(-2\cbuff,-3\cbuff);p+(-1,.5):a(120)::
+      ( 5\buff,0);(0,0) **@{-};(0,2\buff) **@{-}},
+     {0;0 \croplattice{-10}{10}{-10}{10} {-8.1}{6.1}{-7.1}{5.1}},
+     @={(2,1),(-2,3),(-3,2),(-1,-2),(1,-3),(3,-1),(0,2),(-2,0),(2,-2)}
+     @@{*{\psframe*[linecolor=white](-.1,-.15)(.1,.15)} *{1}},
+     @i @={(1,0),(0,-1),(-1,1)}
+     @@{*{\psframe*[linecolor=white](-.15,-.17)(.15,.17)} *{2}},
+%      (0,2)  *{\psframe*[linecolor=white](-.05,-.14)(.05,.141)} *{1},
+%      (-2,0) *{\pspolygon*[linecolor=white](.05,-.05)(.05,.05)(.03,.15)(-.08,.15)(-.08,-.05)} *{1},
+%     (2,-2)  *{\psframe*[linecolor=white](-.07,-.14)(.07,.14)} *{1},
+     @i @={(2,1),(-4,4),(-6,2),(-3,-4),(1,-6),(4,-3)}
+     @@{*+++{\,};p+(1,1) *+\cir<4pt>{} **@{-}, {?<>(1)*@{>}},},
+     @i @={(-4,4),(-3,-4),(4,-3)}
+     @@{*!UR{-}}
+     @i @={(-6,2),(1,-6)}
+     @@{ *!UR{+}}
+   \end{xy}
+ \]
+ For now, just observe that if we shift the weights that appear (by something we will
+ call the Weyl vector), we get an orbit of the Weyl group, with signs alternating
+ according to the length of the element of the Weyl group.
+ \end{example}
+% \[\def\buff{.3} \def\cbuff{.7}
+%    \begin{xy}<-2.5em,0em>:a(120)::
+%    (0,0) *+{1};(0,1) *+{1}, (0,2) *+{0} *\cir{};(0,3) *+{0};(0,4) *+{0};
+%    (1,0) *+{1};(1,1) *+{2};(1,2) *+{1};(1,3) *+{0};(1,4) *+{0};
+%    (2,0) *+{1};(2,1) *+{2};(2,2) *+{2};(2,3) *+{1};(2,4) *+{0};
+%    (3,0) *+{0} *\cir{};(3,1) *+{1};(3,2) *+{1};(3,3) *+{1};(3,4) *+{0};
+%    (4,0) *+{0};(4,1) *+{0};(4,2) *+{0};(4,3) *+{0};(4,4) *+{0};
+%    @={(-\buff,-\buff),(2,-\buff),(3\buff,1),(3\buff,3\buff),(2,3\buff),(-\buff,1)},
+%    s0="prev" @@{;"prev";**@{-}="prev"},
+%    (4,-\buff); (2\cbuff,-\buff) **@{-}; (2\cbuff,4) **@{-};
+%    (4,1\cbuff); (-\buff,1\cbuff) **@{-}; (-\buff,4\buff) **@{-};
+% \end{xy}
+% \]
+% \mpar{Explain this picture better}
+%   In the quotient, the shown weights disappear. What about the one below it? Its
+%   multiplicity in the Verma module is 2. The multiplicity in the Verma module
+%   centered at $2\w_1$ is 1, so in the quotient, you get multiplicity 1. How about
+%   right below it? You had 3 from the big Verma module, and you remove 1 and 1, so you
+%   get 1 left. Furthur down and to the left, you get all zeros. Similarly, we can fill
+%   in the other numbers. You get the leftover hexagon.
+
+ Some notation: if $w\in \weyl$, we define $(-1)^w := \det(w)$. Since each simple
+ reflection has determinant $-1$, this is the same as $(-1)^{\text{length}(w)}$. Note
+ that $(-1)^{w'w}=(-1)^{w'}(-1)^w$.
+
+ The \emph{Weyl vector}\index{Weyl vector|idxbf} is $\rho = \frac{1}{2} \sum_{\alpha
+ \in \Delta^+}\alpha$. Note that $r_i(\rho) = \rho-\alpha_i$ by Lemma
+ \ref{lec14L:key}. On  the other hand, $r_i(\rho)= \rho - (\rho,\check
+ \alpha_i)\alpha_i$, so we know that $(\rho,\check \alpha_i)=1$ for all $i$. Thus,
+ $\rho$ is the sum of all the fundamental weights.
+
+ \begin{theorem}[Weyl Character Formula]
+   For $\lambda\in P^+$, the character of the irreducible finite dimensional
+   representation with highest weight $\lambda$ is\footnote{ This formula may look
+  ugly, but it is \emph{sweet}. It says that you can compute the character of
+  $V(\lambda)$ in the following way. Translate the Weyl vector $\rho$ around by the
+  Weyl group; this will form some polytope. Make a piece of cardboard shaped like this
+  polytope (ok, so maybe this is only practical for rank 2), and put $(-1)^w$ at the
+  vertex $w(\rho)$. This is your \emph{cardboard denominator}.\index{cardboard
+  denominator|see{Weyl denominator}} Now the formula tells you that when you center
+  your cardboard denominator around any weight, and then add the multiplicities of the
+  weights of $V(\lambda)$ at the vertices with the appropriate sign, you'll get zero
+  (unless you centered your cardboard
+  \begin{window}[1,r,%
+      {\begin{xy}<-1.75em,0em>:a(120)::
+       (-1,0)*+{0};(-1,1)*+{0};(0,2) *+{0};
+       (0,0) *+{1};(0,1) *+{1};
+       (1,0) *+{1};(1,1) *+{?};(1,2) *+{1};
+       (2,0) *+{1};(2,1) *+{?};(2,2) *+{?};(2,3) *+{1};
+       (3,0)      ;(3,1) *+{1};(3,2) *+{1};(3,3) *+{1};
+       @={(0,0),(1,1),(1,2),(0,2),(-1,1),(-1,0)},
+       s0="prev" @@{;"prev" *=<2.5mm>{\ }; *=<2.5mm>{\ } **@{-}="prev"},
+%       (1.65,1.35);(-1,0) **@{.}, (1,0) **@{.}
+     \end{xy}},]
+  \noindent at $w(\lambda+\rho)$, in which case only one non-zero multiplicity shows
+  up in the sum, so you'll get $\pm 1$). Since we know that the highest weight has
+  multiplicity 1, we can use this to compute the rest of the character.\\
+  For $\sl(3)$, your cardboard denominator will be a hexagon, and one step of
+  computing the character of $V_{2\w_1+\w_2}$ might look like:\\
+  $0=0-1+\,?-1+0-0$, so $?=2$. Since $ch\, V$ is symmetric with respect to $\weyl$,
+  all three of the $?$s must be 2.
+  \end{window}}
+ \[
+  ch\, V(\lambda) = \frac{\sum_{w\in \weyl} (-1)^w e^{w(\lambda+\rho)}}{\sum_{w\in \weyl}
+    (-1)^w e^{w(\rho)}}.
+ \]
+ \end{theorem}
+ The denominator is called the \emph{Weyl denominator}\index{Weyl denominator|idxbf}.
+ It is not yet obvious that the Weyl denominator divides the numerator (as formal
+ sums), so one may prefer to rewrite the equation as $  ch\, V(\lambda)\cdot
+ \sum_{w\in \weyl}(-1)^w e^{w(\rho)} = \sum_{w\in \weyl} (-1)^w e^{w(\lambda+\rho)}$.
+ \begin{proof}
+ %\begin{trivlist}\item \end{trivlist}
+  \underline{Step 1. Compute $ch\,M(\gamma)$}: Recall from the previous lecture that
+  the multiplicity of $\mu$ in $M(\gamma)$ is the number of ways $\gamma-\mu$ can be
+  written as a sum of positive roots. Thus, it is easy to see that $ch\,M(\gamma)$
+  is given by the following generating function.
+  \begin{align*}
+    ch\,M(\gamma) &= e^\gamma \prod_{\alpha\in
+    \Delta^+}(1+e^{-\alpha}+e^{-2\alpha}+\cdots)\\
+    &= \frac{e^\gamma}{\prod_{\alpha\in \Delta^+}(1-e^{-\alpha})} \\
+    &= \frac{e^{\gamma+\rho}}{\prod_{\alpha\in \Delta^+}(e^{\alpha/2}-e^{-\alpha/2})}
+    & (\textstyle\prod_{\alpha\in \Delta^+}e^{\alpha/2} = e^\rho )
+  \end{align*}
+
+  \underline{Step 2. The action of the Casimir operator}: Recall the Casimir operator
+  \index{Casimir operator|idxit} from the proof of Whitehead's Theorem (Theorem
+  \ref{lec12Whitehead}). If $\{e_i\}$ is a basis for $\g$, and $\{f_i\}$ is the dual
+  basis (with respect to the Killing form), then $\W = \sum e_if_i\in U\g$. We showed
+  that $\W$ is in the center of $U\g$ (i.e.\ that $\W x = x\W$ for all $x\in \g$).
+  \begin{claim}
+    $\W$ acts on $M(\gamma)$ as $(\gamma,\gamma+2\rho)\id$.
+  \end{claim}
+  \begin{proof}[Proof of Claim]  \renewcommand\qedsymbol{$\Box_\text{Claim}$}
+  Since $\W$ is in the center of $U\g$, it is enough to show that
+  $\W v=(\gamma+2\rho,\gamma) v$ for a highest weight vector $v\in V_\gamma$.
+
+  Let $\{u_i\}$ be an orthonormal basis for $\h$, and let $\{X_\alpha\}_{\alpha\in
+  \Delta}$ be a basis for the rest of $\g$. The dual basis is
+  $\Big\{\frac{Y_\alpha}{(X_\alpha,Y_\alpha)}\Big\}$. Then we get
+  \begin{align*}
+    \W &= \sum_{i=1}^n u_i^2 + \sum_{\alpha\in \Delta}\frac{X_\alpha
+    Y\alpha}{(X_\alpha,Y_\alpha)}\\
+    &= \sum_{i=1}^n u_i^2 + \sum_{\alpha\in \Delta^+}\frac{X_\alpha
+    Y\alpha}{(X_\alpha,Y_\alpha)}+\frac{Y_\alpha X_\alpha}{(X_\alpha,Y_\alpha)}
+    & (X_{-\alpha} Y_{-\alpha} = Y_\alpha X_\alpha) .
+  \end{align*}
+  Using the equalities
+  \begin{gather*}
+   \begin{array}{rl}
+     u_i v &\!\!\!= \gamma(u_i) v,\\
+     X_\alpha v&\!\!\!=0,\\
+     X_\alpha Y_\alpha v &\!\!\!= H_\alpha v - Y_\alpha X_\alpha v \\
+       &\!\!\!= \gamma(H_\alpha) v,\\
+     \gamma(H_\alpha) &\!\!\!= \frac{2(\gamma,\alpha)}{(\alpha,\alpha)},
+   \end{array}\qquad
+   \begin{array}{rl}
+     (\gamma,\gamma) &\!\!\!= \sum_{i=1}^n \gamma(u_i)^2,\text{ and}\\
+     (X_\alpha,Y_\alpha)&\!\!\!= \half ([H_\alpha,X_\alpha],Y_\alpha) \\
+     &\!\!\!= \half(H_\alpha,[X_\alpha,Y_\alpha])\\
+     &\!\!\!= \half (H_\alpha, H_\alpha) = \half \cdot \frac{2\alpha(H_\alpha)}{(\alpha,\alpha)}\\
+     &\!\!\!= \frac{2}{(\alpha,\alpha)}
+   \end{array}
+  \end{gather*}
+  we get
+  \begin{align*}
+    \W v &= \Bigl(\sum_{i=1}^n \gamma(u_i)^2\Bigr) v + \sum_{\alpha\in \Delta^+}
+    \frac{\gamma(H_\alpha)}{(X_\alpha,Y_\alpha)} v\\
+    &= (\gamma,\gamma) v + \sum_{\alpha\in \Delta^+}(\gamma,\alpha)v
+    = (\gamma,\gamma+2\rho) v \qedhere
+  \end{align*}
+  \end{proof}
+
+  Note that the universal property of Verma modules implies that the action of $\W$ on
+  any representation generated by a highest vector of weight $\gamma$ is given by
+  $(\gamma,\gamma+2\rho)\id$.
+  \smallskip
+
+  Finally, consider the set
+  \[
+    \W^\gamma = \{\mu\in P| (\mu+\rho,\mu+\rho) = (\gamma+\rho,\gamma+\rho)\}.
+  \]
+  This is the intersection of the weight lattice $P$ with the sphere of radius
+  $\|\gamma+\rho\|$ centered at $-\rho$. In particular, it is a \emph{finite set}. On
+  the other hand, since $(\gamma,\gamma+2\rho) =
+  (\gamma+\rho,\gamma+\rho)-(\rho,\rho)$, it is also the set of weights $\mu$ such
+  that $\W$ acts on $M(\mu)$ in the same way it acts on $M(\gamma)$.
+
+  \underline{Step 3. Filter $M(\gamma)$ for another formula}: We say that a weight
+  vector $v$ is a \emph{singular vector} if $\n^+v=0$. If a representation is
+  generated by some highest vector $v$, and if all singular vectors are proportional to
+  $v$, then the representation is irreducible. To see this, note that a highest weight
+  vector of any proper subrepresentation must be singular, and it cannot be
+  proportional to $v$, lest it generate the whole representation.
+
+  Now let $w$ be a singular vector of weight $\mu$ in $M(\gamma)$. Then $w$ generates
+  a subrepresentation which is a quotient of $M(\mu)$. By the claim in Step 2, $\W$
+  acts on this subrepresentation by $(\mu,\mu+2\rho)$. On the other hand, since we are
+  in $M(\gamma)$, $\W$ must act by $(\gamma,\gamma+2\rho)$. It follows that $\mu\in
+  \W^\gamma$.
+
+  In particular, since $\W^\gamma$ is finite, there is a minimal singular vector $w$,
+  which generates some irreducible subrepresentation; we will call that representation
+  $F_1M(\gamma)$. Mod out my $F_1M(\gamma)$ and repeat the process. Any singular
+  vector in $M(\gamma)/F_iM(\gamma)$ must be in $\W^\gamma$, so there is a minimal
+  one, $w$, which generates an irreducible subrepresentation. Define
+  $F_{i+1}M(\gamma)\subseteq M(\gamma)$ to be the pre-image of that representation.
+  Since $\W^\gamma$ is finite and each $V_\mu$ is finite dimensional, the process
+  terminates. The result is a filtration
+  \[
+    0=F_0M(\gamma) \subseteq F_1M(\gamma)\subseteq \cdots \subseteq
+    F_kM(\gamma)=M(\gamma)
+  \]
+  such that $F_iM(\gamma)/F_{i+1}M(\gamma)$ is isomorphic to the irreducible
+  representation $V(\mu)$ for some $\mu\in \W^\gamma$.\footnote{We showed in Lecture
+  18 that for every $\mu\in \h^*$, there is a unique irreducible representation
+  $V(\mu)$ with highest weight $\mu$. However, we only showed that $V(\mu)$ is finite
+  dimensional when $\mu\in P^+$. In general, it is infinite dimensional. In fact,
+  sometimes it happens that $V(\mu)=M(\mu)$.\anton{Is it true that $V(\mu)=M(\mu)$ if
+  and only if for all $i$, $(\mu,\check\alpha_i)\not\in \ZZ$?}} We also know that each
+  $\mu$ that appears is less than or equal to $\lambda$.
+
+  This gives us the nice formula
+  \[
+    ch\, M(\gamma) = \sum_{\makebox[0pt]{$\scriptstyle \mu\le \gamma,\, \mu\in
+    \W^\gamma$}} b_{\gamma\mu}  ch\, V(\mu)
+  \]
+  for some non-negative integers $b_{\gamma\mu}$.\footnote{These $b_{\gamma\mu}$ are
+  called \emph{Kazhdan-Luztig multiplicities}\index{Kazhdan-Luztig multiplicities},
+  and they are hard to compute for general $\gamma$ and $\mu$.} Moreover, $V(\gamma)$
+  appears as a quotient exactly once, so $b_{\gamma\gamma}=1$.
+
+  \underline{Step 4. Invert and simplify the equation}: We've shown that the matrix
+  $(b_{\gamma\mu})_{\gamma,\mu\in \W^\lambda}$ is lower triangular with ones on the
+  diagonal, so it has a lower triangular inverse $(c_{\gamma\mu})_{\gamma,\mu\in
+  \W^\lambda}$ with ones on the diagonal.\footnote{We will prove that each non-zero
+  $c_{\gamma\mu}$ is $\pm 1$. It was once conjectured that even if $\lambda\not\in
+  P^+$, each non-zero $c_{\gamma\mu}$ is $\pm 1$, but this is false.} This gives us the
+  formula
+  \[
+    ch\, V(\lambda) = \sum_{\makebox[0pt]{$\scriptstyle \mu\le \lambda,\, \mu\in
+    \W^\lambda$}} c_{\lambda\mu} ch\, M(\mu).
+  \]
+  Using Step 1, we can rewrite this as
+  \[
+    ch\,V(\lambda) \cdot \prod_{\alpha\in \Delta^+}(e^{\alpha/2}-e^{-\alpha/2}) =
+    \sum_{\makebox[0pt]{$\scriptstyle \mu\le \lambda,\, \mu\in \W^\lambda$}} c_{\lambda\mu}e^{\mu+\rho}.
+  \]
+  For any element $w$ of the Weyl group, we know that $w($LHS$)=(-1)^w$LHS, so the
+  same must be true of the RHS, i.e.
+  \[
+    \sum c_{\lambda\mu} e^{w(\mu+\rho)} = \sum (-1)^w c_{\lambda\mu} e^{\mu+\rho}.
+  \]
+  This is equivalent to the condition $c_{\lambda, w(\mu+\rho)-\rho}=c_{\lambda\mu}$.
+  Since $P^+$ is the fundamental domain of $\weyl$, and since $c_{\lambda\lambda}=1$,
+  we get
+  \[
+    ch\,V(\lambda) \cdot \prod_{\alpha\in \Delta^+}(e^{\alpha/2}-e^{-\alpha/2}) =
+        \sum_{w\in \weyl}(-1)^w e^{w(\lambda+\rho)} +
+        \sum_{\makebox[0pt]{$\substack{\mu< \lambda,\, \mu\in \W^\lambda\\ \mu+\rho
+        \in P^+}$}} (-1)^w c_{\lambda\mu} e^{w(\mu+\rho)}.
+  \]
+
+  We would like to eliminate the second sum on the right hand side. The following
+  claim does that nicely by showing that the sum is empty.
+  \begin{claim}
+    If  $\mu\le \lambda$, $\mu\in \W^\lambda$, and $\mu+\rho \ge 0$, then $\mu=\lambda$.
+  \end{claim}
+  \begin{proof}
+  We assume that $(\mu+\rho,\mu+\rho)=(\lambda+\rho,\lambda+\rho)$ and $\lambda-\mu =
+  \sum_{i=1}^n k_i \alpha_i$ for some non-negative $k_i$. Then we get
+  \begin{align*}
+    0 &= \big( (\lambda+\rho)-(\mu+\rho),(\lambda+\rho)+(\mu+\rho) \big)\\
+      &= (\lambda-\mu, \lambda+\mu+2\rho)\\
+      &= \sum_{i=1}^n k_i (\alpha_i, \lambda+\mu+2\rho)
+  \end{align*}
+  But $\lambda\ge 0$ and $\mu+\rho\ge 0$, so $(\alpha_i,\lambda+\mu+\rho)\ge 0$. Also,
+  $(\alpha_i,\rho)>0$ for each $i$, so $(\alpha_i, \lambda+\mu+2\rho)>0$. It follows
+  that each $k_i$ is zero.
+  \renewcommand{\qedsymbol}{$\Box_\text{Claim}$\quad}
+  \end{proof}
+
+  Now we have
+  \[
+    ch\, V(\lambda) \cdot \prod_{\alpha\in \Delta^+}(e^{\alpha/2}-e^{-\alpha/2}) =
+    \sum_{w\in \weyl}(-1)^w e^{w(\lambda+\rho)}.
+  \]
+  Specializing to the case $\lambda=0$, we know that $V(0)$ is the trivial
+  representation, so $ch\, V(0)=1$. This tells us that
+  \begin{equation}
+    \prod_{\alpha\in \Delta^+}(e^{\alpha/2}-e^{-\alpha/2}) = \sum_{w\in \weyl}(-1)^w
+    e^{w(\rho)}, \label{lec19WeylD}
+  \end{equation}
+  so we get the desired
+  \[
+    ch\, V(\lambda) =\frac{\sum_{w\in \weyl}(-1)^w e^{w(\lambda+\rho)}}{\sum_{w\in
+    \weyl}(-1)^w e^{w(\rho)}}. \qedhere
+  \]\index{Verma module|)}
+  \end{proof}
+ \begin{corollary}[Weyl dimension formula]\index{Weyl dimension formula|idxbf}
+   $\displaystyle \dim V(\lambda) = \prod_{\alpha\in \Delta^+} \frac{(\lambda+\rho,
+    \alpha)}{(\rho,\alpha)}$.
+ \end{corollary}
+ \begin{proof}\newcommand\f{6}
+   The point is that $e^\mu$ is a formal expression. The only property that we use is
+   $e^\mu e^\gamma = e^{\mu+\gamma}$, so everything we've ever done with characters
+   works if we replace $e^\mu$ by any other expression satisfying that relation. In
+   particular, if replace $e^\mu$ with $\f^{t(\gamma+\rho,\mu)}$, where $t$ is a real
+   number,\footnote{Obviously, there is nothing special about the base $\f$; just
+   about any number would work. It is important to understand that for any $\mu$,
+   $t\mapsto \f^{t(\gamma+\rho,\mu)}$ is an honest real-valued function in $t$.
+   Equation \ref{lec19ast} is an equality of \emph{real-valued functions} in $t$! Similarly,
+   $ch\, V(\lambda)$ becomes a real-valued function in $t$.} then
+   Equation \ref{lec19WeylD} says
+   \begin{align}
+     \prod_{\alpha\in \Delta^+} \Bigl(\f^{t(\gamma+\rho,\alpha/2)} -
+     \f^{-t(\gamma+\rho,\alpha/2)}\Bigr) &=
+     \sum_{w\in \weyl}(-1)^w \f^{t(\gamma+\rho,w(\rho))}\notag\\
+     &=\sum_{w\in \weyl}(-1)^w \f^{t(w(\gamma+\rho),\rho)} \label{lec19ast}
+   \end{align}
+   where the second equality is obtained by replacing $w$ by $w^{-1}$ and observing
+   that $(x,w^{-1}y)=(w\,x,y)$ and that $(-1)^{w^{-1}}=(-1)^w$.
+
+   Now we switch things up and replace $e^\mu$ by $\f^{t(\mu,\rho)}$, so the character
+   formula becomes
+   \[
+     ch\, V(\lambda) =\frac{\sum_{w\in \weyl}(-1)^w
+     \f^{t(w(\lambda+\rho),\rho)}}{\sum_{w\in \weyl}(-1)^w
+     \f^{t(w(\rho),\rho)}}.
+   \]
+   Applying Equation \ref{lec19ast} to the numerator (with $\gamma=\lambda$) and to the
+   denominator (with $\gamma=0$), we get
+   \[
+     ch\, V(\lambda) = \prod_{\alpha\in \Delta^+}
+     \frac{\bigl(\f^{t(\lambda+\rho,\alpha/2)} -
+     \f^{-t(\lambda+\rho,\alpha/2)}\bigr)}{\bigl(\f^{t(\rho,\alpha/2)} -
+     \f^{-t(\rho,\alpha/2)}\bigr)}.
+   \]
+   The dimension of $V(\lambda)$ is equal to the expression $ch\, V(\lambda)$ with
+   $e^\mu$ replaced by $1$. We can obtain this by letting $t$ tend to zero in
+   $\f^{t(\mu,\rho)}$. This gives
+   \begin{align*}
+     \dim V(\lambda) &= \lim_{t\to 0}\prod_{\alpha\in \Delta^+}
+     \frac{\bigl(\f^{t(\lambda+\rho,\alpha/2)} -
+     \f^{-t(\lambda+\rho,\alpha/2)}\bigr)}{\bigl(\f^{t(\rho,\alpha/2)}
+     - \f^{-t(\rho,\alpha/2)}\bigr)}\\
+     &= \prod_{\alpha\in \Delta^+}\frac{(\lambda+\rho,\alpha)}{(\rho,\alpha)}. &
+     \text{(By l'H\^{o}pital's rule)\qquad} \qedhere
+   \end{align*}
+ \end{proof}
+ \begin{example}
+   Let $\g = \sl(n+1)$.\index{sl(n)@$\sl(n)$|idxit} We choose the standard set of
+   simple roots $\Pi=\{\alpha_1,\dots, \alpha_n\}$ so that $\Delta^+ =
+   \{\alpha_i+\alpha_{i+1}+\cdots+\alpha_j\}_{1\le i\le j\le n}$. Recall that
+   $(\rho,\alpha_i)=1$ for $1\le i\le n$ and that $(\w_i,\alpha_j)=\delta_{ij}$. If
+   $\lambda+\rho = \sum_{i=1}^n a_i\w_i$, the dimension formula tells us that
+   \begin{align*}
+     \dim V(\lambda) &= \prod_{\alpha\in \Delta^+}
+            \frac{(\lambda+\rho,\alpha)}{(\rho,\alpha)}\\
+         &= \prod_{1\le i\le j\le n}\frac{a_i+a_{i+1}+\cdots+a_{j-1}+a_j}{j-i+1}\\
+         &= \frac{1}{n!!}\prod_{1\le i\le j\le n} \sum_{k=i}^j a_k
+   \end{align*}
+   where $n!!:= n!\,(n-1)!\cdots 3!\,2!\,1!$.
+
+   If $\g=\sl(3)$, and if $\lambda+\rho=3\w_1+2\w_2$, we get $\dim V(\lambda) =
+   \frac{1}{2!!}\cdot 2\cdot 3\cdot (2+3) =15$, computing the dimension of the
+   representation in Example \ref{lec19Eg:2w1+w2}.
+   This formula is nice because the calculation does not get big as $\lambda$ gets
+   big. If $\lambda+\rho=20\w_1 + 91\w_2$, it would be really annoying to compute
+   $ch\, V(\lambda)$ completely, but we can get $\dim V(\lambda) = \half
+   20\cdot 91\cdot 111 = 101010$ easily.
+
+   Even for larger $n$, this formula is pretty good. Say we want the dimension of
+   $\begin{xy}
+    (0,-.15) *+!D{1} *\cir<2pt>{};
+    p+(1,0) *+!D{2} *\cir<2pt>{} **@{-};
+    p+(1,0) *+!D{0} *\cir<2pt>{} **@{-};
+    p+(1,0) *+!D{6} *\cir<2pt>{} **@{-};
+  \end{xy}$, then $\lambda+\rho = 2\w_1+ 3\w_2+ 1\w_3+ 7\w_4$, so we get
+  {\small \[\frac{1}{4!!}2\cdot 3\cdot 1\cdot 7\cdot
+  (2+3)(3+1)(1+7)(2+3+1)(3+1+7)(2+3+1+7)=20020.\]}
+ \end{example}
+% \begin{exercise}
+%   Find similar formulas for the representations of the other classical algebras.
+%   \begin{solution}
+%     We computed the root systems explicitly in Lecture 15. Choose $\alpha_1,\dots,
+%     \alpha_{n-1}$ to look like the simple roots of an $A_{n-1}$, and let $\alpha_n$
+%     be the strange simple root. Fix the notation $\lambda+\rho = \sum_{i=1}^n
+%     a_i\w_i$.
+%
+%     \underline{$B_n$}: The positive roots are
+%     \begin{gather*}
+%     \begin{align*}
+%       \{\e_i-\e_j\}_{i<j}\cup\{\e_i\} \cup \{\e_i+\e_j\}_{i<j} &=
+%       \{\alpha_i+\cdots+\alpha_{j-1}\}_{i<j}\cup \{\alpha_i+\cdots +\alpha_n\}\cup\\
+%            &\cup \{(\alpha_i+\cdots +\alpha_n)+(\alpha_j+\cdots +\alpha_n)\}_{i<j}
+%            ,\text{ so}
+%     \end{align*}\\
+%     \begin{align*}
+%       \dim V(\lambda) &= \prod_{1\le i<j\le n} \frac{\sum_{k=i}^{j-1} a_k}{j-i}
+%       \times \prod_{1\le i\le n} \frac{\sum_{k=i}^n a_k}{n-i+1}
+%       \times \prod_{1\le i<j\le n} \frac{\sum_{k=i}^n a_k + \sum_{k=j}^n a_k}{2n-i-j+2}\\
+%       &= \frac{1}{n!!} \Bigl(\prod_{1\le i<j\le n} \sum_{k=i}^{j-1} a_k\Bigr)
+%       \times \Bigl(\prod_{1\le i\le n}\sum_{k=i}^n a_k\Bigr).
+%     \end{align*}
+%     \end{gather*}
+%
+%     \underline{$C_n$}: The positive roots are
+%     \[
+%        \{\e_i-\e_j\}_{i<j}\cup \{2\e_i\} = \{\alpha_i+\cdots+\alpha_{j-1}\}_{i< j}\cup
+%        \{2\alpha_i+\cdots+2\alpha_{n-1}+\alpha_n\},\text{ so}
+%     \]
+%     \begin{align*}
+%       \dim V(\lambda) &= \prod_{1\le i<j\le n} \frac{\sum_{k=i}^{j-1} a_k}{j-1-i}
+%       \times \prod_{1\le i\le n} \frac{a_n+\sum_{k=i}^{n-1} 2a_k}{2n-2i+1}\\
+%       &= \frac{2^{n-2}\, (n-2)!}{n!!\, (2n-3)!} \Bigl(\prod_{1\le i<j\le n}
+%       \sum_{k=i}^{j-1} a_k\Bigr) \times \biggl(\prod_{1\le i\le n}\Bigl(a_n+2\sum_{k=i}^{n-1}
+%       a_k\Bigr)\biggr).
+%     \end{align*}
+%
+%     \underline{$D_n$}: The positive roots are
+%     \begin{align*}
+%        \{\e_i-\e_j\}_{i<j}\cup \{\e_i&+\e_j\}_{i<j} =
+%        \{\alpha_i+\cdots+\alpha_{j-1}\}_{i< j}\quad \cup\\
+%           &\cup \quad \bigl\{(\alpha_i+\cdots+\alpha_{n-2}+\alpha_n)+(\alpha_j+\cdots
+%           +\alpha_{n-1}) \bigr\},\text{ so}
+%     \end{align*}
+%     \begin{align*}
+%       \dim& V(\lambda) = \prod_{1\le i<j\le n} \frac{\sum_{k=i}^{j-1} a_k}{j-1-i}
+%       \times \prod_{1\le i\le n} \frac{a_n+\sum_{k=i}^{n-2} a_k +\sum_{k=j}^{n-1} a_k}{2n-i-j}\\
+%       &= \frac{1}{\prod_{k=1}^{n-1} (2k-1)!} \Bigl(\prod_{1\le i<j\le n} \sum_{k=i}^{j-1}
+%       a_k\Bigr) \times \biggl(\prod_{1\le i<j\le n}\Bigl(a_n+\sum_{k=i}^{n-2} a_k +\sum_{k=j}^{n-1}
+%       a_k\Bigr)\biggr).
+%     \end{align*}
+%   \end{solution}
+% \end{exercise}
+
+% In the $\sl(n)$ case, you get $\e_1+\cdots+\e_n=0$, and you get $\rho = stuff$, so
+% you can compute dimension as
+% \[
+%    \prod_{\alpha\in \Delta^+}(\rho,\alpha) = (n-1)!(n-2)!\cdots = (n-1)!!
+% \]
+%
+% If $\lambda = \sum a_i\e_i$, then we get
+% \[
+%    \prod_{i< j} (a_i+a_j + j-i)
+% \]
+% We can  prove this from the character formula? We have to take a limit as $e\to 1$
+% (since we get $0/0$ if we take $e=1$).
+%
+% \[
+%    \lim_{u\to 0} \frac{\sum (-1)^w e^{(w(\lambda+\rho),u)}}{\sum (-1)^w e^{(w(\rho),u)}}
+% \]
+% Let $u=\rho t$ for $t\to 0$, then we get
+% \[
+%    \frac{\prod_{\alpha\in \Delta^+} e^{t(\lambda+\rho,\alpha/2)}-e^{-t(\lambda+\rho,\alpha/2)}}{\prod_{\alpha\in \Delta^+} e^{t(\rho,\alpha/2)} - e^{-t(\rho,\alpha/2)}}
+% \]
+% using $(w(\lambda+\rho),u) = (\lambda+\rho, w^{-1}(u))$, and from here it is just an
+% exercise in L'hopital.
+
+ \begin{remark}
+ Given complete reducibility, knowing the characters of all irreducible
+ representations allows you to decompose tensor products, just like in representation
+ theory of finite groups. That is, we can now compute the coefficients in
+ $V(\lambda)\otimes V(\mu) = \bigoplus b_{\lambda \mu}^\nu V(\nu)$. In the finite
+ group case, we make this easier by choosing an inner product on class functions so
+ that characters of irreducible representations form an orthonormal basis. Now we
+ would like to come up with an inner product on formal expressions $\sum m_\mu e^\mu$
+ so that characters of irreducible representations are orthonormal.
+
+ The obvious inner product is $\langle e^\lambda, e^\mu\rangle =
+ \delta_{\lambda,\mu}$, under which the $e^\mu$ are an orthonormal basis. There is no
+ hope for the $ch\, V(\lambda)$ to be orthogonal, but we can tweak it. Another inner
+ product is
+ \[
+    (e^\lambda,e^\mu) = \frac{1}{|\weyl|} \langle D\cdot e^\lambda, D\cdot
+    e^\mu\rangle
+ \]
+ where $D$ is the Weyl denominator. The character formula tells us that under this
+ inner product, the $ch\, V(\lambda)$ are orthonormal, and form a basis for
+ \emph{$\weyl$-symmetric} expressions where $m_\mu=0$ for $\mu\not\in P$.
+
+ As with the character formula, this may not look so impressive, but it makes
+ decomposing tensor products very fast. We want to compute
+ \[
+   \bigl(ch\, V(\lambda) \cdot ch\, V(\mu),ch\, V(\gamma)\bigr) =
+   \frac{1}{|\weyl|}\bigl\langle
+   \underbrace{D\cdot ch\, V(\lambda)}_{
+   \makebox[0pt]{\scriptsize $\sum (-1)^w e^{w(\lambda+\rho)}$}}
+   \cdot ch\, V(\mu),
+   \underbrace{D\cdot ch\,V(\gamma)}_{
+   \makebox[0pt]{\scriptsize $\sum (-1)^w e^{w(\gamma+\rho)}$}}
+   \bigr\rangle
+ \]
+ for all $\gamma\in P^+$. Since we know that the result must be $\weyl$-symmetric, we
+ can remove the $\frac{1}{|\weyl|}$ and restrict our attention to the Weyl chamber.
+ That is, we can just compute $\bigl\langle \sum (-1)^w e^{w(\lambda+\rho)}\cdot ch\,
+ V(\mu),e^{\gamma+\rho}\bigr\rangle$, which is the multiplicity of $\gamma$ in
+ $\sum (-1)^w e^{w(\lambda+\rho)-\rho}ch\, V(\mu)$. In practice, we choose $|\mu|\le
+ |\lambda|$, so most of the summands lie outside of the Weyl chamber, so
+ we can ignore them.
+ \end{remark}
+
+ \begin{example}[For those who know about $\gl(n)$]\index{gl(n)@$\gl(n)$|idxit} We
+ know that $\gl(n+1)$ is the direct sum (as a Lie algebra) of its center, $k\cdot
+ \id$, and $\sl(n+1)$.\footnote{ In general, a Lie algebra which is the the direct sum
+ of its center and its semisimple part is called \emph{reductive}\index{reductive}.}
+ \anton{what does that tell you about its irreps?} Let $\{\e_1,\dots, \e_{n+1}\}$
+ be the image of an orthonormal basis of $k^{n+1}$ in $k^n$ (under the usual
+ projection, so that $\sum \e_i=0$). Let $z_i = e^{\e_i}$, so $z_1\cdots z_{n+1}=1$.
+ The Weyl group $W\simeq S_{n+1}$ acts on the $z_i$ by permutation. We have that
+ \begin{align*}
+   \rho &= \frac{1}{2} \sum_{i< j} \e_i-\e_j \\
+   &= \frac{n}{2}\e_1 + \frac{n-2}{2}\e_2+\cdots + \frac{-n}{2}\e_{n+1} \\
+   &= n\e_1 + (n-1)\e_2 + \cdots + 2\e_{n-1} + \e_n + 0\e_{n+1} &
+      \bigl(\textstyle\sum \e_i=0\bigr)
+ \end{align*}
+ so
+ \[
+   e^\rho = z_1^n z_2^{n-1}\cdots z_n^1 z_{n+1}^0.
+ \]
+ If $\lambda = \sum_{i=1}^{n+1} a_i\e_i$ (with $\sum a_i=0$) is a dominant integral
+ weight, we have $(\lambda, \check \alpha_i)=a_i-a_{i+1} \ge 0$. The character formula
+ says that
+ \begin{align*}
+   ch\, V(\lambda) &= \frac{\sum_{\sigma\in S_{n+1}} (-1)^\sigma
+  z_{\sigma(1)}^{a_1+n} \cdots z_{\sigma(n)}^{a_n +1} z_{\sigma(n+1)}^{a_{n+1}}}{\sum_{\sigma\in S_{n+1}}
+  (-1)^\sigma z_{\sigma(1)}^n\cdots z_{\sigma(n)}^1 z_{\sigma(n+1)}^0}
+ \end{align*}
+ The denominator (call it $D$) is the famous Vandermonde determinant,\index{Vandermonde determinant}
+ \[
+  \renewcommand\arraystretch{1.3}
+    \det\left( \begin{array}{cccc}
+    z_1^n & z_2^n &\cdots & z_{n+1}^n\\
+    z_1^{n-1} & z_2^{n-1} & \cdots & z_{n+1}^{n-1}\\
+    \vdots & \vdots & \ddots & \vdots\\
+    z_1 & z_2& \cdots & z_{n+1}\\
+    1 & 1 & \cdots & 1
+  \end{array}\right)
+ \renewcommand\arraystretch{3}
+   \raisebox{1.5ex}{\mbox{$\begin{array}{l}
+    =\displaystyle\sum_{\sigma\in S_{n+1}} (-1)^\sigma z_{\sigma(1)}^n\cdots z_{\sigma(n)}^1
+      z_{\sigma(n+1)}^0 \\
+    =\displaystyle\prod_{1\le i<j\le n+1}(z_j-z_i)\\
+  \end{array}$}}
+ \]
+ The numerator is
+ \[
+   D_\lambda =   \renewcommand\arraystretch{1.3}
+    \det\left( \begin{array}{cccc}
+    z_1^{a_1+n} & z_2^{a_1+n} &\cdots & z_{n+1}^{a_1+n}\\
+    z_1^{a_2+n-1} & z_2^{a_2+n-1} & \cdots & z_{n-1}^{a_2+n+1}\\
+    \vdots & \vdots & \ddots & \vdots\\
+    z_1^{a_n+1} & z_2^{a_n+1}& \cdots & z_{n+1}^{a_n+1}\\
+    z_1^{a_{n+1}} & z_1^{a_{n+1}} & \cdots & z_1^{a_{n+1}}
+  \end{array}\right)
+ \]
+ So the character is the Schur polynomial.\index{Schur polynomial}
+
+ Usually, the representations are encoded as Young diagrams. The marks on the dynkin
+ diagram are the differences in consecutive rows in the young diagram.\anton{what does
+ this part mean?}
+ \end{example}
+ \index{Weyl character formula|)idxbf}

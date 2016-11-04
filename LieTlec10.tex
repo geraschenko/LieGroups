@@ -1,0 +1,268 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{10}
+ \sektion{Lecture 10}
+
+ Here is the take-home exam, it's due on Tuesday:
+
+ \begin{itemize}
+ \item[(1)] $B\subset SL_{2}(\CC)$ are upper triangular matrices, then
+
+ \begin{itemize}
+ \item Describe $X=SL_{2}(\CC)/B$
+
+ \item $SL_{2}(\CC)$ acts on itself via left multiplication implies that it acts on
+ $X$. Describe the action.
+ \end{itemize}
+
+ \item[(2)] Find $\exp\left(
+ \begin{array}
+ [c]{cccc}%
+ 0 & x_{1} &  & 0\\
+ & \ddots & \ddots & \\
+ &  & 0 & x_{n-1}\\
+ 0 &  &  & 0
+ \end{array}
+ \right)  $
+
+ \item[(3)] Prove that if $V,W$ are filtered vector spaces (with increasing filtration)
+ and $\phi:V\to W$ satisfies $\phi(V_{i})\subseteq W_{i}$, and
+ $Gr(\phi):Gr(V)\xrightarrow{\sim} Gr(W)$ an isomorphism, then $\phi$ is a linear
+ isomorphism of filtered spaces.
+ \end{itemize}
+
+ \subsektion{Lie algebra cohomology}
+
+ Recall $C^{\udot}(\g,M)$ from the previous lecture, for $M$ a finite dimensional
+ representation of $\g$ (and $\g$ finite dimensional). There is a book by D.~Fuchs,
+ \textsl{Cohomology of $\infty$ dimensional Lie algebras} \cite{Fuchs}.
+
+ We computed that $H^{0}(\g,\g)=Z(\g)\simeq\g/[\g,\g]$ and that $H^{1}(\g,\g)$ is the
+ space of exterior derivations of $\g$. Say $c\in Z^{1}(\g,\g)$,\footnote{$Z^n(\g,M)$
+ is the space of $n$-cocycles, i.e.\ the kernel of $d:C^n(\g,M)\to C^{n+1}(\g,M)$.} so
+ $[c]\in H^{1}(\g,\g)$. Define $\tilde\g_{c}=\g\oplus\CC\partial_{c}$ with the bracket
+ $[(x,t),(y,s)]=([x,y]-tc(y)+sc(x),0)$. So if $e_{1},\dots,e_{n}$ is a basis in $\g$
+ with the usual relations $[e_{i},e_{j}]=c_{ij}^{k}e_{k}$, then we get one more
+ generator $\partial_{c}$ such that $[\partial _{c},x]=c(x)$. Then $H^{1}(\g,\g)$ is
+ the space of equivalence classes of extensions
+ \[
+ 0\rightarrow\g\rightarrow\tilde{\g}\rightarrow\CC\rightarrow0
+ \]
+ up to the equivalences $f$ such that the diagram commutes:
+ \[
+ \xymatrix{
+ 0 \ar[r] &\g \ar[r]\ar[d]^\id & \tilde \g \ar[r] \ar[d]^f & \CC \ar[d]^\id \ar[r] & 0\\
+ 0 \ar[r] &\g \ar[r] & \tilde\g' \ar[r] & \CC \ar[r] & 0\\
+ }
+ \]
+ This is the same as the space of exterior derivations.
+
+ \subsektion{\texorpdfstring{$H^{2}(\g,\g)$}{H2(g,g)} and Deformations of Lie algebras}
+
+ A \emph{deformation}\index{deformation!of a Lie algebra} of $\g$ is the vector space
+ $\g[[h]]$ with a bracket $[a,b]_{h} =[a,b]+\sum_{n\geq1}h^{n}m_{n}(a,b)$ such that
+ $m_{n}(a,b)=-m_{n}(b,a)$ and
+ \[
+ [a,[b,c]_{h}]_{h}+[b,[c,a]_{h}]_{h}+[c,[a,b]_{h}]_{h}=0.
+ \]
+ The $h^{N}$ order term of the Jacobi identity yields equation \ref{lec09Eq:h^N},
+ which was
+ \[
+ [a,m_{N}(b,c)]+m_{N}(a,[b,c])+\sum_{k=1}^{N-1}m_{k}(a,m_{N-k}(b,c))+\text{cycle}=0
+ \]
+ where ``cycle'' is the same thing, with $a$, $b$, and $c$ permuted cyclically.
+ For $\mu\in C^{2}(\g,\g)$, we compute
+ \[
+ d\mu(a,b,c)=-[a,\mu(b,c)]-\mu(a,[b,c])+\text{cycle}.
+ \]
+ Define
+ \[
+ \{m_{k},m_{N-k}\}(a,b,c)\overset{def}{=}m_{k}(a,m_{N-k}(b,c))+\text{cycle}%
+ \]\mpar[\anton{More Gerstenhaber, inconsistent notation}]{}
+ This is called the Gerstenhaber bracket ... do a Google search for it if you like ...
+ it is a tiny definition from a great big theory.
+
+ Then we can rewrite equation \ref{lec09Eq:h^N} as equation \ref{lec09Eq:2}, which was
+ \[
+ dm_{N} = \sum_{k=1}^{N-1} \{m_{k},m_{N-k}\}. %\tag{$\ddag$}
+ \]
+ In partiular, $dm_{1}=0$, so $m_{1}$ is in $Z^{2}(\g,\g)$.
+
+ Equivalences: $[a,b]'_{h}\simeq[a,b]_{h}$ if $[a,b]'_{h}=
+ \phi^{-1}([\phi(a),\phi(b)]_{h})$ for some $\phi(a) = a+\sum_{n\ge1} h^{n}
+ \phi_{n}(a)$. then
+ \[
+  m'_{1}(a,b) = m_{1}(a,b) - \phi_{1}([a,b]) + [a,\phi_{1}(b)] + [\phi _{1}(a),b].
+ \]
+ which we can write as $m'_{1} = m_{1}+d\phi_{1}$. From this we can conclude
+
+ \begin{claim}
+ The space of equivalence classes of possible $m_{1}$ is exactly
+ $H^{2}(\g,\g)$.\mpar[\anton{not justified}]{}
+ \end{claim}
+
+ \begin{claim}
+ [was HW]If $m_{1}$ is a 2-cocycle, and $m_{N-1},\dots, m_{2}$ satisfy the equations we
+ want, then
+ \[
+ d\left(  \sum_{k=1}^{N-1} \{m_{k},m_{N-k}\} \right)  = 0.
+ \]
+ \end{claim}
+
+ This is not enough; we know that $\sum_{k=1}^{N+1}\{m_{k},m_{N-k}\}$ is in
+ $Z^{3}(\g,\g)$, but to find $m_{N}$, we need it to be trivial in $H^{3}(\g,\g)$
+ because of equation \ref{lec09Eq:2}. If the cohomology class of
+ $\sum_{k=1}^{N+1}\{m_{k},m_{N-k}\}$ is non-zero, it's class in $H^3(\g,\g)$ is called
+ an \emph{obstruction} to $n$-th order deformation. If $H^{3}(\g,\g)$ is zero, then
+ any first order deformation (element of $H^{2}(\g,\g)$) extends to a deformation, but
+ if $H^{3}(\g,\g)$ is non-zero, then we don't know that we can always extend. Thus,
+ $H^3(\g,\g)$ is the space of all possible obstructions to extending a deformation.
+
+ Let's keep looking at cohomology spaces. Consider $C^{\udot}(\g,\CC)$, where $\CC$ is
+ a one dimensional trivial representation of $\g$ given by $x\mapsto 0$ for any
+ $x\in\g$.
+ %Note that it is neat that such a representation exists.
+
+ First question: take $U\g$, with the corresponding 1 dimensional representation
+ $\varepsilon:U\g\rightarrow\CC$ given by $\varepsilon(x)=0$ for $x\in\g$.
+
+ \begin{exercise}
+   Show that $(U\g,\varepsilon,\Delta,S)$ is a Hopf algebra with the $\e$ above,
+   $\Delta(x)=1\otimes x+x\otimes 1$, and $S(x)=-x$  for $x\in\g$. Remember that
+   $\Delta$ and $\e$ are algebra homomorphisms, and that $S$ is an anti-homomorphism.
+ \end{exercise}
+
+ Let's compute $H^{1}(\g,\CC)$ ($H^{0}$ is boring, just a point). This is
+ $\ker(C^{1}\xrightarrow{d} C^{2})$. Well, $C^{1}(\g,\CC)=\hom(\g,\CC)$,
+ $C^{2}(\g,\CC)=\hom (\Lambda^{2}\g,\CC)$, and
+ \[
+ dc(x,y) = c([x,y]).
+ \]
+ So the kernel is the set of $c$ such that $c([x,y])=0$ for all $x,y\in\g$. Thus,
+ $\ker(d)\subseteq C^{1}(\g,\CC)$ is the space of $\g$-invariant linear functionals. Recall
+ that $\g$ acts on $\g$ by the adjoint action, and on
+ $\g^{*}=C^{1}(\g,\g)$ by the coadjoint action ($x:l\mapsto l_{x}$ where $l_{x}%
+ (y)=l([x,y])$). Under the coadjoint action, $l\in \g^*$ is $\g$-invariant if
+ $l_{x}=0$. Note that $C^{0}$ is just one point, so its image doesn't have anything in
+ it.
+
+ Now let's compute $H^{2}(\g,\CC)=\ker(d:C^{2}\rightarrow C^{3})/\im(d:C^{1}%
+ \rightarrow C^{2})$. Let $c\in Z^{2}$, then
+ \[
+ dc(x,y,z)=c([x,y],z)-c([x,z],y)+c([y,z],x)=0
+ \]
+ for all $x,y,z\in\g$. Now let's find the image of $d:C^{1}\rightarrow C^{2}$: it is
+ the set of functions of the form $dl(x,y)=l([x,y])$ where $l\in\g^{\ast }$. It is
+ clear that $l([x,y])$ are (trivial) 2-cocycles because of the Jacobi identity. Let's
+ see what can we cook with this $H^{2}$.
+
+ \begin{definition}
+ A \emph{central extension}\index{central extension|idxbf} of $\g$ is a short exact sequence
+ \[
+ 0\to \CC \to \tilde{\g}\to \g\to 0.
+ \]
+ Two such extensions are equivalent if there is a Lie algebra isomorphism
+ $f:\tilde{\g}\to \tilde \g'$ such that the diagram commutes:
+ \[
+ \xymatrix{
+ 0 \ar[r] &\CC \ar[r]\ar[d]^\id & \tilde \g \ar[r] \ar[d]^f & \g \ar[d]^\id \ar[r] & 0\\
+ 0 \ar[r] &\CC \ar[r] & \tilde\g' \ar[r] & \g \ar[r] & 0\\
+ }
+ \]
+ \end{definition}
+
+ \begin{theorem} \label{lec10ThmCextns}
+ $H^{2}(\g,\CC)$ is isomorphic to the space of equivalence classes of central
+ extensions of $\g$.
+ \end{theorem}
+
+ \begin{proof}
+ Let's describe the map in one direction. If $c\in Z^{2}$, then consider $\tilde\g =
+ \g\oplus\CC$ with the bracket $[(x,t),(y,s)] = ([x,y],c(x,y))$. Equivalences of
+ extensions boil down to $c(x,y)\mapsto c(x,y)+l([x,y])$.
+ \begin{exercise}
+   Finish this proof. \anton{This shouldn't be an exercise}
+ \end{exercise}
+ \end{proof}
+ Let's do some (infinite dimensional) examples of central extensions.
+ \begin{example}\index{central extension|idxit}
+ [Affine Kac-Moody algebras]\index{Kac-Moody algebra} If $\g\subseteq \gl_n$, then we
+ define the \emph{loop space}\index{loop space|idxit} or \emph{loop
+ algebra}\index{loop algebra} $\mathcal{L}\g$ to be the set of maps $S^1\to \g$. To
+ make the space more manageable, we only consider Laurent polynomials, $z\mapsto
+ \sum_{m\in \ZZ}a_m z^m$ for $a_m\in \g$ with all but finitely many of the $a_m$ equal
+ to zero. The bracket is given by $[f,g]_{\mathcal{L}\g}(z)=[f(z),g(z)]_\g$.
+
+ Since $\g\subseteq \gl_n$, there is an induced trace $tr:\g\to \CC$. This gives a
+ non-degenerate inner product on $\mathcal{L}\g$:
+ \[
+    (f,g):= \oint_{|z|=1} tr\bigl(f(z^{-1})g(z)\bigr) \frac{dz}{z}.
+ \]
+ There is a natural 2-cocylce on $\mathcal{L}\g$, given by
+ \[
+    c(f,g) = \frac{1}{2\pi i} \oint_{|z|=1} tr\bigl(f(z)g'(z)\bigr) \frac{dz}{z} =
+           \underset{z=0}{Res}\biggl(tr\bigl(f(z)g^{\prime}(z)\bigr)\biggr),
+ \]
+ and a natural outer derivation $\partial: \mathcal{L}\g\to \mathcal{L}\g$ given by
+ $\partial x(z) = \pder{x(z)}{z}$.
+
+ The Kac-Moody algebra \anton{corresponding to the inner product?} is
+ $\mathcal{L}\g\oplus \CC \partial\oplus \CC c$. A second course on Lie theory should
+ have some discussion of the representation theory of this algebra.
+ \end{example}
+
+ \begin{example}
+ Let $\gl_{\infty}$\index{gl(infinity)@$\gl_\infty$} be the algebra of matrices with
+ finitely many non-zero entries. It is not very interesting. Let $\gl_{\infty}^{1}$ be
+ the algebra of matrices with finitely many non-zero diagonals. $\gl_\infty^1$ is
+ ``more infinite dimensional'' than $\gl_\infty$, and it is more interesting.
+ \begin{exercise} Define
+  \[
+  J=\left(
+  \begin{array}
+  [c]{c|c}%
+  I & 0\\\hline 0 & -I
+  \end{array}
+  \right).
+  \]
+  \mpar[\anton{Who calls that $J$?}]{}
+   For $x,y\in\gl_{\infty}$, show that
+   \[
+   c(x,y)=tr(x[J,y])
+   \]
+   is well defined (i.e.\ is a finite sum).
+ \end{exercise}
+ This $c$ is a non-trivial 1-cocycle, i.e.\ $[c]\in H^{2}(\gl_{\infty}^{1},\CC)$ is
+ non-zero. By the way, instead of just using linear maps, we require that the maps
+ $\Lambda^{2}\gl_{\infty} ^{1}\rightarrow\CC$ are graded linear maps. This is
+ $H_{\text{graded}}^{2}$.
+
+ Notice that in $\gl_{n}$, $tr(x[J,y]) = tr(J[x,y])$ is a trivial cocycle (it is $d$ of
+ $l(x)=tr(Jx)$. So we have that $H^{2}(\gl_{n},\CC)=\{0\}$.
+
+ We can define $a_{\infty}= \gl_{\infty}\oplus\CC c$. This is some non-trivial central
+ extension.
+ \mpar[\small \anton{how do we show $H^2(\gl_n,\CC)=0$?, what is this $a_\infty$, and
+ what are the relations to Conformal Field Theory and $\mathrm{Vect}(S^{1})\to$
+ Virasoro.}]{\anton{what is the grading on $\CC$? It is all in degree 0, but
+ $\Lambda \gl_{\infty}$ has positive and negative graded components}}
+ \end{example}
+
+ To summarize the last lectures:
+ \begin{enumerate}
+ \item We related Lie algebras and Lie Groups. If you're interested in
+ representations of Lie Groups, looking at Lie algebras is easier.
+
+ \item From a Lie algebra $\g$, we constructed $U\g$, the universal enveloping algebra.
+ This got us thinking about associative algebras and Hopf algebras.
+
+ \item We learned about dual pairings of Hopf algebras. For example, $\CC[\Gamma]$ and
+ $C(\Gamma)$ are dual, and $U\g$ and $C(G)$ are dual (if $G$ is affine algebraic and
+ we are looking at polynomial functions). This pairing is a starting point for many
+ geometric realizations of representations of $G$. Conceptually, the notion of the
+ universal enveloping algebra is closely related to the notion of the group algebra
+ $\CC[\Gamma]$.
+
+ \item Finally, we talked about deformations.
+ \end{enumerate}
+
+ \index{Reshetikhin, Nicolai|)}

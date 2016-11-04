@@ -1,0 +1,356 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%    This is the main document for the Math 261A notes. To compile    %%
+%%    these notes, you should put the following files in the same      %%
+%%    directory:                                                       %%
+%%    LieGroups.tex (this file),                                       %%
+%%    LieTpre.tex,                                                     %%
+%%    LieTlec01.tex, LieTlec02.tex,..., LieTlec30.tex, LieTlec31.tex   %%
+%%    LieGroupsBib.bib                                                 %%
+%%                                                                     %%
+%%    If you are using MiKTeX, you can TeXify:                         %%
+%%    (1)-(6) texify LieGroups.tex (Shift+Ctrl+X in WinEdt)            %%
+%%    Otherwise, you should run the following commands:                %%
+%%    (1) latex LieGroups                                              %%
+%%    (2) makeindex LieGroups                                          %%
+%%       (Note to Cygwin users: makeindex will complain if you use     %%
+%%       the Cygwin shell for this; use cmd instead.)                  %%
+%%    (3) bibtex LieGroups                                             %%
+%%    (4) latex LieGroups                                              %%
+%%    (5) makeindex LieGroups                                          %%
+%%    (6) latex LieGroups                                              %%
+%%                                                                     %%
+%%    Next, if you want to make a pdf, you should convert to ps        %%
+%%    first, because converting directly to pdf kills the              %%
+%%    hyperlinks and pstricks stuff.                                   %%
+%%    (7) dvips LieGroups                                              %%
+%%    (8) ps2pdf LieGroups.ps                                          %%
+%%                                                                     %%
+%%    Anton                                                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \newif\ifproofmode     % True if for proofreading
+ \newif\iflilbook       % True if for making a little book
+ \proofmodetrue
+ \lilbookfalse
+  \proofmodefalse
+%  \lilbooktrue
+
+ \iflilbook
+   \documentclass[twoside]{article}
+ \else
+   \documentclass[12pt]{article}
+ \fi
+
+ %\usepackage{ascii}
+ %\usepackage{graphicx}     % I don't like including graphics ... I'd rather draw them
+ %\usepackage{latexsym}     % I don't think I use any of these symbols
+ %\usepackage{titlesec}     % maybe one day I'll learn this package
+ %\usepackage{xcolor}       % If I ever want to use color ... I think this loads with pstricks
+
+ \usepackage{mathdots}      % For \iddots, which are backwords \ddots. Load before amsmath
+ \usepackage{amsmath}       % I think this gives me some symbols
+ \usepackage{amsthm}        % Does theorem stuff
+ \usepackage{amssymb}       % more symbols and fonts
+ \usepackage{empheq}        % Some more extensible arrows, like \xmapsto
+% package hyperref is loaded last
+ \usepackage{ifthen}        % For conditional stuff
+ \usepackage{makeidx}       % For making the index
+ \usepackage{manfnt}        % This package has the cool ``warning sign'' \dbend
+ \usepackage{mathrsfs}      % Sheafy font \mathscr{}
+ \usepackage{multicol}      % Supports muliple columns
+ \usepackage{picinpar}      % for pictures in paragraphs
+ \usepackage{pstricks}      % PStricks ... only used for shading here
+ \usepackage{relsize}       % contextually size fonts
+ \usepackage{graphicx}      % for the rotating
+ \usepackage{titletoc}      % Table of Contents stuff
+     \titlecontents{section}[0em]{\addvspace{1em}}{\thecontentslabel}{}{\titlerule*{} \textbf{\thecontentspage}}
+     \titlecontents{subsection}[2em]{}{\thecontentslabel}{}{\titlerule*{}\thecontentspage}
+ \usepackage[all]{xy}       % Include XY-pic
+    \SelectTips{cm}{10}     % Use the nicer arrowheads
+    \everyxy={<2.5em,0em>:} % Sets the scale I like
+    \xyoption{web}          % Include the lattice feature, I don't know why%
+                            % it isn't loaded already
+
+ \ifthenelse{\boolean{proofmode}}{%
+      \usepackage[colorlinks, linkcolor=red!40!blue!40!black, pagebackref]{hyperref}
+                            % This allows hyperlinks, and no longer needs pdflatex%
+                            % because dvips, ps2pdf remembers hyperlinks now.
+      \usepackage{showidx}    % For showing the index entries in the corner of the page
+                            % must go after hyperref
+    }{
+     \usepackage[colorlinks, pagebackref]{hyperref}
+                            % This allows hyperlinks, and no longer needs pdflatex%
+                            % because dvips, ps2pdf remembers hyperlinks now.
+    }
+
+ \makeatletter
+    \ifproofmode
+      \renewcommand\@showidx[1]{%
+      \insert\indexbox{\scriptsize
+        \hsize1.5\marginparwidth
+        \hangindent\marginparsep \parindent\z@
+        \everypar{}\let\par\@@par \parfillskip\@flushglue
+        \lineskip\normallineskip
+        \baselineskip .8\normalbaselineskip\sloppy
+        \raggedright \leavevmode
+        \vrule \@height .7\normalbaselineskip \@width \z@\relax
+            \hfuzz=100pt #1\relax
+        \vrule \@height \z@ \@depth .3\normalbaselineskip \@width \z@}}
+    \fi
+   \renewenvironment{theindex}{
+     \@restonecoltrue\if@twocolumn\@restonecolfalse\fi
+     \columnseprule \z@  \columnsep 30\p@
+     \parindent\z@ \parskip\z@ \@plus .3\p@\relax
+     \twocolumn[\sektion{\indexname}\indexpreamble]
+     \let\item\@idxitem
+   }{\if@restonecol\onecolumn\else\clearpage\fi}
+ \makeatother
+
+%%%%%%% Pagestyle stuff %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \usepackage{fancyhdr}
+     %%%%%%%% Stuff to get marginpars like I like 'em (assumes single-sided pages) %%%%%
+     \usepackage{calc}
+     \reversemarginpar
+     \newlength\fullwidth
+     \setlength\fullwidth{\textwidth+2\marginparsep}
+     \newcommand\mpar[2][\ ]{\marginpar{\parbox{\marginparwidth}{\raggedleft\scriptsize #1}%
+                     \rlap{\hspace*{\fullwidth}{\parbox{\marginparwidth}{\raggedright\scriptsize #2}}}}}
+     %%%%%%% End marginpar stuff %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+     %%%%%%% Stuff for keeping track of sections %%%%%%%%%%%%%%%%%%%%%%%%
+      \newcommand{\sektion}[1]{\newpage \section*{#1} \gdef\sectitle{#1}%
+                              \addcontentsline{toc}{section}{#1}%
+                              \setcounter{footnote}{0}}
+      \newcommand{\subsektion}[1]{\subsection*{#1}%
+                              \addcontentsline{toc}{subsection}{#1}}
+      \newcommand\sectitle{} %This is the empty section title, before any section title is set
+      \newcounter{lecture}
+      \setcounter{lecture}{0}
+     %%%%%%% End stuff for keeping track of sections %%%%%%%%%%%%%%%%%%%%
+   \pagestyle{fancy}
+   \fancyhf{} %delete the current section for header and footer
+ \ifthenelse{\boolean{lilbook}}{%
+   \usepackage[bindingoffset=.25in,%
+             paperheight=8.5in,%
+             paperwidth=5.5in,%
+             outer=.5in,%
+             inner=.5in,%
+             bottom=.25in,%
+             top=.25in,%
+             includeheadfoot]{geometry}
+   \addtolength{\headwidth}{-.5in}
+   \fancyhead[LE,RO]{\thepage}
+   \fancyhead[LO]{\sectitle}
+   \fancyhead[RE]{Notes for Math 261A - Lie groups and Lie algebras}
+%   \setlength{\headheight}{14.5pt}
+ }{
+   \usepackage[paperheight=11in,%
+             paperwidth=8.5in,%
+             outer=1.7in,%
+             inner=1.7in,%
+             bottom=.7in,%
+             top=.7in,%
+             includeheadfoot]{geometry}
+   \addtolength{\headwidth}{-.25in}
+   \fancyhead[R]{\thepage}
+   \fancyhead[L]{\sectitle}
+   \setlength{\headheight}{14.5pt}
+ }
+     % \renewcommand{\headrulewidth}{0in}
+  \raggedbottom
+%%%%%%% End Pagestyle stuff %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% Theorem Styles %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ %% Make the equation counter reset each lecture %%
+ \makeatletter
+    \@addtoreset{equation}{lecture}
+ \makeatother
+
+ \theoremstyle{plain}
+ \newtheorem{theorem}[equation]{Theorem}
+ \newtheorem*{claim}{Claim}
+ \newtheorem*{lemma*}{Lemma}
+ \newtheorem{lemma}[equation]{Lemma}
+ \newtheorem{corollary}[equation]{Corollary}
+ \newtheorem{proposition}[equation]{Proposition}
+
+ \theoremstyle{definition}
+ \newtheorem{definition}[equation]{Definition}
+ \newtheorem{example}[equation]{Example}
+ \newtheorem{exercise}{$\blacktriangleright$
+                       \hypertarget{Ex\theexercise}{Exercise}}[lecture]
+
+ \theoremstyle{remark}
+ \newtheorem{remark}[equation]{Remark}
+
+    %%%%%%%% Solutions %%%%%%%%%%
+ \ifthenelse{\boolean{proofmode}}{%
+    \usepackage[nosolutionfiles]{answers}}{%
+    \usepackage{answers}}
+ \Newassociation{solution}{Solution}{exSolutions}
+ \ifthenelse{\boolean{proofmode}}{%
+    \renewenvironment{Solution}[1]{%\small%
+        \begin{trivlist} \item \textit{Solution}~#1.}{%
+            \hspace*{\fill} $\blacksquare$\end{trivlist}}%
+ }{% else
+    \renewenvironment{Solution}[1]{%
+        \begin{trivlist} \item \textbf{Solution \hyperlink{Ex#1}{#1}.}}{\end{trivlist}}%
+ }
+
+  %%%%%%%% Warnings %%%%%%%%%%
+ \newenvironment{warning}{%
+    \begin{trivlist} \item[] \noindent%
+    \begingroup\hangindent=2pc\hangafter=-2
+    \clubpenalty=10000%
+    \hbox to0pt{\hskip-\hangindent\dbend\hfill}\ignorespaces
+    \refstepcounter{equation}\textit{Warning}~\theequation.}%
+    {\endgraf\endgroup\end{trivlist}}
+%%%%%%%%%%%%%%%% End theorem styles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%% Anton's Shortcuts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \ifthenelse{\boolean{proofmode}}{%
+    \newcommand{\anton}[1]{[[\index{"!@notes and corrections}\ensuremath{\bigstar\bigstar\bigstar} #1]]}}{%
+    \newcommand{\anton}[1]{}}
+ \renewcommand{\a}{\ensuremath{\mathfrak{a}}}
+ \DeclareMathOperator{\aut}{Aut}
+   % \newcommand{\aut}{\mathrm{Aut}\,}
+ \renewcommand{\b}{\ensuremath{\mathfrak{b}}}
+ \newcommand{\CC}{\ensuremath{\mathbb{C}}}
+ \newcommand{\D}{\ensuremath{\mathcal{D}}}
+ \newcommand{\der}[2]{\ensuremath{\frac{d #1}{d #2}}}
+ \newcommand{\e}{\ensuremath{\varepsilon}}
+ \DeclareMathOperator{\End}{End}
+   % \newcommand{\End}{\mathrm{End}}
+ \newcommand{\FF}{\ensuremath{\mathbb{F}}}
+ \newcommand{\g}{\ensuremath{\mathfrak{g}}}
+ \newcommand{\gl}{\ensuremath{\mathfrak{gl}}}
+ \newcommand{\HH}{\ensuremath{\mathbb{H}}}
+ \newcommand{\HyperPageForJoke}[1]{\index{joke|idxit}\hyperpage{#1}}
+ \newcommand{\h}{\ensuremath{\mathfrak{h}}}
+ \newcommand{\half}{\ensuremath{\frac{1}{2}}}
+ \let\hom\relax % kills the old hom
+ \DeclareMathOperator{\hom}{Hom}
+    % \renewcommand{\hom}{\mathrm{Hom}}                      % old \hom has small h
+ \renewcommand{\labelitemi}{--}                    % changes the default bullet in itemize
+ \DeclareMathOperator{\lie}{Lie}
+    % \newcommand{\lie}{\mathrm{Lie}}
+ \newcommand{\id}{\mathrm{Id}}
+ \newcommand{\idxbf}[1]{\textbf{\hyperpage{#1}}}
+ \newcommand{\idxit}[1]{\textit{\hyperpage{#1}}}
+ \newcommand{\idxbfit}[1]{\textbf{\textit{\hyperpage{#1}}}}
+ \DeclareMathOperator{\im}{im}
+    % \newcommand{\im}{\mathrm{im\,}}
+ \newcommand{\m}{\ensuremath{\mathfrak{m}}}             % only in lec 13
+% \newcommand{\M}{\ensuremath{\mathcal{M}}}              % only in lec 01
+ \renewcommand{\matrix}[4]{\ensuremath{\left( %
+            \begin{smallmatrix} #1 & #2 \\ #3 & #4 \end{smallmatrix} \right)}}
+ \newcommand{\mat}[1]{\ensuremath{\left( %
+            \begin{array}{cccccccccccccccccccccccccccc} #1 \end{array}\right)}}
+ \newcommand{\MM}{\ensuremath{\mathbb{M}}}
+ \newcommand{\n}{\ensuremath{\mathfrak{n}}}
+ \newcommand{\pder}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+ \DeclareMathOperator{\pin}{Pin}
+    % \newcommand{\pin}{\mathrm{Pin}}
+ \newcommand{\QQ}{\ensuremath{\mathbb{Q}}}
+ \newcommand{\RR}{\ensuremath{\mathbb{R}}}
+ \renewcommand{\sl}{\ensuremath{\mathfrak{sl}}}
+ \newcommand{\so}{\ensuremath{\mathfrak{so}}}
+ \renewcommand{\sp}{\ensuremath{\mathfrak{sp}}}         % old \sp is equivalent to ^
+ \DeclareMathOperator{\spin}{Spin}
+    % \newcommand{\spin}{\mathrm{Spin}}
+ \renewcommand{\thelecture}{\arabic{lecture}}
+ \renewcommand{\theequation}{\thelecture.\arabic{equation}}
+ \newcommand{\udot}{\ensuremath{{\lower .083333em \hbox{\LARGE \kern -.083333em$\cdot$}}}}
+ \newcommand{\W}{\ensuremath{\Omega}}
+ \newcommand{\w}{\ensuremath{\omega}}
+ \newcommand{\weyl}{\ensuremath{\mathfrak{W}}}
+ \newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+%%%%%%%%%%%%% End Anton's shortcuts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeindex
+\begin{document}
+ \title{\vspace*{-2cm} Notes for Math 261A \\ Lie groups and Lie algebras \vspace*{-12mm}}
+ \author{}
+% \date{}
+ \maketitle
+ \phantomsection    % This makes the hyperref package happier for some reason
+ \ifthenelse{\boolean{proofmode}}{}{\Opensolutionfile{exSolutions}[ExerciseSolutions]}
+ {\thispagestyle{empty}
+  \vspace*{-2em}
+  \addcontentsline{toc}{section}{Contents}
+  \tableofcontents
+ }
+ {
+ \input{LieTpre}}{
+ \input{LieTlec01}}{   % Anton, geraschenko@gmail.com
+ \input{LieTlec02}}{   % Anton, geraschenko@gmail.com
+ \input{LieTlec03}}{   % Nathan George, nathandgeorge@gmail
+ \input{LieTlec04}}{   % Hans Christianson, hans@math
+ \input{LieTlec05}}{   % Emily Peters, eep@math
+ \input{LieTlec06}}{   % Sevak Mkrtchyan, sevak@math
+ \input{LieTlec07}}{   % Lilit Martirosyan, lilit@math
+ \input{LieTlec08}}{   % David Cimasoni, cimasoni@math
+ \input{LieTlec09}}{   % Emily Peters, eep@math
+ \input{LieTlec10}}{   % Qingtau Chen, chenqtau@math
+ \input{LieTlec11}}{   % Sevak Mkrtchyan, sevak@math
+ \input{LieTlec12}}{   % Jonah Blasiak, jblasiak@math
+ \input{LieTlec13}}{   % Hannes Thiel hannes.thiel@gmx.de, thiel@math
+ \input{LieTlec14}}{   % Anton, geraschenko@gmail.com
+ \input{LieTlec15}}{   % Lilit Martirosyan, lilit@math
+ \input{LieTlec16}}{   % Santiago Canez, scanez@math
+ \input{LieTlec17}}{   % Katie Liesinger, kate@math
+ \input{LieTlec18}}{   % Aaron McMillan, aaronfm@math
+ \input{LieTlec19}}{   % Anton, geraschenko@gmail.com
+ \input{LieTlec20}}{   % Hanh Duc Do, ddhanh@math
+ \input{LieTlec21}}{   % Hanh Duc Do, ddhanh@math
+ \input{LieTlec22}}{   % An Huang, huangan@math
+ \input{LieTlec23}}{   % Santiago Canez, scanez@math
+ \input{LieTlec24}}{   % Lilit Martirosyan, lilit@math
+ \input{LieTlec25}}{   % Emily Peters, eep@math
+ \input{LieTlec26}}{   % Santiago Canez, scanez@math
+ \input{LieTlec27}}{   % Martin Vito-Cruz, vitocruz@math
+ \input{LieTlec28}}{   % Martin Vito-Cruz, vitocruz@math
+ \input{LieTlec29}}{   % Anton, geraschenko@gmail.com
+ \input{LieTlec30}}{   % Lilit Martirosyan, lilit@math
+ \input{LieTlec31}}    % Sevak Mkrtchyan, sevak@math
+ {\ifthenelse{\boolean{proofmode}}{}{%
+    \Closesolutionfile{exSolutions}
+    \sektion{Solutions to (some) Exercises}
+    \input{ExerciseSolutions}}}
+ {\newpage \gdef\sectitle{References}
+ \addcontentsline{toc}{section}{References}
+  \nocite{Adams:LELG,
+          Adams:LLG,
+          Borel:LAG,
+          CSM:LLGLA,
+          Fuchs,
+          FulHar,
+          Hatcher,
+          Helgason,
+          Humphreys:LART,
+          Kac:IDLA,
+          Knapp:LGBI,
+          Knutson:261A,
+          Knutson:261B,
+          Lee:ISM,
+          Montgomery,
+          OnishchikVinberg,
+          Serre:CSLA,
+          Warner}
+  \bibliography{LieGroupsBib}
+  \bibliographystyle{alpha}
+  }
+ {\newcommand\indexpreamble{%
+  \textbf{Bold} page numbers indicate that the index entry was defined, used
+  in a theorem, or proven on that page. \textit{Italic} page numbers indicate that the index
+  entry was exemplified or used in an example on that page. If the index entry is a
+  result, then the page number is \textbf{bold} only for the pages on which the result
+  is proven.
+ \bigskip}\printindex
+ }
+
+ \anton{Other stuff you should know: Bruhat decomposition, Harish-Chandra's Theorem
+ (lec 19-ish), Levi decomposition}
+
+\end{document}

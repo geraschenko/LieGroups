@@ -1,0 +1,220 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{4}
+ \sektion{Lecture 4}
+
+\begin{theorem}
+Suppose $G$ is a topological group.  Let $U \subset G$ be an open neighbourhood of $e
+\in G$.  If $G$ is connected, then
+\begin{eqnarray*}
+G = \bigcup_{n \geq 1} U^n.
+\end{eqnarray*}
+\end{theorem}
+\begin{proof}
+Choose a non-empty open set $V \subset U$ such that $V = V^{-1}$, for example $V = U
+\cap U^{-1}$. Define $H = \cup_{n \geq 1} V^n$, and observe $H$ is an abstract
+subgroup, since $V^n V^m \subseteq V^{n+m}$.  $H$ is open since it is the union of
+open sets.  If $\sigma \notin H$, then $\sigma H \not\subset H$, since otherwise if
+$h_1, h_2 \in H$ satisfy $\sigma h_1 = h_2$, then $\sigma = h_2 h_1^{-1} \in H$.  Thus
+$H$ is a complement of the union of all cosets not containing $H$.  Hence $H$ is
+closed. Since $G$ is connected, $H = G$.
+\end{proof}
+\begin{theorem}
+Let $f: G \to H$ be a Lie group homomorphism.  Then the following diagram commutes:
+ \[\xymatrix{
+ T_e \ar[r]^{(df)_e} \ar[d]_{\exp} & T_e H\ar[d]^{\exp}\\
+ G \ar[r]^f & H
+  }\]
+Further, if $G$ is connected, $(df)_e$ determines $f$ uniquely.
+\end{theorem}
+
+\begin{proof}
+1) Commutative diagram.  Fix $\tau \in T_eG$ and set $\eta = df_e \tau \in T_eH$.
+Recall we defined the vector field $V_\tau(g) = (dl_g)(\tau)$, then if $\phi(t)$
+solves
+\begin{eqnarray*}
+\frac{ d \phi}{dt} = V_\tau ( \phi(t)) \in T_{\phi(t)}G,
+\end{eqnarray*}
+we have $\exp(\tau) = \phi(1)$.  Let $\psi$ solve
+\begin{eqnarray*}
+\frac{d \psi}{dt} = V_\eta( \psi(t)),
+\end{eqnarray*}
+so that $\exp ( \eta) = \psi(1)$.  Observe $\tilde{\psi}(t) = f( \phi(t))$ satisfies
+\begin{eqnarray*}
+\frac{d \tilde{\psi}}{dt} = (df)\left( \frac{d\phi}{dt} \right) =
+V_\eta(\tilde{\psi}),
+\end{eqnarray*}
+so by uniqueness of solutions to ordinary differential equations, $\psi =
+\tilde{\psi}$.
+
+2) Uniqueness of $f$.  The exponential map is an isomorphism of a neighborhood of $0
+\in \g$ and a neighborhood of $e \in G$.  But if $G$ is connected, $G = \cup_{n \geq
+1} (\text{nbd } e)^n$.
+\end{proof}
+
+\begin{theorem}
+Suppose $G$ is a topological group, with $G^0 \subset G$ the connected component of
+$e$.  Then 1) $G^0$ is normal and 2) $G / G^0$ is discrete.
+\end{theorem}
+
+\begin{proof}
+2) $G^0 \subset G$ is open implies $\text{pr}^{-1}( [e]) = e G^0$ is open in $G$,
+which in turn implies $\text{pr}^{-1}([g]) \in G/G^0$ is open for every $g \in G$.
+Thus each coset is both open and closed, hence $G/G^0$ is discrete.
+
+1) Fix $g \in G$ and consider the map $G \to G$ defined by $x \mapsto g x g^{-1}$.
+This map fixes $e$ and is continuous, which implies it maps $G^0$ into $G^0$.  In
+other words, $g G^0 g^{-1} \subset G^0$, or $G^0$ is normal.
+\end{proof}
+
+We recall some basic notions of algebraic topology.  Suppose $M$ is a connected
+topological space.  Let $x, y \in M$, and suppose $\gamma(t): [0,1] \to M$ is a path
+from $x$ to $y$ in $M$.  We say $\tilde{\gamma}(t)$ is {\it homotopic} to $\gamma$ if
+there is a continuous map $h(s,t): [0,1]^2 \to M$ satisfying
+\begin{eqnarray*}
+\bullet h(s,0) = x, \,\, h(s,1) = y \\
+\bullet h(0,t) = \gamma(t), \,\, h(1,t) = \tilde{\gamma}(t).
+\end{eqnarray*}
+We call $h$ the {\it homotopy}.  On a smooth manifold, we may replace $h$ with a
+smooth homotopy.  Now fix $x_0 \in M$.  We define the first fundamental group of $M$
+\begin{eqnarray*}
+\pi_1(M, x_0) = \left\{ \text{ homotopy classes of loops based at }x_0 \right\}.
+\end{eqnarray*}
+It is clear that this is a group with group multiplication composition of paths.  It
+is also a fact that the definition does not depend on the base point $x_0$:
+\begin{eqnarray*}
+\pi_1(M, x_0) \simeq \pi_1(M, x_0').
+\end{eqnarray*}
+By $\pi_1(M)$ we denote the isomorphism class of $\pi_1(M, \cdot)$. Lastly, we say $M$
+is {\it simply connected} if $\pi_1(M) = \{e\}$, that is if all closed paths can be
+deformed to the trivial one.
+
+\begin{theorem}
+\label{lec04T:4} Suppose $G$ and $H$ are Lie groups with Lie algebras $\g, \h$
+respectively. If $G$ is simply connected, then any Lie algebra homomorphism $\rho: \g
+\to \h$ lifts to a Lie group homomorphism $R : G \to H$.
+\end{theorem}
+
+In order to prove this theorem, we will need the following lemma.
+\begin{lemma}
+Let $\xi : \mathbb{R} \to \g$ be a smooth mapping.  Then
+\begin{eqnarray*}
+\frac{dg}{dt} = (dl_g)(\xi(t))
+\end{eqnarray*}
+has a unique solution on all of $\mathbb{R}$ with $g(t_0) = g_0$.
+\end{lemma}
+For convenience, we will write $g \xi:= (dl_g)(\xi)$.
+\begin{proof}
+Since $\g$ is a vector space, we identify it with $\mathbb{R}^n$ and for sufficiently
+small $r>0$, we identify $B_r(0) \subset \g$ with a small neighbourhood of $e$,
+$U_e(r) \subset G$, under the exponential map.  Here $B_r(0)$ is measured with the
+usual Euclidean norm $\| \cdot \|$.  Note for any $g \in U_e(r)$ and $|t-t_0|$
+sufficiently small, we have $\|g \xi(t) \| \leq C$.  Now according to Exercise
+\ref{ex-l4-1}, the solution with $g(t_0) = e$ exists for sufficiently small $|t-t_0|$
+and
+\begin{eqnarray*}
+g(t) \in U_e(r) \,\, \forall |t-t_0| < \frac{r}{C'}.
+\end{eqnarray*}
+Now define $h(t) = g(t) g_0$ so that $h(t) \in U_{g_0}(r)$ for $|t-t_0| < r/C'$.  That
+is, $r$ and $C'$ do not depend on the choice of initial conditions, and we can cover
+$\mathbb{R}$ by intervals of length, say $r/C'$.
+\end{proof}
+\begin{exercise}
+\label{ex-l4-1} Verify that there is a constant $C'$ such that if $|t-t_0|$ is
+sufficiently small, we have
+\begin{eqnarray*}
+\|g(t)\| \leq C' |t-t_0|.
+\end{eqnarray*}
+  \begin{solution}
+  We calculate:
+  \begin{eqnarray*}
+  \frac{d}{dt} \| g(t) \|^2 & = & 2 \langle \frac{d}{dt} g, g \rangle \\
+  & \leq & 2\left\| \frac{d}{dt} g \right\|  \| g \|\\
+  & \leq & 2\| \xi\| \| g \|^2.
+  \end{eqnarray*}
+  That is, $\eta(t) := \|g(t)\|^2$ satisfies the differential inequality:
+  \begin{eqnarray*}
+  \frac{d}{dt} \eta(t) \leq \|\xi\| \eta(t),
+  \end{eqnarray*}
+  which in turn implies (Gronwall's inequality) that
+  \begin{eqnarray*}
+  \eta(t)  \leq  e^{2\int_{t_0}^t \| \xi(s) \| ds}
+  \end{eqnarray*}
+  so that
+  \begin{eqnarray*}
+  \|g\| &  \leq & e^{\int_{t_0}^t \| \xi(s) \| ds} \\
+  & \leq & C'|t - t_0|
+  \end{eqnarray*}
+  since for $|t-t_0|$ sufficiently small, exponentiation is Lipschitz.
+  \end{solution}
+\end{exercise}
+
+
+\begin{proof}[Proof of Theorem \ref{lec04T:4}]
+We will construct $R: G \to H$.  Beginning with $g(t): [0,1] \to G$ satisfying $g(0) =
+e$, $g(1) = g$, define $\xi(t) \in \g$ for each $t$ by
+\begin{eqnarray*}
+g(t) \xi(t) = \frac{d}{dt} g(t).
+\end{eqnarray*}
+Let $\eta(t) = \rho(\xi(t))$, and let $h(t):[0,1] \to H$ satisfy
+\begin{eqnarray*}
+\frac{d}{dt} h(t) = h(t) \eta(t), \,\,\,\, h(0) = e.
+\end{eqnarray*}
+Define $R(g) = h(1)$.
+
+{\bf Claim:} $h(1)$ does not depend on the path $g(t)$, only on $g$.
+
+\noindent {\it Proof of Claim}.  Suppose $g_1(t)$ and $g_2(t)$ are two different paths
+connecting $e$ to $g$.  Then there is a smooth homotopy $g(t,s)$ satisfying $g(t,0) =
+g_1(t)$, $g(t,1) = g_2(t)$. Define $\xi(t,s)$ and $\eta(t,s)$ by
+\begin{eqnarray*}
+\frac{\partial g}{ \partial t} & = & g(t,s) \xi(t,s); \\
+\frac{\partial g}{ \partial s} & = & g(t,s) \eta(t,s).
+\end{eqnarray*}
+Observe
+\begin{eqnarray}
+\frac{\partial^2 g}{ \partial s \partial t} & = & g \eta \circ \xi + g
+\frac{\partial \xi }{\partial t} \,\,\, \text{and } \label{l4-eq-3}\\
+\frac{\partial^2 g}{ \partial t \partial s} & = & g \xi \circ \eta + g \frac{\partial
+\eta}{\partial s} \label{l4-eq-4},
+\end{eqnarray}
+and \eqref{l4-eq-3} is equal to \eqref{l4-eq-4} since $g$ is smooth. Consequently
+\begin{eqnarray*}
+\frac{\partial \eta}{\partial t} - \frac{\partial \xi}{ \partial s} =
+     [ \eta, \xi ].
+\end{eqnarray*}
+Now define an $s$ dependent family of solutions $h(\cdot, s)$ to the equations
+\begin{eqnarray*}
+\frac{\partial h}{\partial t} (t,s) = h(t,s) \rho(\xi(t,s)), \,\,\, h(0,s) = e.
+\end{eqnarray*}
+Define $\theta(t,s)$ by
+\begin{eqnarray}
+\label{l4-eq-5} \left\{ \begin{array}{c} \displaystyle{\frac{\partial \theta}{\partial
+t}} - \displaystyle{\frac{
+    \partial \rho(\xi)}{\partial s}} = \left[ \rho(\xi), \theta
+    \right], \\
+  \theta(0,s) = 0. \end{array} \right.
+\end{eqnarray}
+Observe $\tilde{\theta}(t,s) = \rho(\eta(t,s))$ also satisfies equation
+\eqref{l4-eq-5}, so that $\theta = \tilde{\theta}$ by uniqueness of solutions to ODEs.
+Finally,
+\begin{eqnarray*}
+g \eta(1,s) = \frac{\partial g}{\partial s} (1,s) = 0 \implies \theta(1,s) = 0
+\implies \frac{\partial h }{\partial s}(1,s) = 0,
+\end{eqnarray*}
+justifying the claim.
+
+We need only show $R:G \to H$ is a homomorphism.  Let $g_1, g_2 \in G$ and set $g =
+g_1g_2$.  Let $\tilde{g}_i(t)$ be a path from $e$ to $g_i$ in $G$ for each $i = 1,2$.
+Then the path $\tilde{g}(t)$ defined by
+\begin{eqnarray*}
+\tilde{g}(t) = \left\{ \begin{array}{l} \tilde{g}_1(2t), \,\, 0 \leq t
+  \leq \frac{1}{2}, \\ g_1 \tilde{g}_2(2t-1), \,\, \frac{1}{2} \leq t
+  \leq 1 \end{array} \right.
+\end{eqnarray*}
+goes from $e$ to $g$.  Let $\tilde{h}_i$ for $i = 1,2$ and $\tilde{h}$ be the paths in
+$H$ corresponding to $\tilde{g}_1$, $\tilde{g}_2$, and $\tilde{g}$ respectively and
+calculate
+\begin{eqnarray*}
+R(g_1 g_2) = R(g) = \tilde{h}(1) = \tilde{h}_1(1) \tilde{h}_2(1) = R(g_1) R(g_2).
+\end{eqnarray*}
+\end{proof}

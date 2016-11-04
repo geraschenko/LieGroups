@@ -1,0 +1,359 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{13}
+ \sektion{Lecture 13 - The root system of a semisimple Lie algebra}
+
+ The goal for today is to start with a semisimple Lie algebra over a field $k$
+ (assumed algebraically closed and characteristic zero), and get a root system.
+
+ Recall Jordan decomposition. For $\g\subseteq \gl(V)$,
+ any $x\in \g$ can be written (uniquely) as $x=x_s+x_n$, where $x_s$ is semisimple and
+ $x_n$ is nilpotent, both of which are polynomials in $x$. In general, $x_s$ and $x_n$
+ are in $\gl(V)$, but not necessarily in $\g$.
+ \begin{proposition}
+   If $\g\subseteq \gl(V)$ is semisimple, then $x_s, x_n \in \g$.
+ \end{proposition}
+ \begin{proof}
+   Notice that $\g$ acts on $\gl(V)$ via commutator, and $\g$ is an invariant
+   subspace. By complete reducibility (Theorem \ref{lec12Weyl}), we can write $\gl(V)
+   = \g\oplus \m$ where $\m$ is $\g$-invariant, so
+   \[
+     [\g,\g]\subseteq \g \qquad \text{and} \qquad [\g,\m]\subseteq \m.
+   \]
+   We have that $ad_{x_s}$ and $ad_{x_n}$ are polynomials in $ad_x$ (by Lemma
+   \ref{lec12L3}), so
+   \[
+    [x_n,\g]\subseteq \g\ ,\ [x_s,\g]\subseteq \g \qquad \text{and} \qquad
+    [x_n,\m]\subseteq \m\ ,\ [x_s,\m]\subseteq \m.
+   \]
+   Take $x_n = a+b\in \g\oplus \m$, where $a\in \g$ and $b\in \m$. We would like to
+   show that $b=0$, for then we would have that $x_n\in \g$, from which it would
+   follow that $x_s\in \g$.
+
+%    We have $[b,\g]=0$
+%   because $[x_n,\g]=\underbrace{[a,\g]}_{\in \g}+\underbrace{[b,\g]}_{\in
+%   \m}\subseteq \g$. It is enough to show that $x_n\in \g$, so it suffices to show
+%   that $b=0$.
+
+   Decompose $V= V_1\oplus \cdots \oplus V_n$ with the $V_i$ irreducible. Since $x_n$
+   is a polynomial in $x$, we have that $x_n(V_i)\subseteq V_i$, and $a(V_i)\subseteq
+   V_i$ since $a\in \g$, so $b(V_i)\subseteq V_i$. Moreover, we have that
+   \[
+     [x_n,\g]=\underbrace{[a,\g]}_{\in \g}+\underbrace{[b,\g]}_{\in \m}\subseteq \g,
+   \]
+   so $[b,\g]=0$ (i.e.\ $b$ is an intertwiner). By Schur's lemma, $b$ must be a scalar
+   operator on $V_i$ (i.e. $b|_{V_i}=\lambda_i\id$). We have $tr_{V_i}(x_n)=0$ because
+   $x_n$ is nilpotent. Also $tr_{V_i}(a)= 0$ because $\g$ is semisimple implies
+   $\D\g=\g$, so $a=\sum [x_k,y_k]$, and the traces of commutators are $0$. Thus,
+   $tr_{V_i}(b)=0$, so $\lambda_i=0$ and $b=0$. Now $x_n=a\in \g$, and so $x_s\in \g$.
+ \end{proof}
+ Since the image of a semisimple Lie algebra is semisimple, the proposition tells us
+ that for any representation $\rho:\g\to \gl(V)$, the semisimple and nilpotent parts
+ of $\rho(x)$ are in the image of $\g$. In fact, the following corollary shows that
+ there is an \emph{absolute} Jordan decomposition\index{Jordan decomposition!absolute}
+ $x=x_s+x_n$ within $\g$.
+ \begin{corollary}\label{lec13CorJordan}
+   If $\g$ is semisimple, and $x\in \g$, then there are $x_s,x_n\in \g$ such that for
+   any representation $\rho:\g\to \gl(V)$, we have $\rho(x_s)=\rho(x)_s$ and
+   $\rho(x_n)=\rho(x)_n$.
+ \end{corollary}
+ \begin{proof}
+   Consider the (faithful) representation $ad:\g\to \gl(\g)$. By the proposition,
+   there are some $x_s,x_n\in \g$ such that $(ad_x)_s=ad_{x_s}$ and
+   $(ad_x)_n=ad_{x_n}$. Since $ad$ is faithful, $ad_x=ad_{x_n}+ad_{x_s}$ and
+   $ad_{[x_n,x_s]}=[ad_{x_n},ad_{x_s}]=0$ tell us that $x=x_n+x_s$ and $[x_s,x_n]=0$.
+   These are our candidates for the absolute Jordan decomposition.
+
+   Given any surjective Lie algebra homomorphism $\sigma:\g\to \g'$, we have that
+   $ad_{\sigma(y)}(\sigma(z))=\sigma(ad_y(z))$, from which it follows that
+   $ad_{\sigma(x_s)}$ is diagonalizable and $ad_{\sigma(x_n)}$ is nilpotent (note that
+   we've used surjectivity of $\sigma$). Thus, $\sigma(x)_n = \sigma(x_n)$ and
+   $\sigma(x)_s=\sigma(x_s)$. That is, our candidates are preserved by surjective
+   homomorphisms.
+
+   Now given any representation $\rho:\g\to \gl(V)$, the previous paragraph allows us
+   to replace $\g$ by its image, so we may assume $\rho$ is faithful. By the
+   proposition, there are some $y,z\in \g$ such that $\rho(x)_s=\rho(y),
+   \rho(x)_n=\rho(z)$. Then $[\rho(y),-]_{\gl(\rho(\g))}$ is a diagonalizable operator
+   on $\gl\bigl(\rho(\g)\bigr) \cong \gl(\g)$, and $[\rho(z),-]_{\gl(\rho(\g))}$ is
+   nilpotent. Uniqueness of the Jordan decomposition implies that $\rho(y)=\rho(x_s)$
+   and $\rho(z)=\rho(x_n)$. Since $\rho$ is faithful, it follows that $y=x_s$ and
+   $z=x_n$.\index{Jordan decomposition!absolute}
+ \end{proof}
+ \begin{definition}
+   We say $x\in \g$ is \emph{semisimple}\index{semisimple!element} if $ad_x$ is diagonalizable. We say $x$ is
+   \emph{nilpotent}\index{nilpotent!element} if $ad_x$ is nilpotent.
+ \end{definition}
+ Given any representation $\rho:\g\to \gl(V)$ with $\g$ semisimple, the corollary
+ tells us that if $x$ is semisimple, then $\rho(x)$ is diagonalizable, and if $x$ is
+ nilpotent, then $\rho(x)$ is nilpotent. If $\rho$ is faithful, then $x$ is semisimple
+ (resp.\ nilpotent) if and only if $\rho(x)$ is semisimple (resp.\ nilpotent).
+ \begin{definition}
+ We denote the set of all semisimple elements in $\g$ by $\g_{ss}$. We call an $x\in
+ \g_{ss}$ \emph{regular}\index{regular element} if $\dim(\ker ad_x)$ is minimal (i.e.\
+ the dimension of the centralizer is minimal).
+ \end{definition}
+ \begin{example}\index{sl(n)@$\sl(n)$}
+   Let $\g=\sl_n$. Semisimple elements of $\sl_n$ are exactly the diagonalizable
+   matrices, and nilpotent elements are exactly the nilpotent matrices. If $x\in \g$
+   is diagonalizable, then the centralizer is minimal exactly when all the eigenvalues
+   are distinct. So the regular elements are the diagonalizable matrices with distinct
+   eigenvalues.
+ \end{example}
+
+
+ Let $h\in \g_{ss}$ be regular. We have that $ad_h$ is diagonalizable, so we can write
+ $\g = \bigoplus_{\mu\in k} \g_\mu$, where $\g_\mu = \{x\in \g| [h,x]=\mu x\}$ are
+ eigenspaces of $ad_h$. We know that $\g_0\neq 0$ because it contains $h$. There are
+ some other properties:
+ \begin{enumerate}
+ \item \label{lec13n1} $[\g_\mu,\g_\nu]\subseteq \g_{\mu+\nu}$.%
+ \item \label{lec13n2} $\g_0\subseteq\g$ is a subalgebra.%
+ \item \label{lec13n3} $B(\g_\mu,\g_\nu) = 0$ if $\mu\neq -\nu$ (here, $B$ is the Killing form, as usual).%
+ \item \label{lec13n4} $B|_{\g_\mu \oplus \g_{-\mu}}$ is non-degenerate, and
+    $B|_{\g_0}$ is non-degenerate.%
+ \end{enumerate}
+ \begin{proof}
+ Property \ref{lec13n1} follows from the Jacobi identity: if $x\in \g_\mu$ and $y\in
+\g_\nu$, then
+ \[
+    [h,[x,y]] = [[h,x],y] + [x,[h,y]] = \mu[x,y] + \nu[x,y],
+ \]
+ so $[x,y]\in \g_{\mu+\nu}$. Property \ref{lec13n2} follows immediately from
+ \ref{lec13n1}. Property \ref{lec13n3} follows from \ref{lec13n1} because $ad_x\circ
+ ad_y:\g_\gamma\to \g_{\gamma+\mu+\nu}$, so $B(x,y)=tr(ad_x\circ ad_y)=0$ whenever
+ $\mu+\nu\neq 0$. Finally, Cartan's criterion says that $B$ must be non-degenerate, so
+ property \ref{lec13n4} follows from \ref{lec13n3}.
+ \end{proof}
+ \begin{proposition} \label{lec13P:g0abelian}
+   In the situation above ($\g$ is semisimple and $h\in \g_{ss}$ is regular), $\g_0$
+   is abelian.
+ \end{proposition}
+ \begin{proof}
+   Take $x\in \g_0$, and write $x=x_s+x_n$. Since $ad_{x_n}$ is a polynomial of
+   $ad_x$, we have $[x_n,h]=0$, so $x_n\in \g_0$, from which we get $x_s\in\g_0$.
+   Since $[x_s,h]=0$, we know that $ad_{x_s}$ and $ad_h$ are simultaneously
+   diagonalizable (recall that $ad_{x_s}$ is diagonalizable). Thus, for generic $t\in
+   k$, we have that $\ker ad_{h+tx_s} \subseteq \ker ad_h$. Since $h$ is regular,
+   $\ker ad_{x_s} = \ker ad_h=\g_0$. So $[x_s,\g_0]=0$, which implies that $\g_0$ is
+   nilpotent by Corollary \ref{lec11Engelcor2} to Engel's Theorem\index{Engel's
+   Theorem}. Now we have that $ad_x:\g_0\to \g_0$ is nilpotent, and we want $ad_x$ to
+   be the zero map. Notice that $B(\g_0,\D\g_0)=0$ since $\g_0$ is nilpotent, but
+   $B|_{\g_0}$ is non-degenerate by property \ref{lec13n4} above, so $\D\g_0=0$, so
+   $\g_0$ is abelian.
+ \end{proof}
+% So it always behaves like in the case $\g=\sl_n$.
+
+ \begin{definition}
+    We call $\h:=\g_0$ the \emph{Cartan subalgebra}\index{Cartan!subalgebra|idxbf} of $\g$
+    (associated to $h$).
+ \end{definition}
+ In Theorem \ref{lec14T:CSA}, we will show that any two Cartan subalgebras of a
+ semisimple Lie algebra $\g$ are related by an automorphism of $\g$, but for now we
+ just fix one. See \cite[\S 15]{Humphreys:LART} for a more general definition
+ of Cartan subalgebras.
+
+ \begin{exercise}\label{lec13Ex:hss}
+   Show that if $\g$ is semisimple, $\h$ consists of semisimple elements.
+   \begin{solution}
+     Let $x\in \h$, so $[x,h]=0$. Since $ad_{x_n}$ is a polynomial in $ad_x$, we get
+     that $[x_n,h]=0$, so $x_n\in \h$. Thus, it is enough to show that any nilpotent
+     element in $\h$ is zero (then $x=x_s+x_n=x_s$ is semisimple). We do this using
+     property \ref{lec13n4}, that the Killing form is non-degenerate on $\h$. If $y\in
+     \h$, then $B(x_n,y)=tr(ad_{x_n}\circ ad_y)$. By Proposition
+     \ref{lec13P:g0abelian}, $\h$ is abelian, so $[x_n,y]=0$, so $ad_{x_n}$ commutes
+     with $ad_y$. Thus, we can simultaneously upper triangularize $ad_{x_n}$ and
+     $ad_y$ by Engel's theorem\index{Engel's Theorem|idxit}. Since $ad_{x_n}$ is
+     nilpotent, it is \emph{strictly} upper triangular so $tr(ad_{x_n}\circ ad_y)=0$.
+     So $x_n=0$ by non-degeneracy of $B$.
+   \end{solution}
+ \end{exercise}
+
+ All elements of $\h$ are simultaneously diagonalizable because they are all
+ diagonalizable (by the above exercise) and they all commute (by the above
+ proposition). For $\alpha\in\h^*\smallsetminus \{0\}$ consider
+ \[
+    \g_\alpha = \{x\in \g| [h,x]=\alpha(h)x \text{ for all } h\in \h\}
+ \]
+ If this $\g_\alpha$ is non-trivial, it is called a \emph{root space}\index{root
+ space} and the $\alpha$ is called a \emph{root}\index{root}. The \emph{root
+ decomposition}\index{root decomposition|idxbf} (or \emph{Cartan
+ decomposition}\index{Cartan!decomposition|idxbf}) of $\g$ is $\g = \h \oplus
+ \bigoplus_{\alpha\in \h^*\smallsetminus \{0\}} \g_\alpha$.
+ \begin{example} \index{sl(2)@$\sl(2)$}
+   $\g=\sl(2)$. Take $H=\matrix{1}{0}{0}{-1}$, a regular element. The Cartan
+   subalgebra is $\h=k\cdot H$, a one dimensional subspace. We have $\g_2 =
+   \bigl\{\matrix{0}{t}{0}{0}\bigr\}$ and $\g_{-2} =
+   \bigl\{\matrix{0}{0}{t}{0}\bigr\}$, and $\g=\h\oplus \g_2\oplus \g_{-2}$.
+%   For the classical $X=\matrix{0}{1}{0}{0},
+%   Y=\matrix{0}{0}{1}{0}$ we get $[H,X]=2X$, $[H,Y]=-2Y$.
+ \end{example}
+ \begin{example}\label{lec13Eg:sl3}\index{sl(3)@$\sl(3)$}
+   $\g=\sl(3)$. Take
+   \[
+    \h = \left\{ \mat{x_1 & & \llap{\smash{\raisebox{-1ex}{\mbox{\LARGE $0$}}}}\\
+        & x_2\\ \smash{\mbox{\LARGE $0$}} & & x_3}\bigg| x_1+x_2+x_3=0\right\}.
+   \]
+   Let $E_{ij}$ be the elementary matrices. We have that
+   $[diag(x_1,x_2,x_3),E_{ij}]=(x_i-x_j)E_{ij}$. If we take the basis
+   $\varepsilon_i(x_1,x_2,x_3)=x_i$ for $\h^*$, then we have roots $\varepsilon_i -
+   \varepsilon_j$. They can be arranged in a diagram:
+  \[\begin{xy}
+  (0,0)="c",
+  \ar@{.>} a(30)   ="1" *+!LD{\varepsilon_1},
+  \ar@{.>} a(150)  ="2" *+!RD{\varepsilon_2},
+  \ar@{.>} a(-90)  ="3" *+!U{\varepsilon_3},
+  \ar@{->} "1"-"2" *+!L{\varepsilon_1 - \varepsilon_2},
+  \ar@{->} "1"-"3" *+!DL{\varepsilon_1 - \varepsilon_3},
+  \ar@{->} "2"-"1" *+!R{\varepsilon_2 - \varepsilon_1},
+  \ar@{->} "2"-"3" *+!DR{\varepsilon_2 - \varepsilon_3},
+  \ar@{->} "3"-"1" *+!UR{\varepsilon_3 - \varepsilon_1},
+  \ar@{->} "3"-"2" *+!UL{\varepsilon_3 - \varepsilon_2},
+ \end{xy}\]
+   This generalizes to $\sl(n)$.
+ \end{example}
+ The \emph{rank}\index{rank} of $\g$ is defined to be $\dim \h$. In particular, the
+ rank of $\sl(n)$ is going to be $n-1$.
+
+ Basic properties of the root decomposition are:
+ \begin{enumerate}
+ \item $[\g_\alpha,\g_\beta] \subseteq \g_{\alpha+\beta}$.
+ \item $B(\g_\alpha,\g_\beta) = 0$ if $\alpha +\beta \neq 0$.
+ \item \label{lec13N3} $B|_{\g_\alpha\oplus \g_{-\alpha}}$ is non-degenerate.
+ \item $B|_\h$ is non-degenerate
+ \end{enumerate}
+ Note that \ref{lec13N3} implies that $\alpha$ is a root if and only if $-\alpha$ is a
+ root.
+ \begin{exercise}
+   Check these properties.
+   \begin{solution}
+     Since $\Delta$ is a finite set in $\h^*$, we can find some $h\in \h$ so that
+     $\alpha(h)\neq \beta(h)$ for distinct roots $\alpha$ and $\beta$. Then this $h$
+     is a regular element which gives the right Cartan subalgebra, and the desired
+     properties follow from the properties on page \pageref{lec13n1}.
+   \end{solution}
+ \end{exercise}
+ Now let's try to say as much as we can about this root decomposition. Define
+ $\h_\alpha\subseteq \h$ as $[\g_\alpha,\g_{-\alpha}]$. Take $x\in \g_\alpha$ and $y\in
+ \g_{-\alpha}$ and $h\in \h$. Then compute
+ \begin{align*}
+   B(\overbrace{[x,y]}^{\in \h_\alpha},h) &= B(x,\overbrace{[y,h]}^{\in \g_\alpha}) & \text{($B$ is invariant)}\\
+    &= \alpha(h) B(x,y) & \text{(since $y\in \g_\alpha$)}
+ \end{align*}
+ It follows that $\h_\alpha^\perp=\ker(\alpha)$, which is of codimension one. Thus,
+ $\h_\alpha$ is one dimensional.
+
+ \begin{proposition}
+   If $\g$ is semisimple and $\alpha$ is a root, then $\alpha(\h_\alpha) \neq 0$.
+ \end{proposition}
+ \begin{proof}
+   Assume that $\alpha(\h_\alpha)=0$. Then pick $x\in \g_\alpha$, $y\in \g_{-\alpha}$
+   such that $[x,y]=h\neq 0$. If $\alpha(h)=0$, then we have that
+   $[h,x]=\alpha(h)x=0, [h,y]=0$. Thus $\langle x,y,h \rangle$ is a copy of the
+   Heisenberg algebra\index{Heisenberg algebra}, which is solvable (in fact,
+   nilpotent). By Lie's Theorem, $ad_\g(x)$ and $ad_\g(y)$ are simultaneously upper
+   triangularizable, so $ad_\g(h)=[ad_\g(x),ad_\g(y)]$ is nilpotent. This is a
+   contradiction because $h$ is an element of the Cartan subalgebra, so it is
+   semisimple.
+ \end{proof}
+
+ For each root $\alpha$, we will take $H_\alpha\in \h_\alpha$ such that
+ $\alpha(H_\alpha)=2$ (we can always scale $H_\alpha$ to get this). We can choose
+ $X_\alpha\in \g_\alpha$ and $Y_\alpha\in \g_{-\alpha}$ such that
+ $[X_\alpha,Y_\alpha]=H_\alpha$. We have that
+ $[H_\alpha,X_\alpha]=\alpha(H_\alpha)X_\alpha=2X_\alpha$ and $[H_\alpha,Y_\alpha] =
+ -2Y_\alpha$. That means we have a little copy of $\sl(2)\cong\langle
+ H_\alpha,X_\alpha,Y_\alpha \rangle$.\index{sl(2)@$\sl(2)$} Note that this makes $\g$ a
+ representation of $\sl_2$ via $\sl_2\hookrightarrow \g\stackrel{ad}{\hookrightarrow}
+ \gl(\g)$.
+
+ We normalize $\alpha(h_\alpha)$ to 2 so that we get the standard basis of $\sl_2$.
+ This way, the representations behave well (namely, that various
+ coefficients are integers). Next we study these representations.
+
+ \subsektion{Irreducible finite dimensional representations of
+ \texorpdfstring{$\sl(2)$}{sl(2)}} Let $H,X,Y$ be the standard basis of $\sl(2)$, and
+ let $V$ be an irreducible representation. By Corollary \ref{lec13CorJordan}, the
+ action of $H$ on $V$ is diagonalizable and the actions of $X$ and $Y$ on $V$ are
+ nilpotent. By Lie's Theorem (applied to the solvable subalgebra generated by $H$ and
+ $X$), $X$ and $H$ have a common eigenvector $v$: $Hv=\lambda v$ and $Xv=0$ (since $X$
+ is nilpotent, its only eigenvalues are zero). Verify by induction that
+ \begin{align}
+   HY^r v &= YHY^{r-1}v + [H,Y]Y^{r-1}v = \bigl(\lambda-2(r-1)\bigr)Y^r v + 2Y^r v \notag\\
+          &= (\lambda-2r)Y^rv \\
+   XY^r v &= YXY^{r-1}v + [X,Y]Y^{r-1}v \notag\\
+          &= (r-1)\bigl(\lambda-(r-1)+1\bigr)Y^{r-1}v + \bigl(\lambda-2(r-1) \bigr)Y^{r-1}v\notag\\
+          &= r(\lambda-r+1)Y^{r-1}v \label{lec13dag}
+ \end{align}
+ Thus, the span of $v,Yv,Y^2v,\dots$ is a subrepresentation, so it must be all of $V$
+ (since $V$ is irreducible). Since $Y$ is nilpotent, there is a minimal $n$ such that
+ $Y^nv=0$. From (\ref{lec13dag}), we get that $\lambda=n-1$ is a non-negative integer.
+ Since $v,Yv,\dots, Y^{n-1}v$ have distinct eigenvalues (under $H$), they are linearly
+ independent.
+
+ Conclusion: For every non-negative integer $n$, there is exactly one irreducible
+ representation of $\sl_2$ of dimension $n+1$, and the $H$-eigenvalues on that
+ representation are $n, n-2, n-4, \dots, 2-n,-n$.
+
+% You can check that if $\lambda =n$, you go down to $-n$. In \cite{FulHar}, this
+% representation is called $\Gamma_n$, and we have that $\dim \Gamma_n=n+1$.
+
+ \begin{remark}
+   As a consequence, we have that in a general root decomposition, $\g=\h\oplus
+   \bigoplus_{\alpha\in \Delta} g_\alpha$, each root space is one dimensional. Assume
+   that $\dim\g_{-\alpha} >1$. Consider an $\sl(2)$ in $\g$, generated by $\langle
+   X_\alpha, Y_\alpha, H_\alpha=[X_\alpha,Y_\alpha]\rangle$ where
+   $Y_\alpha\in\g_{-\alpha}$ and $X_\alpha\in\g_\alpha$. Then there is some $Z\in
+   \g_{-\alpha}$ such that $[X_\alpha, Z]=0$ (since $\h_\alpha$ is one dimensional).
+   Hence, $Z$ is a highest vector with respect to the adjoint action of this $\sl(2)$.
+   But we have that $ad_{H_\alpha}(Z) = -2Z$, and the eigenvalue of a highest vector
+   must be positive! This shows that the choice of $X_\alpha$ and $Y_\alpha$ is really
+   unique.
+ \end{remark}
+ \begin{definition}
+   Thinking of $\g$ as a representation of $\sl_2=\langle
+   X_\alpha,Y_\alpha,H_\alpha\rangle$, the irreducible subrepresentation containing
+   $\g_\beta$ is called the \emph{$\alpha$-string through
+   $\beta$}\index{alpha-string@$\alpha$-string|idxbf}.
+ \end{definition}
+
+ Let $\Delta$ denote the set of roots. Then $\Delta$ is a finite subset of $\h^*$ with the
+ following properties:
+ \begin{enumerate}
+ \item \label{lec13p1} $\Delta$ spans $\h^*$.
+ \item \label{lec13p2} If $\alpha, \beta\in \Delta$, then $\beta(H_\alpha)\in \ZZ$, and
+ $\beta-\bigl(\beta(H_\alpha)\bigr)\alpha \in \Delta$.
+ \item \label{lec13p3} If $\alpha, c\alpha\in \Delta$, then $c=\pm 1$.
+ \end{enumerate}
+ \begin{exercise}
+    Prove these properties.
+   \begin{solution}
+     If $\Delta$ does not span $\h^*$, then there is some non-zero $h\in \h$ such that
+     $\alpha(h)=0$ for all $\alpha\in \Delta$. This means that all of the eigenvalues
+     of $ad_h$ are zero. Since $h$ is semisimple, $ad_h=0$. And since $ad$ is
+     faithful, we get $h=0$, proving property \ref{lec13p1}.
+
+     To prove \ref{lec13p2}, consider the $\alpha$-string through $\beta$. It must be
+     of the form $\g_{\beta+n\alpha}\oplus \g_{\beta+(n-1)\alpha}\oplus \cdots\oplus
+     \g_{\beta+m\alpha}$ for some integers $n\ge 0\ge m$. From the characterization of
+     irreducible finite dimensional representations of $\sl_2$, we know that each
+     eigenvalue of $H_\alpha$ is an integer, so $\beta(H_\alpha)=r\in \ZZ$ (since
+     $[H_\alpha,X_\beta]=\beta(H_\alpha)X_\beta$). We also know that the eigenvalues
+     of $H_\alpha$ are symmetric around zero, so we must have
+     $-r=(\beta+s\alpha)(H_\alpha)$ for some $s$ for which $\g_{\beta+s\alpha}$ is in
+     the $\alpha$-string through $\beta$. Then we get
+     $\beta(H_\alpha)+s\alpha(H_\alpha)=\beta(\alpha)+2s=-r=-\beta(\alpha)$, from which
+     we know that $s=-\beta(H_\alpha)$. Thus, $\g_{\beta-\beta(H_\alpha)\alpha}\neq
+     0$, so $\beta-\bigl(\beta(H_\alpha)\bigr)\alpha$ is a root.
+
+     Finally, we prove \ref{lec13p3}. If $\alpha$ and $\beta=c\alpha$ are roots, then
+     by property \ref{lec13p2}, we know that $\alpha(H_\beta)=2/c$ and
+     $\beta(H_\alpha)=2c$ are integers (note that $H_\beta=H_\alpha/c$). It follows
+     that $c=\pm \half, \pm 1$, or $\pm 2$. Therefore, it is enough to show that
+     $\alpha$ and $2\alpha$ cannot both be roots. To see this, consider the
+     $\alpha$-string through $2\alpha$. We have that $[H_\alpha,
+     X_{2\alpha}]=2\alpha(H_\alpha) X_{2\alpha}=4X_{2\alpha}$, so the $\alpha$-string
+     must have a non-zero element $[Y_\alpha,X_{2\alpha}]\in \g_\alpha$, which is
+     spanned by $X_\alpha$. But then we would have that $X_{2\alpha}$ is a multiple of
+     $[X_\alpha,X_\alpha]=0$, which is a contradiction.
+   \end{solution}
+ \end{exercise}
